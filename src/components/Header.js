@@ -18,10 +18,11 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: 'blue',
         justifyContent: 'center',
+        flexDirection: 'row',
     },
     title: {
         fontFamily: '',
         fontSize: 30,
         alignSelf: 'center',
-    }
+    },
 })
