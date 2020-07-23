@@ -7,7 +7,7 @@ export default class App extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Cheers</Text>
+                <Text style={styles.title}>Cheers</Text>
             </View>
         )
     }
@@ -15,7 +15,13 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 50,
+        height: 100,
         backgroundColor: 'blue',
+        justifyContent: 'center',
     },
+    title: {
+        fontFamily: '',
+        fontSize: 30,
+        alignSelf: 'center',
+    }
 })
