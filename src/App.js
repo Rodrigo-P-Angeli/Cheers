@@ -7,7 +7,7 @@ export default class App extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>SADDFdasfghG</Text>
+                <Text>dfg</Text>
             </View>
         )
     }
