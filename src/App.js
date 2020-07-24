@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import Header from './components/Header';
 import { connect } from 'react-redux'
 import { loadCardapio } from './store/actions/cardapio';
-import database from '@react-native-firebase/database'
+import ItemCardapio from './components/CardapioItem';
 
 class App extends Component {
     state = {
@@ -22,8 +22,7 @@ class App extends Component {
                 <FlatList
                     data={this.props.cardapio}
                     keyExtractor={item => `${item.id}`}
-                    renderItem={({ item }) => <Text>{item.marca}</Text>} />
-                <Text>asdsfdgfh</Text>
+                    renderItem={({ item }) => <ItemCardapio {...item} /> } />
             </View>
         )
     }

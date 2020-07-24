@@ -9,7 +9,6 @@ export const loadCardapio = () => {
         try {
             await database().ref('cardapio').on('value', snapshot => {
                 const itens = snapshot.val()
-                console.log(itens)
                 dispatch(setCardapio(itens))
             })
         }
