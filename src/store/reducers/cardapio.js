@@ -14,6 +14,7 @@ const initialState = {
         //     marca: 'afg',
         // },
     ],
+    total: 0,
 }
 
 const reducer = (state = initialState, action) => {
