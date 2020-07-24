@@ -4,7 +4,16 @@
 import { LOAD_CARDAPIO } from '../ActionsTypes'
 
 const initialState = {
-    cardapio: [],
+    cardapioo: [
+        // {
+        //     id: 0,
+        //     marca: 'asdfdg',
+        // },
+        // {
+        //     id: 1,
+        //     marca: 'afg',
+        // },
+    ],
 }
 
 const reducer = (state = initialState, action) => {
@@ -12,6 +21,7 @@ const reducer = (state = initialState, action) => {
         case LOAD_CARDAPIO:
             return {
                 ...state,
+                cardapioo: action.payload,
             }
         default:
             return state

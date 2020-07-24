@@ -3,7 +3,7 @@
 
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import cardapio from './reducers/cardapio'
+import cardapio from './reducers/Cardapio'
 
 const reducers = combineReducers({
     cardapio: cardapio,
