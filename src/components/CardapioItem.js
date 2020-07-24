@@ -2,7 +2,7 @@
 /* eslint-disable semi */
 
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, Text, StyleSheet, Button, TextInput } from 'react-native'
 
 export default class ItemCardapio extends Component {
     render() {
@@ -10,12 +10,41 @@ export default class ItemCardapio extends Component {
             <View style={{ padding: 5, paddingBottom: 0 }}>
                 <View style={styles.container} elevation={2}>
                     <View style={styles.desc}>
-                        <Text>{this.props.marca} {this.props.tipo}</Text>
-                        <Text>{this.props.volume}</Text>
+                        <Text style={styles.marca}>{this.props.marca}</Text>
+                        <Text>R$ {this.props.price}</Text>
                     </View>
-                    <View style={styles.buttons}>
-                        <Button style={styles.button} title={'+'} onPress={() => { }} />
-                        <Button style={styles.button} title={'-'} onPress={() => { }} />
+                    <View style={styles.setQuant}>
+                        <View style={{ flexDirection: 'row', paddingTop: 3, }}>
+                            <View style={{ flex: 1 }}>
+                                <Button
+                                    //onPress={() => props.setless(this.props.id)}
+                                    title="-"
+                                    color="#841584"
+                                />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <TextInput
+                                    textAlign={'center'}
+                                    style={{ height: 40 }}
+                                    placeholder={'0'}
+                                    //value={this.props.count.toString()}
+                                    //onChangeText={text => this.props.onChangeText(this.props.id, text)}
+                                    keyboardType={'numeric'}
+                                />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Button
+                                    onPress={() => { }}
+                                    title="+"
+                                    color="#841584"
+                                />
+                            </View>
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <Text textAlign={'center'}>
+                                R$ 0,00
+                            </Text>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -26,21 +55,25 @@ export default class ItemCardapio extends Component {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        padding: 10,
-        justifyContent: 'space-around',
-        flex: 1,
-        borderWidth: 0.1,
         alignItems: 'center',
-        borderRadius: 1,
+        justifyContent: 'space-between',
+        borderColor: '#e3e3e3',
+        borderWidth: 0.1,
+        padding: 5,
+        borderRadius: 10,
     },
     desc: {
-        flex: 8,
+        flex: .7,
+    },
+    setQuant: {
+        alignItems: 'center',
+        flex: .3,
+        justifyContent: 'center'
     },
     buttons: {
-        flexDirection: 'row',
-        flex: 2,
-        justifyContent: 'space-around',
-        height: 30,
-        alignItems: 'center',
+        flex: .4,
+    },
+    marca: {
+        fontSize: 20,
     },
 })
