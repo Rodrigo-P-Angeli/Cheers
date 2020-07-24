@@ -2,6 +2,7 @@
 /* eslint-disable semi */
 
 import { LOAD_CARDAPIO } from '../ActionsTypes'
+import { and } from 'react-native-reanimated'
 
 const initialState = {
     cardapioo: [
@@ -21,10 +22,15 @@ const reducer = (state = initialState, action) => {
         case LOAD_CARDAPIO:
             return {
                 ...state,
-                cardapioo: action.payload,
-    }
+                cardapioo: action.payload.map((item) => {
+                    item.total = 0
+                    item.quantidade = 0
+                    console.log(item)
+                    return (item)
+                }),
+            }
         default:
-return state
+            return state
     }
 }
 export default reducer
