@@ -14,7 +14,6 @@ const initialState = {
         //     marca: 'afg',
         // },
     ],
-    total: 0,
 }
 
 const reducer = (state = initialState, action) => {
@@ -23,9 +22,9 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cardapioo: action.payload,
-            }
+    }
         default:
-            return state
+return state
     }
 }
 export default reducer
