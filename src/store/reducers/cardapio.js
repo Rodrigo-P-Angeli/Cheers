@@ -25,7 +25,6 @@ const reducer = (state = initialState, action) => {
                 cardapioo: action.payload.map((item) => {
                     item.total = 0
                     item.quantidade = 0
-                    console.log(item)
                     return (item)
                 }),
             }

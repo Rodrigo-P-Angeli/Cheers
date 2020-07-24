@@ -10,8 +10,8 @@ export default class ItemCardapio extends Component {
             <View style={{ padding: 5, paddingBottom: 0 }}>
                 <View style={styles.container} elevation={2}>
                     <View style={styles.desc}>
-                        <Text style={styles.marca}>{this.props.marca}</Text>
-                        <Text>R$ {this.props.price}</Text>
+                        <Text style={styles.marca}>{this.props.marca} {this.props.tipo}</Text>
+                        <Text>R$ {this.props.price.toFixed(2).replace('.', ',')}</Text>
                     </View>
                     <View style={styles.setQuant}>
                         <View style={{ flexDirection: 'row', paddingTop: 3, }}>
@@ -27,7 +27,7 @@ export default class ItemCardapio extends Component {
                                     textAlign={'center'}
                                     style={{ height: 40 }}
                                     placeholder={'0'}
-                                    //value={this.props.count.toString()}
+                                    value={this.props.quantidade.toString()}
                                     //onChangeText={text => this.props.onChangeText(this.props.id, text)}
                                     keyboardType={'numeric'}
                                 />
@@ -42,7 +42,7 @@ export default class ItemCardapio extends Component {
                         </View>
                         <View style={{ flex: 1 }}>
                             <Text textAlign={'center'}>
-                                R$ 0,00
+                                R$ {this.props.total.toFixed(2).replace('.', ',')}
                             </Text>
                         </View>
                     </View>
