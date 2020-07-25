@@ -29,6 +29,7 @@ const reducer = (state = initialState, action) => {
                     if (item.id === action.payload.id) {
                         item.quantidade = item.quantidade + 1
                     }
+                    console.log(item)
                     return item
                 }),
             }

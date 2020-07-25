@@ -33,7 +33,8 @@ export const setCardapio = posts => {
 export const setMore = (id) => {
     return {
         type: SET_MORE,
-        payload: {
+        payload:
+        {
             id: id,
         },
     }
