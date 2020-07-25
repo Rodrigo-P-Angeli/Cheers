@@ -16,7 +16,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
     container: {
         height: 100,
-        backgroundColor: 'blue',
+        backgroundColor: '#841584',
         justifyContent: 'center',
         flexDirection: 'row',
     },
@@ -24,5 +24,7 @@ const styles = StyleSheet.create({
         fontFamily: '',
         fontSize: 30,
         alignSelf: 'center',
+        color: 'white',
+        fontWeight: 'bold',
     },
 })
