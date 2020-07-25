@@ -22,7 +22,7 @@ class App extends Component {
                 <FlatList
                     data={this.props.cardapio}
                     keyExtractor={item => `${item.id}`}
-                    renderItem={({ item }) => <ItemCardapio {...item} /> } />
+                    renderItem={({ item }) => <ItemCardapio {...item} />} />
             </View>
         )
     }
@@ -33,9 +33,10 @@ const styles = StyleSheet.create({
     },
 })
 
-const mapStateToProps = ({ cardapio }) => {
+const mapStateToProps = ({ cardapio, total }) => {
     return {
         cardapio: cardapio.cardapioo,
+        total: total.total,
     }
 }
 

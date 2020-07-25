@@ -23,9 +23,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cardapioo: action.payload.map((item) => {
-                    item.total = 0
-                    item.quantidade = 0
-                    return (item)
+                    if (item.total && item.quantidade) {
+                        return (item)
+                    } else {
+                        item.total = 0
+                        item.quantidade = 0
+                        return (item)
+                    }
                 }),
             }
         default:
