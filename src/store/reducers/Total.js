@@ -4,16 +4,7 @@
 import { SET_TOTAL } from '../ActionsTypes'
 
 const initialState = {
-    cardapioo: [
-        // {
-        //     id: 0,
-        //     marca: 'asdfdg',
-        // },
-        // {
-        //     id: 1,
-        //     marca: 'afg',
-        // },
-    ],
+    total: 0,
 }
 
 const reducer = (state = initialState, action) => {
@@ -21,11 +12,11 @@ const reducer = (state = initialState, action) => {
         case SET_TOTAL:
             return {
                 ...state,
-                    
-                }),
+                total: action.payload,
             }
         default:
             return state
     }
 }
+
 export default reducer
