@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 60,
         padding: 10,
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
     },
     body:{
         flex: 1,
