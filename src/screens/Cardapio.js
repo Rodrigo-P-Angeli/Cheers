@@ -2,12 +2,12 @@
 /* eslint-disable semi */
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
-import Header from './components/Header';
+import Header from '../components/Header';
 import { connect } from 'react-redux';
 
-import ItemCardapio from './components/CardapioItem';
+import ItemCardapio from '../components/CardapioItem';
 
-import { loadCardapio, setMore, setLess, setQuantidade } from './store/actions/cardapio';
+import { loadCardapio, setMore, setLess, setQuantidade } from '../store/actions/cardapio';
 ///import { calcTotalItem } from './store/actions/total';
 
 class App extends Component {
