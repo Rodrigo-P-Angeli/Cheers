@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import ItemCardapio from './components/CardapioItem';
 
-import { loadCardapio, setMore } from './store/actions/cardapio';
+import { loadCardapio, setMore, setLess, setQuantidade } from './store/actions/cardapio';
 ///import { calcTotalItem } from './store/actions/total';
 
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
                     <FlatList
                         data={this.props.cardapio}
                         keyExtractor={item => `${item.id}`}
-                        renderItem={({ item }) => <ItemCardapio {...item} setMore={() => this.props.onSetMore()} />} />
+                        renderItem={({ item }) => <ItemCardapio {...item} setMore={this.props.onSetMore} setLess={this.props.onSetLess} setqt={this.props.onSetQt} />} />
                 </View>
                 <View style={styles.bottom}>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
@@ -76,17 +76,19 @@ const styles = StyleSheet.create({
     },
 })
 
-const mapStateToProps = ({ cardapio, total }) => {
+const mapStateToProps = ({ cardapio }) => {
     return {
         cardapio: cardapio.cardapioo,
-        total: total.total,
+        total: cardapio.total,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onLoadScreen: () => dispatch(loadCardapio()),
-        onSetMore: () => dispatch(setMore()),
+        onSetMore: (id) => dispatch(setMore(id)),
+        onSetLess: (id) => dispatch(setLess(id)),
+        onSetQt: (id, text) => dispatch(setQuantidade(id, text)),
     }
 }
 

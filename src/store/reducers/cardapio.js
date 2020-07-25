@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-import { LOAD_CARDAPIO, SET_MORE, SET_LESS } from '../ActionsTypes'
+import { LOAD_CARDAPIO, SET_MORE, SET_LESS, SET_QT, SET_TOTAL_ITEM, SET_MAJOR_TOTAL } from '../ActionsTypes'
 
 const initialState = {
     cardapioo: [],
+    total: 0,
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,13 +30,48 @@ const reducer = (state = initialState, action) => {
                     if (item.id === action.payload.id) {
                         item.quantidade = item.quantidade + 1
                     }
-                    console.log(item)
                     return item
                 }),
             }
         case SET_LESS:
             return {
                 ...state,
+                cardapioo: state.cardapioo.map(item => {
+                    if (item.id === action.payload.id) {
+                        if (item.quantidade > 0) {
+                            item.quantidade = item.quantidade - 1
+                        }
+                    }
+                    return item
+                }),
+            }
+        case SET_QT:
+            return {
+                ...state,
+                cardapioo: state.cardapioo.map(item => {
+                    if (item.id === action.payload.id) {
+                        item.quantidade = action.payload.qt * 1
+                    }
+                    return item
+                }),
+            }
+        case SET_TOTAL_ITEM:
+            return {
+                ...state,
+                cardapioo: state.cardapioo.map(item => {
+                    item.total = item.quantidade * (item.price * 1)
+                    return item
+                }),
+            }
+        case SET_MAJOR_TOTAL:
+            let total = 0
+            state.cardapioo.forEach(item => {
+                total = item.total + total
+                return total
+            })
+            return {
+                ...state,
+                total: total,
             }
         default:
             return state

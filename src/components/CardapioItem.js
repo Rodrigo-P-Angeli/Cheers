@@ -17,7 +17,7 @@ export default class ItemCardapio extends Component {
                         <View style={{ flexDirection: 'row', paddingTop: 3, }}>
                             <View style={{ flex: 1 }}>
                                 <Button
-                                    //onPress={() => props.setless(this.props.id)}
+                                    onPress={() => this.props.setLess(this.props.id)}
                                     title="-"
                                     color="#841584"
                                 />
@@ -28,7 +28,7 @@ export default class ItemCardapio extends Component {
                                     style={{ height: 40 }}
                                     placeholder={'0'}
                                     value={this.props.quantidade.toString()}
-                                    //onChangeText={text => this.props.onChangeText(this.props.id, text)}
+                                    onChangeText={text => this.props.setqt(this.props.id, text)}
                                     keyboardType={'numeric'}
                                 />
                             </View>
