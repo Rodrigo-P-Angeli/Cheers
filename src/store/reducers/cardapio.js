@@ -1,20 +1,10 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-import { LOAD_CARDAPIO } from '../ActionsTypes'
-import { and } from 'react-native-reanimated'
+import { LOAD_CARDAPIO, SET_MORE, SET_LESS } from '../ActionsTypes'
 
 const initialState = {
-    cardapioo: [
-        // {
-        //     id: 0,
-        //     marca: 'asdfdg',
-        // },
-        // {
-        //     id: 1,
-        //     marca: 'afg',
-        // },
-    ],
+    cardapioo: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +21,20 @@ const reducer = (state = initialState, action) => {
                         return (item)
                     }
                 }),
+            }
+        case SET_MORE:
+            return {
+                ...state,
+                cardapioo: state.cardapioo.map(item => {
+                    if (item.id === action.payload.id) {
+                        item.quantidade = item.quantidade + 1
+                    }
+                    return item
+                }),
+            }
+        case SET_LESS:
+            return {
+                ...state,
             }
         default:
             return state

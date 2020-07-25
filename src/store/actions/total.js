@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-import { SET_TOTAL, SET_ITEM_TOTAL } from '../ActionsTypes'
+import { SET_TOTAL, SET_ITEM_TOTAL, SET_MORE } from '../ActionsTypes'
 
 export const setTotal = total => {
     return {
@@ -20,6 +20,7 @@ export const setItemTotal = (id, qt, total) => {
         },
     }
 }
+
 
 export const calcTotalItem = (id, qt, valor) => {
     const total = qt * valor

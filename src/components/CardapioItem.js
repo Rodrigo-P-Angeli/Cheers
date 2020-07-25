@@ -34,7 +34,7 @@ export default class ItemCardapio extends Component {
                             </View>
                             <View style={{ flex: 1 }}>
                                 <Button
-                                    onPress={() => { }}
+                                    onPress={() => this.props.setMore(this.props.id)}
                                     title="+"
                                     color="#841584"
                                 />

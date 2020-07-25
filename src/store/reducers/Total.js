@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-import { SET_TOTAL, SET_MORE, SET_LESS } from '../ActionsTypes'
+import { SET_TOTAL } from '../ActionsTypes'
 
 const initialState = {
     total: 0,
@@ -13,14 +13,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 total: action.payload,
-            }
-        case SET_MORE:
-            return {
-                ...state,
-            }
-        case SET_LESS:
-            return {
-                ...state,
             }
         default:
             return state

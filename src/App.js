@@ -3,11 +3,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
 import Header from './components/Header';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+
 import ItemCardapio from './components/CardapioItem';
 
-import { loadCardapio } from './store/actions/cardapio';
-import { calcTotalItem } from './store/actions/total';
+import { loadCardapio, setMore } from './store/actions/cardapio';
+///import { calcTotalItem } from './store/actions/total';
 
 class App extends Component {
     state = {
@@ -24,7 +25,7 @@ class App extends Component {
                     <FlatList
                         data={this.props.cardapio}
                         keyExtractor={item => `${item.id}`}
-                        renderItem={({ item }) => <ItemCardapio {...item} setTotal={this.props.onSetItemQt()} />} />
+                        renderItem={({ item }) => <ItemCardapio {...item} setMore={() => this.props.onSetMore()} />} />
                 </View>
                 <View style={styles.bottom}>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
         padding: 10,
         alignSelf: 'flex-end',
     },
-    body:{
+    body: {
         flex: 1,
     },
     total: {
@@ -85,8 +86,7 @@ const mapStateToProps = ({ cardapio, total }) => {
 const mapDispatchToProps = dispatch => {
     return {
         onLoadScreen: () => dispatch(loadCardapio()),
-        onSetItemQt: () => dispatch(calcTotalItem()),
-
+        onSetMore: () => dispatch(setMore()),
     }
 }
 
