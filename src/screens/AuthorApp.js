@@ -5,9 +5,6 @@
 import React, { Component } from 'react'
 import { View, ActivityIndicator, StyleSheet } from 'react-native'
 
-import axios from 'axios'
-import AsyncStorage from '@react-native-community/async-storage'
-
 import auth from '@react-native-firebase/auth';
 
 export default class AuthorApp extends Component {
