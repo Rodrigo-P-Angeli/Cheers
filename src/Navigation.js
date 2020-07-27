@@ -70,7 +70,7 @@ class AppDrawer extends Component {
 class AppStack extends Component {
     render() {
         return (
-            <Stack.Navigator headerMode='none' initialRouteName={'AuthOrApp'}>
+            <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
                 <Stack.Screen name="AuthOrApp" component={AuthorApp}/>
                 <Stack.Screen name="Login" component={Login}/>
                 <Stack.Screen name="Cardápio" component={AppDrawer}/>
