@@ -5,9 +5,8 @@ import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-//import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -19,7 +18,7 @@ import ClienteFidelidade from './screens/ClienteFidelidade';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
-//const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 
 
 class BottomTab extends Component {
