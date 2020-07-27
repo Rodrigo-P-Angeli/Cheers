@@ -46,8 +46,8 @@ export default class App extends Component {
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
         // Sign-in the user with the credential
-        const authorized = auth().signInWithCredential(googleCredential);
-        console.log(authorized)
+        auth().signInWithCredential(googleCredential);
+        //console.log(authorized)
         this.setState({ isAuthenticated: true })
         const jsonUser = JSON.stringify(user)
         try {
