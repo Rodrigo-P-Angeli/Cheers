@@ -15,6 +15,7 @@ import Cardapio from './screens/Cardapio'
 import DadosCliente from './screens/DadosCliente'
 import ClienteFidelidade from './screens/ClienteFidelidade';
 import Login from './screens/Login'
+import AuthorApp from './screens/AuthorApp';
 
 
 const Tab = createBottomTabNavigator();
@@ -69,7 +70,8 @@ class AppDrawer extends Component {
 class AppStack extends Component {
     render() {
         return (
-            <Stack.Navigator headerMode='none'>
+            <Stack.Navigator headerMode='none' initialRouteName={'AuthOrApp'}>
+                <Stack.Screen name="AuthOrApp" component={AuthorApp}/>
                 <Stack.Screen name="Login" component={Login}/>
                 <Stack.Screen name="Cardápio" component={AppDrawer}/>
             </Stack.Navigator>
