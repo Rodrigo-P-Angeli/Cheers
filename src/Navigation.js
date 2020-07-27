@@ -46,26 +46,6 @@ class BottomTab extends Component {
                         ),
                     }}
                 />
-                {/* <Tab.Screen
-                name="Experiêcias"
-                component={Experience}
-            // options={{
-            //     tabBarLabel: 'Experiêcias',
-            //     tabBarIcon: ({ color, size }) => (
-            //         <MaterialIcons name="work" color={color} size={size} />
-            //     ),
-            // }}
-            />
-            <Tab.Screen
-                name="Formação Acadêmica"
-                component={Formacao}
-            // options={{
-            //     tabBarLabel: 'Formação',
-            //     tabBarIcon: ({ color, size }) => (
-            //         <FontAwesome5 name="book-reader" color={color} size={size} />
-            //     ),
-            // }}
-            /> */}
             </Tab.Navigator>
         )
     }
@@ -75,7 +55,7 @@ class AppDrawer extends Component {
     render() {
         return (
             <Drawer.Navigator
-                initialRouteName='Cardapio'
+                initialRouteName="Cardapio"
                 drawerContent={props => <MenuDrawer {...props} />}
                 drawerContentOptions={drawerOptions}
                 backBehavior={'initialRoute'}>
