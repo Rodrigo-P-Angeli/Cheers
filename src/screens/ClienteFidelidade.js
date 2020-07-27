@@ -135,7 +135,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = ({ user }) => {
-    user2: user.user,
+    return ({
+        user2: user.user,
+    })
 }
-
 export default connect(mapStateToProps)(ClienteFidelidade)
