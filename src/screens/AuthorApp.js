@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-
 import React, { Component } from 'react'
 import { View, ActivityIndicator, StyleSheet } from 'react-native'
 
@@ -9,19 +8,14 @@ import auth from '@react-native-firebase/auth';
 
 export default class AuthorApp extends Component {
     componentDidMount = async () => {
-        //const userDataJson = await AsyncStorage.getItem('userData')
-        //let userData = null
         let user = null
         try {
-            //userData = JSON.parse(userDataJson)
             user = await auth().currentUser
         } catch (e) {
             console.log(e)
         }
-        if (user && user.token) {
-            //axios.defaults.headers.common['Authorization'] = `bearer ${userData.token}`
-            console.log(user)
-            this.props.navigation.navigate('Cardápio', user)
+        if (user) {
+            this.props.navigation.navigate('Cardápio')
         } else {
             this.props.navigation.navigate('Login')
         }
