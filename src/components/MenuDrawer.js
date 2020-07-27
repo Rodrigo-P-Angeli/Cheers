@@ -40,10 +40,6 @@ export default class menuDrawer extends Component {
                                 <Icon name={'phone'} size={15} />
                                 {/* <Text style={styles.contato}>{this.state.phone}</Text> */}
                             </View>
-                            {/* <View style={styles.itens}>
-                                <Icon name={'phone'} size={15} />
-                                <Text style={styles.contato}>+55 27 99992 8105</Text>
-                            </View> */}
                         </View>
                     </View>
                 </View>
