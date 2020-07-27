@@ -7,14 +7,14 @@ import { View, Text, ImageBackground, StyleSheet } from 'react-native'
 
 import AsyncStorage from '@react-native-community/async-storage'
 
-import { server, showErro, showSuccess } from '../Common'
-import Header from '../Components/Header'
-import Pack from '../Images/Pack.jpg'
+import Header from '../components/Header'
+import Pack from '../../assets/images/Pack.jpg'
+import { connect } from 'react-redux'
 
 const inicialState = {
     fidelidade: [],
 }
-export default class ClienteFidelidade extends Component {
+class ClienteFidelidade extends Component {
     state = { ...inicialState }
 
     getFidelidade = async () => {
@@ -29,7 +29,7 @@ export default class ClienteFidelidade extends Component {
                 fidelidade: user.fidelidade,
             })
         } catch (e) {
-            showErro(e)
+            console.log(e)
         }
     }
     mudarTab = () => {
@@ -133,3 +133,9 @@ const styles = StyleSheet.create({
         color: 'white',
     },
 })
+
+const mapStateToProps = ({ user }) => {
+    user2: user.user,
+}
+
+export default connect(mapStateToProps)(ClienteFidelidade)
