@@ -7,10 +7,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //import { createStackNavigator } from '@react-navigation/stack'
 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Fontisto from 'react-native-vector-icons/Fontisto'
+
+import MenuDrawer from './components/MenuDrawer'
 import Cardapio from './screens/Cardapio'
 import DadosCliente from './screens/DadosCliente'
 
-import MenuDrawer from './components/MenuDrawer'
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -20,26 +24,26 @@ const Drawer = createDrawerNavigator();
 class BottomTab extends Component {
     render() {
         return (
-            <Tab.Navigator initialRouteName="Perfil" backBehavior={'initialRoute'} tabBarOptions={tabBar}>
+            <Tab.Navigator initialRouteName="Cardápio" backBehavior={'initialRoute'} tabBarOptions={tabBar}>
                 <Tab.Screen
                     name="Cardápio"
                     component={Cardapio}
-                // options={{
-                //     tabBarLabel: 'Perfil',
-                //     tabBarIcon: ({ color, size }) => (
-                //         <Fontisto name="person" color={color} size={size} />
-                //     ),
-                // }}
+                    options={{
+                        tabBarLabel: 'Cardápio',
+                        tabBarIcon: ({ color, size }) => (
+                            <Fontisto name="book" color={color} size={size} />
+                        ),
+                    }}
                 />
                 <Tab.Screen
                     name="Dados do Cliente"
                     component={DadosCliente}
-                // options={{
-                //     tabBarLabel: 'Conhecimentos',
-                //     tabBarIcon: ({ color, size }) => (
-                //         <MaterialIcons name="all-inclusive" color={color} size={size} />
-                //     ),
-                // }} 
+                    options={{
+                        tabBarLabel: 'Dados do Cliente',
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialIcons name="person" color={color} size={size} />
+                        ),
+                    }}
                 />
                 {/* <Tab.Screen
                 name="Experiêcias"
