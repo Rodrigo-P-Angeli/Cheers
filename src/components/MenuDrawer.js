@@ -8,23 +8,32 @@ import {
     DrawerItemList,
 } from '@react-navigation/drawer'
 
+import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Email from 'react-native-vector-icons/MaterialCommunityIcons'
-import { logout } from '../screens/Login'
 
 
 
 export default class menuDrawer extends Component {
-    state = {}
-    // loadInfo() {
-    //     axios.get('https://lambe-e09e6.firebaseio.com/profile.json')
-    //         .then(res => this.setState(res.data))
-    //         .catch(err => Alert.alert('Ops...', err))
-    // }
-    // componentDidMount() {
-    //     this.loadInfo()
-    // }
+
+    logout = async () => {
+        try {
+            await auth().signOut()
+            console.log('saiu')
+        } catch (err) {
+            console.log(err)
+        }
+        try {
+            await AsyncStorage.removeItem('userData')
+        } catch (e) {
+            console.log(e)
+        }
+        this.props.navigation.navigate('Login')
+    }
+
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -41,7 +50,7 @@ export default class menuDrawer extends Component {
                                 <Icon name={'phone'} size={15} />
                                 {/* <Text style={styles.contato}>{this.state.phone}</Text> */}
                             </View>
-                            <Button title={'logout'} onPress={() => logout()} />
+                            <Button title={'logout'} onPress={() => this.logout()} />
                         </View>
                     </View>
                 </View>
