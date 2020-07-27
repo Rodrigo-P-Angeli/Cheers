@@ -11,7 +11,7 @@ class DadosCliente extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header />
+                <Header {...this.props}/>
                 <ScrollView>
                     <View>
                         <Text style={styles.RodaPeTitulo}>

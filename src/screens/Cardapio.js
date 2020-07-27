@@ -21,7 +21,7 @@ class App extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header />
+                <Header {...this.props}/>
                 <View style={styles.body}>
                     <FlatList
                         data={this.props.cardapio}
