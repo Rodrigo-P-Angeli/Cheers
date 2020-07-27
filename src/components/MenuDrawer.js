@@ -28,7 +28,7 @@ export default class menuDrawer extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <View style={styles.container}>
-                    <Text style={styles.title}>CV Rodrigo Pissinate</Text>
+                    <Text style={styles.title}>Cheers</Text>
                     <View style={styles.content}>
                         {/* <Image style={styles.image} source={{uri: this.state.fotoPerfil}} /> */}
                         <View style={{ flex: 1, justifyContent: 'space-around' }}>
@@ -61,17 +61,17 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 25,
         resizeMode: 'contain',
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     title: {
         fontSize: 20,
         padding: 10,
-        fontFamily: 'Roboto-Bold'
+        fontFamily: 'Roboto-Bold',
     },
     contato: {
         fontSize: 13,
         paddingLeft: 5,
-        fontFamily: 'Roboto-Light'
+        fontFamily: 'Roboto-Light',
     },
     container: {
         padding: 10,

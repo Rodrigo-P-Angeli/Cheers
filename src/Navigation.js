@@ -10,6 +10,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Cardapio from './screens/Cardapio'
 import DadosCliente from './screens/DadosCliente'
 
+import MenuDrawer from './components/MenuDrawer'
+
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 //const Stack = createStackNavigator();
@@ -69,7 +71,7 @@ class AppDrawer extends Component {
         return (
             <Drawer.Navigator
                 initialRouteName='CV'
-                //drawerContent={props => <MenuDrawer {...props} />}
+                drawerContent={props => <MenuDrawer {...props} />}
                 drawerContentOptions={drawerOptions}
                 backBehavior={'initialRoute'}>
                 <Drawer.Screen name="Cardapio" component={BottomTab} backBehavior={'none'} />
