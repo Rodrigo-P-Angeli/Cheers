@@ -14,6 +14,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import MenuDrawer from './components/MenuDrawer'
 import Cardapio from './screens/Cardapio'
 import DadosCliente from './screens/DadosCliente'
+import ClienteFidelidade from './screens/ClienteFidelidade';
 
 
 const Tab = createBottomTabNavigator();
@@ -74,11 +75,12 @@ class AppDrawer extends Component {
     render() {
         return (
             <Drawer.Navigator
-                initialRouteName='CV'
+                initialRouteName='Cardapio'
                 drawerContent={props => <MenuDrawer {...props} />}
                 drawerContentOptions={drawerOptions}
                 backBehavior={'initialRoute'}>
                 <Drawer.Screen name="Cardapio" component={BottomTab} backBehavior={'none'} />
+                <Drawer.Screen name="Cardapio" component={ClienteFidelidade} backBehavior={'initialRoute'} />
             </Drawer.Navigator>
         )
     }
