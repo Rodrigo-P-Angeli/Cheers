@@ -14,6 +14,7 @@ import MenuDrawer from './components/MenuDrawer'
 import Cardapio from './screens/Cardapio'
 import DadosCliente from './screens/DadosCliente'
 import ClienteFidelidade from './screens/ClienteFidelidade';
+import Login from './screens/Login'
 
 
 const Tab = createBottomTabNavigator();
@@ -65,11 +66,25 @@ class AppDrawer extends Component {
     }
 }
 
+class AppStack extends Component {
+    render() {
+        return (
+            <Stack.Navigator headerMode='none'>
+
+                <Stack.Screen name="Login" component={Login}/>
+                <Stack.Screen name="Cardápio" component={AppDrawer}/>
+                    
+
+            </Stack.Navigator>
+        )
+    }
+}
+
 class App extends Component {
     render() {
         return (
             <NavigationContainer>
-                <AppDrawer />
+                <AppStack />
             </NavigationContainer>
         )
     }
