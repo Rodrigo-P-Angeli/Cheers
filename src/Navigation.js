@@ -9,7 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import Fontisto from 'react-native-vector-icons/Fontisto'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import MenuDrawer from './components/MenuDrawer'
 import Cardapio from './screens/Cardapio'
@@ -31,7 +31,7 @@ class BottomTab extends Component {
                     options={{
                         tabBarLabel: 'Cardápio',
                         tabBarIcon: ({ color, size }) => (
-                            <Fontisto name="book" color={color} size={size} />
+                            <Ionicons name="beer" color={color} size={size} />
                         ),
                     }}
                 />
