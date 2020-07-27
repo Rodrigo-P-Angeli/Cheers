@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import ItemCardapio from '../components/CardapioItem';
 
 import { loadCardapio, setMore, setLess, setQuantidade } from '../store/actions/cardapio';
+import Foot from '../components/Foot';
 ///import { calcTotalItem } from './store/actions/total';
 
 class App extends Component {
@@ -27,23 +28,7 @@ class App extends Component {
                         keyExtractor={item => `${item.id}`}
                         renderItem={({ item }) => <ItemCardapio {...item} setMore={this.props.onSetMore} setLess={this.props.onSetLess} setqt={this.props.onSetQt} />} />
                 </View>
-                <View style={styles.bottom}>
-                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-                        <View style={{ flex: 2, justifyContent: 'space-between' }}>
-                            <Text style={styles.texTotal}>Total:</Text>
-                            <Text style={{ fontWeight: 'bold' }}> R$:  </Text>
-                        </View>
-                        <View style={styles.containerTotal}>
-                            <Text style={styles.total}>{this.props.total.toFixed(2).replace('.', ',')}</Text>
-                        </View>
-                    </View>
-                    <View style={{ flex: 1 }}>
-                        <Button
-                            //onPress={this.finalizaPedido}
-                            title={'Finalizar pedido'}
-                            color={'#841584'} />
-                    </View>
-                </View>
+                <Foot {...this.props}/>
             </View>
         )
     }
@@ -53,26 +38,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    bottom: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 60,
-        padding: 10,
-        alignSelf: 'flex-end',
-    },
     body: {
         flex: 1,
-    },
-    total: {
-        fontWeight: 'bold',
-        fontSize: 30,
-    },
-    containerTotal: {
-        flex: 8,
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        paddingRight: 20,
     },
 })
 

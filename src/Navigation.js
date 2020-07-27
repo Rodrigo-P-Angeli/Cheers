@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //import { createStackNavigator } from '@react-navigation/stack'
 
 import Cardapio from './screens/Cardapio'
+import DadosCliente from './screens/DadosCliente'
 
 const Tab = createBottomTabNavigator();
 //const Drawer = createDrawerNavigator();
@@ -30,7 +31,7 @@ class BottomTab extends Component {
                 />
                 <Tab.Screen
                     name="Dados do Cliente"
-                    component={Cardapio}
+                    component={DadosCliente}
                 // options={{
                 //     tabBarLabel: 'Conhecimentos',
                 //     tabBarIcon: ({ color, size }) => (
