@@ -16,7 +16,7 @@ class DadosCliente extends Component {
                     <View>
                         <Text style={styles.RodaPeTitulo}>
                             Preencher endereco de entrega:
-                </Text>
+                        </Text>
                         <View flexDirection={'row'}>
                             <View flex={2} style={styles.sView}>
                                 <Text>Estado:</Text>
