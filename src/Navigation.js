@@ -80,7 +80,7 @@ class AppDrawer extends Component {
                 drawerContentOptions={drawerOptions}
                 backBehavior={'initialRoute'}>
                 <Drawer.Screen name="Cardapio" component={BottomTab} backBehavior={'none'} />
-                <Drawer.Screen name="Cardapio" component={ClienteFidelidade} backBehavior={'initialRoute'} />
+                <Drawer.Screen name="Plano Fidelidade" component={ClienteFidelidade} backBehavior={'initialRoute'} />
             </Drawer.Navigator>
         )
     }
