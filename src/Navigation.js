@@ -93,11 +93,11 @@ export default App
 
 const drawerOptions = {
     labelStyle: {
-        fontFamily: 'Solway-Light',
+        //fontFamily: 'Solway-Light',
         fontSize: 20,
     },
-    activeTintColor: '#005131',
-    inactiveTintColor: '#679A7A',
+    //activeTintColor: '#005131',
+    //inactiveTintColor: '#679A7A',
 }
 
 
