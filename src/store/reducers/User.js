@@ -19,26 +19,6 @@ const reducer = (state = initialState, action) => {
         /* case LOAD_CARDAPIO:
             return {
                 ...state,
-            }
-        case SET_MORE:
-            return {
-                ...state,
-            }
-        case SET_LESS:
-            return {
-                ...state,
-            }
-        case SET_QT:
-            return {
-                ...state,
-            }
-        case SET_TOTAL_ITEM:
-            return {
-                ...state,
-            }
-        case SET_MAJOR_TOTAL:
-            return {
-                ...state,
             } */
         default:
             return state

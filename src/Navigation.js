@@ -28,17 +28,17 @@ class BottomTab extends Component {
                 //     ),
                 // }}
                 />
+                <Tab.Screen
+                    name="Dados do Cliente"
+                    component={Cardapio}
+                // options={{
+                //     tabBarLabel: 'Conhecimentos',
+                //     tabBarIcon: ({ color, size }) => (
+                //         <MaterialIcons name="all-inclusive" color={color} size={size} />
+                //     ),
+                // }} 
+                />
                 {/* <Tab.Screen
-                name="Conhecimentos"
-                component={Conhecimentos}
-            // options={{
-            //     tabBarLabel: 'Conhecimentos',
-            //     tabBarIcon: ({ color, size }) => (
-            //         <MaterialIcons name="all-inclusive" color={color} size={size} />
-            //     ),
-            // }} 
-            />
-            <Tab.Screen
                 name="Experiêcias"
                 component={Experience}
             // options={{
