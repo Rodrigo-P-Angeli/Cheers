@@ -18,7 +18,7 @@ const Drawer = createDrawerNavigator();
 class BottomTab extends Component {
     render() {
         return (
-            <Tab.Navigator initialRouteName="Perfil" backBehavior={'initialRoute'}>
+            <Tab.Navigator initialRouteName="Perfil" backBehavior={'initialRoute'} tabBarOptions={tabBar}>
                 <Tab.Screen
                     name="Cardápio"
                     component={Cardapio}
@@ -96,16 +96,16 @@ const drawerOptions = {
         //fontFamily: 'Solway-Light',
         fontSize: 20,
     },
-    //activeTintColor: '#005131',
+    activeTintColor: '#841584',
     //inactiveTintColor: '#679A7A',
 }
 
 
 const tabBar = {
-    activeTintColor: '#005131',
-    inactiveTintColor: '#679A7A',
+    activeTintColor: '#841584',
+    //inactiveTintColor: '#679A7A',
     labelStyle: {
-        fontFamily: 'Solway-Light',
-        fontSize: 10,
+        //fontFamily: 'Solway-Light',
+        fontSize: 15,
     },
 }
