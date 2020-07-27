@@ -2,7 +2,7 @@
 /* eslint-disable semi */
 
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, Button } from 'react-native'
 import {
     DrawerContentScrollView,
     DrawerItemList,
@@ -11,6 +11,7 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Email from 'react-native-vector-icons/MaterialCommunityIcons'
+import { logout } from '../screens/Login'
 
 
 
@@ -40,6 +41,7 @@ export default class menuDrawer extends Component {
                                 <Icon name={'phone'} size={15} />
                                 {/* <Text style={styles.contato}>{this.state.phone}</Text> */}
                             </View>
+                            <Button title={'logout'} onPress={() => logout()} />
                         </View>
                     </View>
                 </View>
