@@ -48,7 +48,7 @@ export default class App extends Component {
         // Sign-in the user with the credential
         auth().signInWithCredential(googleCredential);
         //console.log(authorized)
-        this.setState({ isAuthenticated: true })
+        this.props.onSignIn()
         const jsonUser = JSON.stringify(user)
         try {
             await AsyncStorage.setItem('userData', jsonUser)
