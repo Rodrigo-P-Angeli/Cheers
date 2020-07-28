@@ -55,7 +55,6 @@ export default class App extends Component {
         } catch (e) {
             console.log(e)
         }
-        this.props.navigation.navigate('Cardápio')
     }
     /* onFacebookButtonPress = async () => {
         // Attempt login with permissions
