@@ -23,6 +23,7 @@ export default class menuDrawer extends Component {
         try {
             await auth().signOut()
             console.log('saiu')
+            this.props.onSignOut()
         } catch (err) {
             console.log(err)
         }
@@ -31,7 +32,6 @@ export default class menuDrawer extends Component {
         } catch (e) {
             console.log(e)
         }
-        this.props.navigation.navigate('Login')
     }
 
     render() {
