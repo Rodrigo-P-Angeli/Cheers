@@ -19,6 +19,7 @@ import DadosCliente from './screens/DadosCliente'
 import ClienteFidelidade from './screens/ClienteFidelidade';
 import Login from './screens/Login'
 import SplashScreen from './screens/SplashScreen';
+import { connect } from 'react-redux';
 
 
 const Tab = createBottomTabNavigator();
@@ -114,7 +115,17 @@ class App extends Component {
         }
     }
 }
-export default App
+const mapStateToProps = ({ user }) => {
+    return {
+        user: user.user,
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        //loadUser: () => dispatch(loadUser()),
+    }
+}
+export default connect(mapStateToProps)(App)
 
 
 
