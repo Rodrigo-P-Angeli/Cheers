@@ -18,7 +18,7 @@ import Cardapio from './screens/Cardapio'
 import DadosCliente from './screens/DadosCliente'
 import ClienteFidelidade from './screens/ClienteFidelidade';
 import Login from './screens/Login'
-import AuthorApp from './screens/AuthorApp';
+import SplashScreen from './screens/SplashScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -26,7 +26,8 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const initialState = {
-    isSinedIn: false
+    isSinedIn: false,
+    isLoading: true,
 }
 
 class BottomTab extends Component {
@@ -63,38 +64,12 @@ class AppDrawer extends Component {
         return (
             <Drawer.Navigator
                 initialRouteName="Cardapio"
-                drawerContent={props => <MenuDrawer {...props} />}
+                drawerContent={props => <MenuDrawer {...props} onSignOut={this.props.onSignOut} />}
                 drawerContentOptions={drawerOptions}
                 backBehavior={'initialRoute'}>
                 <Drawer.Screen name="Cardapio" component={BottomTab} backBehavior={'none'} />
                 <Drawer.Screen name="Plano Fidelidade" component={ClienteFidelidade} backBehavior={'initialRoute'} />
             </Drawer.Navigator>
-        )
-    }
-}
-
-class AppStack extends Component {
-    state = {
-        ...initialState
-    }
-    render() {
-        return (
-            <View>
-                {this.state.isSinedIn ? <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
-                    <Stack.Screen name="Cardápio" component={AppDrawer} />
-                </Stack.Navigator> : <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
-                        <Stack.Screen name="Login" component={Login} />
-                    </Stack.Navigator>}
-            </View>
-        )
-    }
-}
-class AppStackLoaded extends Component {
-    render() {
-        return (
-            <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
-                <Stack.Screen name="Cardápio" component={AppDrawer} />
-            </Stack.Navigator>
         )
     }
 }
@@ -108,27 +83,35 @@ class App extends Component {
             console.log(e)
         }
         if (user) {
-            () => this.setState({ isSinedIn: true })
+            this.setState({ isSinedIn: true, isLoading: false })
         } else {
-            return
+            this.setState({ isLoading: false })
         }
     }
     state = {
         ...initialState,
     }
     render() {
-        return (
-            <NavigationContainer>
-                {this.state.isSinedIn ?
-                    <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
-                        <Stack.Screen name="Cardápio" component={AppDrawer} />
-                    </Stack.Navigator>
-                    :
-                    <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
-                        <Stack.Screen name="Login" component={Login} />
-                    </Stack.Navigator>}
-            </NavigationContainer>
-        )
+        if (this.state.isLoading) {
+            return <SplashScreen />
+        } else {
+            return (
+                <NavigationContainer>
+                    {this.state.isSinedIn ?
+                        <Stack.Navigator headerMode="none">
+                            <Stack.Screen name="Cardápio">
+                                {() => <AppDrawer onSignOut={() => this.setState({ isSinedIn: false })} />}
+                            </Stack.Screen>
+                        </Stack.Navigator>
+                        :
+                        <Stack.Navigator headerMode="none">
+                            <Stack.Screen name="Login" >
+                                {() => <Login onSignIn={() => this.setState({ isSinedIn: true })} />}
+                            </Stack.Screen>
+                        </Stack.Navigator>}
+                </NavigationContainer>
+            )
+        }
     }
 }
 export default App
