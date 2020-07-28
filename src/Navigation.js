@@ -2,10 +2,13 @@
 /* eslint-disable semi */
 
 import React, { Component } from 'react';
+import { View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack'
+
+import auth from '@react-native-firebase/auth'
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -22,6 +25,9 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
+const initialState = {
+    isSinedIn: false
+}
 
 class BottomTab extends Component {
     render() {
@@ -68,22 +74,59 @@ class AppDrawer extends Component {
 }
 
 class AppStack extends Component {
+    state = {
+        ...initialState
+    }
+    render() {
+        return (
+            <View>
+                {this.state.isSinedIn ? <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
+                    <Stack.Screen name="Cardápio" component={AppDrawer} />
+                </Stack.Navigator> : <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
+                        <Stack.Screen name="Login" component={Login} />
+                    </Stack.Navigator>}
+            </View>
+        )
+    }
+}
+class AppStackLoaded extends Component {
     render() {
         return (
             <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
-                <Stack.Screen name="AuthOrApp" component={AuthorApp}/>
-                <Stack.Screen name="Login" component={Login}/>
-                <Stack.Screen name="Cardápio" component={AppDrawer}/>
+                <Stack.Screen name="Cardápio" component={AppDrawer} />
             </Stack.Navigator>
         )
     }
 }
 
 class App extends Component {
+    componentDidMount = async () => {
+        let user = null
+        try {
+            user = await auth().currentUser
+        } catch (e) {
+            console.log(e)
+        }
+        if (user) {
+            () => this.setState({ isSinedIn: true })
+        } else {
+            return
+        }
+    }
+    state = {
+        ...initialState,
+    }
     render() {
         return (
             <NavigationContainer>
-                <AppStack />
+                {this.state.isSinedIn ?
+                    <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
+                        <Stack.Screen name="Cardápio" component={AppDrawer} />
+                    </Stack.Navigator>
+                    :
+                    <Stack.Navigator headerMode="none" initialRouteName={'AuthOrApp'}>
+                        <Stack.Screen name="Login" component={Login} />
+                    </Stack.Navigator>}
             </NavigationContainer>
         )
     }
