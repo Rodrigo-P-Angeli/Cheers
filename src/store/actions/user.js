@@ -43,11 +43,34 @@ export const onGoogleButtonPress = () => {
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         // Sign-in the user with the credential
         auth().signInWithCredential(googleCredential);
-        //this.props.onSignIn()
+
+        const jsonUser = JSON.stringify(user)
+        const jsonUserToken = JSON.stringify(idToken)
+        try {
+            await AsyncStorage.setItem('userData', jsonUser)
+            await AsyncStorage.setItem('userToken', jsonUserToken)
+        } catch (e) {
+            console.log(e)
+        }
+
         dispatch(userSignIn(user, idToken))
     }
 }
 
+export const saveUser = (user, idToken) => {
+    return async dispatch => {
+
+        const jsonUser = JSON.stringify(user)
+        const jsonUserToken = JSON.stringify(idToken)
+        try {
+            await AsyncStorage.setItem('userData', jsonUser)
+            await AsyncStorage.setItem('userToken', jsonUserToken)
+        } catch (e) {
+            console.log(e)
+        }
+        dispatch(userSignIn(user, idToken))
+    }
+}
 export const loadUser = async () => {
     let user = null
     let idToken = 2
@@ -61,6 +84,8 @@ export const loadUser = async () => {
         dispatch(userSignIn(user, idToken))
     }
 }
+
+
 
 export const userSignIn = (user, idToken) => {
     return {
