@@ -5,6 +5,9 @@ import React, { Component } from 'react'
 import { View, ActivityIndicator, StyleSheet } from 'react-native'
 
 export default class AuthorApp extends Component {
+    componentDidMount() {
+        () => this.props.loadUser()
+    }
     render() {
         return (
             <View style={styles.container}>

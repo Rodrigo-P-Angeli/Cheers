@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-//import { } from '../ActionsTypes'
+import { USER_LOGGING, USER_LOGOUT } from '../ActionsTypes'
 
 const initialState = {
     endereco: {
@@ -12,14 +12,22 @@ const initialState = {
         numero: '',
         complemento: '',
     },
+    user: null,
+    userToken: null,
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        /* case LOAD_CARDAPIO:
+        case USER_LOGGING:
             return {
                 ...state,
-            } */
+                user: action.payload.user,
+                userToken: action.payload.idToken,
+            }
+        case USER_LOGOUT:
+            return {
+                ...initialState,
+            }
         default:
             return state
     }

@@ -21,6 +21,7 @@ import Login from './screens/Login'
 import SplashScreen from './screens/SplashScreen';
 import { connect } from 'react-redux';
 
+import { onGoogleButtonPress, logout } from './store/actions/user'
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -76,7 +77,7 @@ class AppDrawer extends Component {
 }
 
 class App extends Component {
-    componentDidMount = async () => {
+    /*componentDidMount = async () => {
         let user = null
         try {
             user = await auth().currentUser
@@ -88,44 +89,50 @@ class App extends Component {
         } else {
             this.setState({ isLoading: false })
         }
-    }
+    }*/
     state = {
         ...initialState,
     }
     render() {
-        if (this.state.isLoading) {
-            return <SplashScreen />
-        } else {
-            return (
-                <NavigationContainer>
-                    {this.state.isSinedIn ?
-                        <Stack.Navigator headerMode="none">
-                            <Stack.Screen name="Cardápio">
-                                {() => <AppDrawer onSignOut={() => this.setState({ isSinedIn: false })} />}
-                            </Stack.Screen>
-                        </Stack.Navigator>
-                        :
-                        <Stack.Navigator headerMode="none">
-                            <Stack.Screen name="Login" >
-                                {() => <Login onSignIn={() => this.setState({ isSinedIn: true })} />}
-                            </Stack.Screen>
-                        </Stack.Navigator>}
-                </NavigationContainer>
-            )
-        }
+        /*if (!this.props.userr && !this.props.userTokenn) {
+            { console.log(this.props.userTokenn) }
+            return <SplashScreen loadUser={this.props.loadUser} {...this.props} />
+        } else {*/
+        return (
+            <NavigationContainer>
+                {console.log(this.props.userr)}
+                {this.props.userr && this.props.userTokenn ?
+                    <Stack.Navigator headerMode="none">
+                        <Stack.Screen name="Cardápio">
+                            {() => <AppDrawer onSignOut={() => this.props.logout()} />}
+                        </Stack.Screen>
+                    </Stack.Navigator>
+                    :
+                    <Stack.Navigator headerMode="none">
+                        <Stack.Screen name="Login" >
+                            {() => <Login {...this.props} loadUser={this.props.onGoogleButtonPress} />}
+                        </Stack.Screen>
+                    </Stack.Navigator>}
+            </NavigationContainer>
+        )
     }
 }
+
 const mapStateToProps = ({ user }) => {
+    console.log(user)
     return {
-        user: user.user,
+        userr: user.user,
+        userTokenn: user.userToken
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        //loadUser: () => dispatch(loadUser()),
+        onGoogleButtonPress: () => dispatch(onGoogleButtonPress()),
+        loadUser: () => dispatch(loadUser()),
+        logout: () => dispatch(logout()),
     }
 }
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 
 
