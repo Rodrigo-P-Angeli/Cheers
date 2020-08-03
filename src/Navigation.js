@@ -94,14 +94,14 @@ class App extends Component {
         ...initialState,
     }
     render() {
-        /*if (!this.props.userr && !this.props.userTokenn) {
-            { console.log(this.props.userTokenn) }
+        /*if (!this.props.user && !this.props.userToken) {
+            { console.log(this.props.userToken) }
             return <SplashScreen loadUser={this.props.loadUser} {...this.props} />
         } else {*/
         return (
             <NavigationContainer>
-                {console.log(this.props.userr)}
-                {this.props.userr && this.props.userTokenn ?
+                {console.log(this.props.user)}
+                {this.props.user && this.props.userToken ?
                     <Stack.Navigator headerMode="none">
                         <Stack.Screen name="Cardápio">
                             {() => <AppDrawer onSignOut={() => this.props.logout()} />}
@@ -121,8 +121,8 @@ class App extends Component {
 const mapStateToProps = ({ user }) => {
     console.log(user)
     return {
-        userr: user.user,
-        userTokenn: user.userToken
+        user: user.user,
+        userToken: user.userToken
     }
 }
 const mapDispatchToProps = (dispatch) => {
