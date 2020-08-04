@@ -73,9 +73,10 @@ export const saveUser = (user, idToken) => {
 }
 export const loadUser = async () => {
     let user = null
-    let idToken = 2
+    let idToken = null
     try {
         user = await auth().currentUser
+        console.log(user)
         //const idToken = user.user.getIdToken()
     } catch (e) {
         console.log(e)

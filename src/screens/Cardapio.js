@@ -11,7 +11,7 @@ import { loadCardapio, setMore, setLess, setQuantidade } from '../store/actions/
 import Foot from '../components/Foot';
 ///import { calcTotalItem } from './store/actions/total';
 
-class App extends Component {
+class Cardapio extends Component {
     state = {
         cardapio: [],
     }
@@ -43,10 +43,11 @@ const styles = StyleSheet.create({
     },
 })
 
-const mapStateToProps = ({ cardapio }) => {
+const mapStateToProps = ({ cardapio, user }) => {
     return {
         cardapio: cardapio.cardapioo,
         total: cardapio.total,
+        user: user.user,
     }
 }
 
@@ -59,4 +60,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(Cardapio)

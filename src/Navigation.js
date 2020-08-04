@@ -2,7 +2,6 @@
 /* eslint-disable semi */
 
 import React, { Component } from 'react';
-import { View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,7 +20,7 @@ import Login from './screens/Login'
 import SplashScreen from './screens/SplashScreen';
 import { connect } from 'react-redux';
 
-import { onGoogleButtonPress, logout } from './store/actions/user'
+import { onGoogleButtonPress, logout, loadUser, userSignIn } from './store/actions/user'
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -77,46 +76,55 @@ class AppDrawer extends Component {
 }
 
 class App extends Component {
-    /*componentDidMount = async () => {
+    componentDidMount = async () => {
         let user = null
         try {
             user = await auth().currentUser
+            console.log("user montando o componente", user)
+            this.props.userSignIn(user)
         } catch (e) {
             console.log(e)
         }
-        if (user) {
-            this.setState({ isSinedIn: true, isLoading: false })
-        } else {
-            this.setState({ isLoading: false })
-        }
-    }*/
-    state = {
-        ...initialState,
     }
     render() {
-        /*if (!this.props.user && !this.props.userToken) {
-            { console.log(this.props.userToken) }
-            return <SplashScreen loadUser={this.props.loadUser} {...this.props} />
-        } else {*/
+        // if (!this.props.user && !this.props.userToken) {
+        //     return <SplashScreen loadUser={this.props.loadUser} {...this.props} />
+        // } else {
         return (
             <NavigationContainer>
-                {console.log(this.props.user)}
-                {this.props.user && this.props.userToken ?
-                    <Stack.Navigator headerMode="none">
+                <Stack.Navigator headerMode="none">
+                    {/* <Stack.Screen name="SplashScreen">
+                        {() => <SplashScreen loadUser={this.props.loadUser} {...this.props} />}
+                    </Stack.Screen> */}
+                    {this.props.user ?
                         <Stack.Screen name="Cardápio">
                             {() => <AppDrawer onSignOut={() => this.props.logout()} />}
-                        </Stack.Screen>
-                    </Stack.Navigator>
-                    :
-                    <Stack.Navigator headerMode="none">
+                        </Stack.Screen> :
                         <Stack.Screen name="Login" >
                             {() => <Login {...this.props} loadUser={this.props.onGoogleButtonPress} />}
-                        </Stack.Screen>
-                    </Stack.Navigator>}
-            </NavigationContainer>
+                        </Stack.Screen>}
+                </Stack.Navigator>
+
+                {console.log(this.props.user)}
+                {/* {
+                    this.props.user && this.props.userToken ?
+                        <Stack.Navigator headerMode="none">
+                            <Stack.Screen name="Cardápio">
+                                {() => <AppDrawer onSignOut={() => this.props.logout()} />}
+                            </Stack.Screen>
+                        </Stack.Navigator>
+                        :
+                        <Stack.Navigator headerMode="none">
+                            <Stack.Screen name="Login" >
+                                {() => <Login {...this.props} loadUser={this.props.onGoogleButtonPress} />}
+                            </Stack.Screen>
+                        </Stack.Navigator>
+                } */}
+            </NavigationContainer >
         )
     }
 }
+
 
 const mapStateToProps = ({ user }) => {
     console.log(user)
@@ -129,6 +137,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onGoogleButtonPress: () => dispatch(onGoogleButtonPress()),
         loadUser: () => dispatch(loadUser()),
+        userSignIn: (user) => dispatch(userSignIn(user)),
         logout: () => dispatch(logout()),
     }
 }
