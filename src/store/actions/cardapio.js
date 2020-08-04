@@ -3,6 +3,7 @@
 
 import { LOAD_CARDAPIO, SET_MORE, SET_LESS, SET_QT, SET_TOTAL_ITEM, SET_MAJOR_TOTAL } from '../ActionsTypes'
 import database from '@react-native-firebase/database'
+import auth from '@react-native-firebase/auth'
 
 export const loadCardapio = () => {
     return async (dispatch, getState) => {
@@ -98,3 +99,15 @@ export const setMajorTotal = () => {
     }
 }
 
+export const pushPedido = () => {
+    return {
+        type: PUSH_PEDIDO,
+    }
+}
+
+export const postPedido = (user, pedido, endereco) => {
+
+    return dispatch => {
+        dispatch()
+    }
+}
