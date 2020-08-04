@@ -28,7 +28,7 @@ class Cardapio extends Component {
                         keyExtractor={item => `${item.id}`}
                         renderItem={({ item }) => <ItemCardapio {...item} setMore={this.props.onSetMore} setLess={this.props.onSetLess} setqt={this.props.onSetQt} />} />
                 </View>
-                <Foot {...this.props}/>
+                <Foot {...this.props} />
             </View>
         )
     }
