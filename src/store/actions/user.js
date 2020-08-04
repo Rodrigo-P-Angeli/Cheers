@@ -26,7 +26,6 @@ export const login = (email, senha) => {
         try {
             const user = await auth().signInWithEmailAndPassword(email, senha)
             const idToken = user.user.getIdToken()
-            console.log(user, 'userToken', idToken)
         } catch (err) {
             console.log(err)
         }
@@ -44,14 +43,14 @@ export const onGoogleButtonPress = () => {
         // Sign-in the user with the credential
         auth().signInWithCredential(googleCredential);
 
-        const jsonUser = JSON.stringify(user)
-        const jsonUserToken = JSON.stringify(idToken)
-        try {
-            await AsyncStorage.setItem('userData', jsonUser)
-            await AsyncStorage.setItem('userToken', jsonUserToken)
-        } catch (e) {
-            console.log(e)
-        }
+        // const jsonUser = JSON.stringify(user)
+        // const jsonUserToken = JSON.stringify(idToken)
+        // try {
+        //     await AsyncStorage.setItem('userData', jsonUser)
+        //     await AsyncStorage.setItem('userToken', jsonUserToken)
+        // } catch (e) {
+        //     console.log(e)
+        // }
 
         dispatch(userSignIn(user, idToken))
     }
@@ -76,7 +75,6 @@ export const loadUser = async () => {
     let idToken = null
     try {
         user = await auth().currentUser
-        console.log(user)
         //const idToken = user.user.getIdToken()
     } catch (e) {
         console.log(e)
