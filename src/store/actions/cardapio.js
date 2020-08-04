@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-import { LOAD_CARDAPIO, SET_MORE, SET_LESS, SET_QT, SET_TOTAL_ITEM, SET_MAJOR_TOTAL } from '../ActionsTypes'
+import { LOAD_CARDAPIO, SET_MORE, SET_LESS, SET_QT, SET_TOTAL_ITEM, SET_MAJOR_TOTAL, PUSH_PEDIDO } from '../ActionsTypes'
 import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
+//import moment from 'moment'
 
 export const loadCardapio = () => {
     return async (dispatch, getState) => {
@@ -106,8 +107,21 @@ export const pushPedido = () => {
 }
 
 export const postPedido = (user, pedido, endereco) => {
-
-    return dispatch => {
-        dispatch()
+    let refPedido = null
+    return async dispatch => {
+        try {
+            refPedido = await database().ref('pedidos').push()
+            refPedido.set({
+                //date: new moment().locale('pt-br').format('LLL'),
+                uid: user.uid,
+                pedido: pedido.filter((iten) => iten.quantidade > 0),
+                endereco: 'não sei onde mora ainda'
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+        dispatch(pushPedido())
+        dispatch(loadCardapio())
     }
 }
