@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-import { LOAD_CARDAPIO, SET_MORE, SET_LESS, SET_QT, SET_TOTAL_ITEM, SET_MAJOR_TOTAL } from '../ActionsTypes'
+import { LOAD_CARDAPIO, SET_MORE, SET_LESS, SET_QT, SET_TOTAL_ITEM, SET_MAJOR_TOTAL, PUSH_PEDIDO } from '../ActionsTypes'
 
 const initialState = {
     cardapioo: [],
@@ -72,6 +72,10 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 total: total,
+            }
+        case PUSH_PEDIDO:
+            return {
+                ...initialState
             }
         default:
             return state
