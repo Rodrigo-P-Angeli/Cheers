@@ -86,9 +86,6 @@ class App extends Component {
         }
     }
     render() {
-        // if (!this.props.user && !this.props.userToken) {
-        //     return <SplashScreen loadUser={this.props.loadUser} {...this.props} />
-        // } else {
         return (
             <NavigationContainer>
                 <Stack.Navigator headerMode="none">
