@@ -111,6 +111,7 @@ export const postPedido = (user, pedido, endereco) => {
     return async dispatch => {
         try {
             refPedido = await database().ref('pedidos').push()
+            console.log(refPedido)
             refPedido.set({
                 //date: new moment().locale('pt-br').format('LLL'),
                 uid: user.uid,
@@ -121,6 +122,14 @@ export const postPedido = (user, pedido, endereco) => {
         catch (err) {
             console.log(err)
         }
+
+        try {
+            await database().ref('user').child(`${user.uid}/pedidos`).push(refPedido.key)
+        }
+        catch (err) {
+            console.log(err)
+        }
+
         dispatch(pushPedido())
         dispatch(loadCardapio())
     }
