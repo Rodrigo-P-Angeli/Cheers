@@ -36,13 +36,19 @@ export const login = (email, senha) => {
 export const onGoogleButtonPress = () => {
     return async dispatch => {
         // Get the users ID token
-        const { idToken, user } = await GoogleSignin.signIn();
+        const { idToken } = await GoogleSignin.signIn();
         //this.setState({ idToken })
         // Create a Google credential with the token
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         // Sign-in the user with the credential
         auth().signInWithCredential(googleCredential);
-
+        let user = null
+        try {
+            user = await auth().currentUser
+            //const idToken = user.user.getIdToken()
+        } catch (e) {
+            console.log(e)
+        }
         // const jsonUser = JSON.stringify(user)
         // const jsonUserToken = JSON.stringify(idToken)
         // try {
@@ -52,7 +58,7 @@ export const onGoogleButtonPress = () => {
         //     console.log(e)
         // }
 
-        dispatch(userSignIn(user, idToken))
+        dispatch(userSignIn(user))
     }
 }
 
