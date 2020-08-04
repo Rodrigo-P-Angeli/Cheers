@@ -25,11 +25,11 @@ export const login = (email, senha) => {
     return async dispatch => {
         try {
             const user = await auth().signInWithEmailAndPassword(email, senha)
-            const idToken = user.user.getIdToken()
+            //const idToken = user.user.getIdToken()
         } catch (err) {
             console.log(err)
         }
-        dispatch(UserSignIn(user, idToken))
+        dispatch(UserSignIn(user))
     }
 }
 
@@ -62,23 +62,20 @@ export const onGoogleButtonPress = () => {
     }
 }
 
-export const saveUser = (user, idToken) => {
+export const saveUser = (user) => {
     return async dispatch => {
 
         const jsonUser = JSON.stringify(user)
-        const jsonUserToken = JSON.stringify(idToken)
         try {
             await AsyncStorage.setItem('userData', jsonUser)
-            await AsyncStorage.setItem('userToken', jsonUserToken)
         } catch (e) {
             console.log(e)
         }
-        dispatch(userSignIn(user, idToken))
+        dispatch(userSignIn(user))
     }
 }
 export const loadUser = async () => {
     let user = null
-    let idToken = null
     try {
         user = await auth().currentUser
         //const idToken = user.user.getIdToken()
@@ -86,18 +83,17 @@ export const loadUser = async () => {
         console.log(e)
     }
     return dispatch => {
-        dispatch(userSignIn(user, idToken))
+        dispatch(userSignIn(user))
     }
 }
 
 
 
-export const userSignIn = (user, idToken) => {
+export const userSignIn = (user) => {
     return {
         type: USER_LOGGING,
         payload: {
             user,
-            idToken
         }
     }
 }
