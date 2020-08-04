@@ -80,7 +80,6 @@ class App extends Component {
         let user = null
         try {
             user = await auth().currentUser
-            console.log("user montando o componente", user)
             this.props.userSignIn(user)
         } catch (e) {
             console.log(e)
@@ -104,8 +103,6 @@ class App extends Component {
                             {() => <Login {...this.props} loadUser={this.props.onGoogleButtonPress} />}
                         </Stack.Screen>}
                 </Stack.Navigator>
-
-                {console.log(this.props.user)}
                 {/* {
                     this.props.user && this.props.userToken ?
                         <Stack.Navigator headerMode="none">
@@ -127,7 +124,6 @@ class App extends Component {
 
 
 const mapStateToProps = ({ user }) => {
-    console.log(user)
     return {
         user: user.user,
         userToken: user.userToken
