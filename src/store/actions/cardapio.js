@@ -111,25 +111,25 @@ export const postPedido = (user, pedido, endereco) => {
     return async dispatch => {
         try {
             refPedido = await database().ref('pedidos').push()
-            console.log(refPedido)
             refPedido.set({
                 //date: new moment().locale('pt-br').format('LLL'),
                 uid: user.uid,
                 pedido: pedido.filter((iten) => iten.quantidade > 0),
                 endereco: 'não sei onde mora ainda'
             })
+            //let token = await auth().currentUser.getIdToken()
+            await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
+                let pedidos = snapshot.val() ? snapshot.val() : []
+                pedidos[snapshot.val() ? snapshot.val().length : 0] = refPedido.key
+                database().ref('users').child(`${user.uid}`).set(
+                    {
+                        pedidos
+                    })
+            })
         }
         catch (err) {
             console.log(err)
         }
-
-        try {
-            await database().ref('user').child(`${user.uid}/pedidos`).push(refPedido.key)
-        }
-        catch (err) {
-            console.log(err)
-        }
-
         dispatch(pushPedido())
         dispatch(loadCardapio())
     }
