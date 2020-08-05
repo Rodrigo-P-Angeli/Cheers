@@ -34,32 +34,16 @@ export const login = (email, senha) => {
 }
 
 export const onGoogleButtonPress = () => {
-    let user = null
     return async dispatch => {
-        try {
-            // Get the users ID token
-            const { idToken } = await GoogleSignin.signIn();
-            //this.setState({ idToken })
-            // Create a Google credential with the token
-            const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-            // Sign-in the user with the credential
-            auth().signInWithCredential(googleCredential);
+        // Get the users ID token
+        const { idToken } = await GoogleSignin.signIn();
+        //this.setState({ idToken })
+        // Create a Google credential with the token
+        const googleCredential = await auth.GoogleAuthProvider.credential(idToken);
+        // Sign-in the user with the credential
+        await auth().signInWithCredential(googleCredential);
 
-
-            user = await auth().currentUser
-            //const idToken = user.user.getIdToken()
-            dispatch(userSignIn(user))
-        } catch (e) {
-            console.log(e)
-        }
-        // const jsonUser = JSON.stringify(user)
-        // const jsonUserToken = JSON.stringify(idToken)
-        // try {
-        //     await AsyncStorage.setItem('userData', jsonUser)
-        //     await AsyncStorage.setItem('userToken', jsonUserToken)
-        // } catch (e) {
-        //     console.log(e)
-        // }
+        dispatch(loadUser())
     }
 }
 
@@ -75,15 +59,16 @@ export const saveUser = (user) => {
         dispatch(userSignIn(user))
     }
 }
-export const loadUser = async () => {
-    let user = null
-    try {
-        user = await auth().currentUser
-        //const idToken = user.user.getIdToken()
-    } catch (e) {
-        console.log(e)
-    }
-    return dispatch => {
+export const loadUser = () => {
+    return async dispatch => {
+        let user = null
+        try {
+            user = await auth().currentUser
+            //const idToken = user.user.getIdToken()
+        } catch (e) {
+            console.log(e)
+        }
+
         dispatch(userSignIn(user))
     }
 }
