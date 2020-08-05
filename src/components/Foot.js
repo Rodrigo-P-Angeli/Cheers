@@ -37,7 +37,7 @@ export default props => {
             </View>
             <View style={{ flex: 1 }}>
                 <Button
-                    onPress={() => props.postPedido(props.user, props.cardapio)}
+                    onPress={() => props.postPedido(props.user, props.cardapio, props.endereco, props.total)}
                     title={'Finalizar pedido'}
                     color={'#841584'} />
             </View>
