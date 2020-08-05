@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import Header from '../components/Header'
 import ItemPedido from '../components/ItemPedido'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class PedidosRealizados extends Component {
     state = {
@@ -34,7 +35,11 @@ class PedidosRealizados extends Component {
         return (
             <View style={styles.container}>
                 <Header {...this.props} />
-                {this.state.pedidos.map((item) => item.pedido.map(item => <ItemPedido {...item} key={Math.random()}/>))}
+                {this.state.pedidos.map((item) =>
+                    <TouchableOpacity key={Math.random()}>
+                        <Text>{item.endereco}</Text>
+                        {item.pedido.map(item => <ItemPedido {...item} key={Math.random()} />)}
+                    </TouchableOpacity>)}
             </View>
         )
     }
