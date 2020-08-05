@@ -34,6 +34,7 @@ export const login = (email, senha) => {
 }
 
 export const onGoogleButtonPress = () => {
+    let user = null
     return async dispatch => {
         try {
             // Get the users ID token
@@ -45,7 +46,7 @@ export const onGoogleButtonPress = () => {
             auth().signInWithCredential(googleCredential);
 
 
-            let user = await auth().currentUser
+            user = await auth().currentUser
             //const idToken = user.user.getIdToken()
             dispatch(userSignIn(user))
         } catch (e) {
