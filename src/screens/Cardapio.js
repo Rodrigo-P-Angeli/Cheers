@@ -48,6 +48,7 @@ const mapStateToProps = ({ cardapio, user }) => {
         cardapio: cardapio.cardapioo,
         total: cardapio.total,
         user: user.user,
+        endereco: user.endereco,
     }
 }
 
