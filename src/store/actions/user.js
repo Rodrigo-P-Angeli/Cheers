@@ -2,9 +2,7 @@ import auth from '@react-native-firebase/auth'
 import { GoogleSignin } from '@react-native-community/google-signin';
 //import { LoginManager, AccessToken, LoginButton } from 'react-native-fbsdk';
 
-import AsyncStorage from '@react-native-community/async-storage';
-
-import { USER_LOGGING, USER_LOGOUT } from '../ActionsTypes'
+import { USER_LOGGING, USER_LOGOUT, USER_SET_CEP, USER_SET_NUMERO, USER_SET_CIDADE, USER_SET_COMPLEMENTO, USER_SET_BAIRRO, USER_SET_RUA } from '../ActionsTypes'
 
 GoogleSignin.configure({
     webClientId: '892771746259-251tnb3pc7f01nol5dc2pgk85rl1cqai.apps.googleusercontent.com',
@@ -25,7 +23,6 @@ export const login = (email, senha) => {
     return async dispatch => {
         try {
             const user = await auth().signInWithEmailAndPassword(email, senha)
-            //const idToken = user.user.getIdToken()
         } catch (err) {
             console.log(err)
         }
@@ -42,23 +39,10 @@ export const onGoogleButtonPress = () => {
         const googleCredential = await auth.GoogleAuthProvider.credential(idToken);
         // Sign-in the user with the credential
         await auth().signInWithCredential(googleCredential);
-
         dispatch(loadUser())
     }
 }
 
-export const saveUser = (user) => {
-    return async dispatch => {
-
-        const jsonUser = JSON.stringify(user)
-        try {
-            await AsyncStorage.setItem('userData', jsonUser)
-        } catch (e) {
-            console.log(e)
-        }
-        dispatch(userSignIn(user))
-    }
-}
 export const loadUser = () => {
     return async dispatch => {
         let user = null
@@ -73,6 +57,59 @@ export const loadUser = () => {
     }
 }
 
+export const onChangeCEP = (text) => {
+    return {
+        type: USER_SET_CEP,
+        payload: {
+            text,
+        }
+    }
+}
+
+export const onChangeCidade = (text) => {
+    return {
+        type: USER_SET_CIDADE,
+        payload: {
+            text,
+        }
+    }
+}
+
+export const onChangeBairro = (text) => {
+    return {
+        type: USER_SET_BAIRRO,
+        payload: {
+            text,
+        }
+    }
+}
+
+export const onChangeRua = (text) => {
+    return {
+        type: USER_SET_RUA,
+        payload: {
+            text,
+        }
+    }
+}
+
+export const onChangeNumero = (text) => {
+    return {
+        type: USER_SET_NUMERO,
+        payload: {
+            text,
+        }
+    }
+}
+
+export const onChangeComplemento = (text) => {
+    return {
+        type: USER_SET_COMPLEMENTO,
+        payload: {
+            text,
+        }
+    }
+}
 
 
 export const userSignIn = (user) => {
@@ -88,3 +125,4 @@ export const logOut = () => {
         type: USER_LOGOUT,
     }
 }
+
