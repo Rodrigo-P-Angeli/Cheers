@@ -21,6 +21,7 @@ import SplashScreen from './screens/SplashScreen';
 import { connect } from 'react-redux';
 
 import { onGoogleButtonPress, logout, loadUser, userSignIn } from './store/actions/user'
+import PedidosRealizados from './screens/PedidosRealizados';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -70,6 +71,7 @@ class AppDrawer extends Component {
                 backBehavior={'initialRoute'}>
                 <Drawer.Screen name="Cardapio" component={BottomTab} backBehavior={'none'} />
                 <Drawer.Screen name="Plano Fidelidade" component={ClienteFidelidade} backBehavior={'initialRoute'} />
+                <Drawer.Screen name="Pedidos Realizados" component={PedidosRealizados} backBehavior={'initialRoute'} />
             </Drawer.Navigator>
         )
     }
