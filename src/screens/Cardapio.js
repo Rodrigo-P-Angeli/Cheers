@@ -58,7 +58,7 @@ const mapDispatchToProps = dispatch => {
         onSetMore: (id) => dispatch(setMore(id)),
         onSetLess: (id) => dispatch(setLess(id)),
         onSetQt: (id, text) => dispatch(setQuantidade(id, text)),
-        postPedido: (user, pedido, endereco) => dispatch(postPedido(user, pedido, endereco)),
+        postPedido: (user, pedido, endereco, total) => dispatch(postPedido(user, pedido, endereco, total)),
     }
 }
 
