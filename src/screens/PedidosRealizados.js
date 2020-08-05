@@ -39,6 +39,7 @@ class PedidosRealizados extends Component {
                     {this.state.pedidos.map((item) =>
                         <TouchableOpacity key={Math.random()}>
                             <Text>{JSON.stringify(item.endereco)}</Text>
+                            <Text>{JSON.stringify(item.total)}</Text>
                             {item.pedido.map(item => <ItemPedido {...item} key={Math.random()} />)}
                         </TouchableOpacity>)}
                 </ScrollView>
