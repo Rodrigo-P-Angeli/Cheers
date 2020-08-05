@@ -7,11 +7,13 @@ import { connect } from 'react-redux'
 import Header from '../components/Header';
 import Foot from '../components/Foot'
 
+import { onChangeCEP, onChangeCidade, onChangeBairro, onChangeComplemento, onChangeNumero, onChangeRua } from '../store/actions/user'
+
 class DadosCliente extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header {...this.props}/>
+                <Header {...this.props} />
                 <ScrollView>
                     <View>
                         <Text style={styles.RodaPeTitulo}>
@@ -24,7 +26,7 @@ class DadosCliente extends Component {
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
                                     placeholder={'Estado'}
-                                    value={this.props.estado}
+                                    value={this.props.endereco.estado}
                                     textAlign={'center'}
                                 />
                             </View>
@@ -34,8 +36,8 @@ class DadosCliente extends Component {
                                     textAlign={'center'}
                                     style={styles.textInput}
                                     placeholder={'CEP'}
-                                    value={this.props.CEP}
-                                //onChangeText={text => this.props.onChangeCEP(text)}
+                                    value={`${this.props.endereco.CEP}`}
+                                    onChangeText={text => this.props.onChangeCEP(text)}
                                 />
                             </View>
                         </View>
@@ -46,7 +48,8 @@ class DadosCliente extends Component {
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
                                     placeholder={'Vitória'}
-                                    value={'Vitória'}
+                                    value={this.props.endereco.cidade}
+                                    onChangeText={text => this.props.onChangeCidade(text)}
                                     textAlign={'center'}
                                 />
                             </View>
@@ -56,8 +59,8 @@ class DadosCliente extends Component {
                                     textAlign={'center'}
                                     style={styles.textInput}
                                     placeholder={'Jardim da Penha'}
-                                    value={this.props.bairro}
-                                //onChangeText={text => this.props.onChangeBairro(text)}
+                                    value={this.props.endereco.bairro}
+                                    onChangeText={text => this.props.onChangeBairro(text)}
                                 />
                             </View>
                         </View>
@@ -68,8 +71,8 @@ class DadosCliente extends Component {
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
                                     placeholder={'Nome da Avenida/Rua'}
-                                    value={this.props.rua}
-                                //onChangeText={text => this.props.onChangeRua(text)}
+                                    value={this.props.endereco.rua}
+                                    onChangeText={text => this.props.onChangeRua(text)}
                                 />
                             </View>
                             <View style={styles.sView} flex={1}>
@@ -77,8 +80,8 @@ class DadosCliente extends Component {
                                 <TextInput
                                     style={styles.textInput}
                                     placeholder={'N°'}
-                                    value={this.props.numero}
-                                    //onChangeText={text => this.props.onChangeNumero(text)}
+                                    value={this.props.endereco.numero}
+                                    onChangeText={text => this.props.onChangeNumero(text)}
                                     keyboardType={'numeric'}
                                 />
                             </View>
@@ -90,8 +93,8 @@ class DadosCliente extends Component {
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
                                     placeholder={'Apto/Bloco/...'}
-                                    value={this.props.complemento}
-                                //onChangeText={text => this.props.onChangeComplemento(text)}
+                                    value={this.props.endereco.complemento}
+                                    onChangeText={text => this.props.onChangeComplemento(text)}
                                 />
                             </View>
                         </View>
@@ -137,11 +140,13 @@ const mapStateToProps = ({ cardapio, user }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // onLoadScreen: () => dispatch(loadCardapio()),
-        // onSetMore: (id) => dispatch(setMore(id)),
-        // onSetLess: (id) => dispatch(setLess(id)),
-        // onSetQt: (id, text) => dispatch(setQuantidade(id, text)),
+        onChangeCEP: (text) => dispatch(onChangeCEP(text)),
+        onChangeCidade: (text) => dispatch(onChangeCidade(text)),
+        onChangeBairro: (text) => dispatch(onChangeBairro(text)),
+        onChangeRua: (text) => dispatch(onChangeRua(text)),
+        onChangeNumero: (text) => dispatch(onChangeNumero(text)),
+        onChangeComplemento: (text) => dispatch(onChangeComplemento(text)),
     }
 }
 
-export default connect(mapStateToProps)(DadosCliente)
+export default connect(mapStateToProps, mapDispatchToProps)(DadosCliente)
