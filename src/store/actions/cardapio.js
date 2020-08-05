@@ -108,7 +108,6 @@ export const pushPedido = () => {
 
 export const postPedido = (user, pedido, endereco, total) => {
     let refPedido = null
-    console.log(total)
     return async dispatch => {
         try {
             refPedido = await database().ref('pedidos').push()
