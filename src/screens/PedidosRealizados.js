@@ -4,6 +4,7 @@ import database from '@react-native-firebase/database';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header'
+import ItemPedido from '../components/ItemPedido'
 
 class PedidosRealizados extends Component {
     state = {
@@ -33,10 +34,7 @@ class PedidosRealizados extends Component {
         return (
             <View style={styles.container}>
                 <Header {...this.props} />
-                {this.state.pedidos.map((item) => item.pedido.map(item =>
-                    <Text key={Math.random()}>
-                        {item.marca}  {item.quantidade}  {item.price}
-                    </Text>))}
+                {this.state.pedidos.map((item) => item.pedido.map(item => <ItemPedido {...item} key={Math.random()}/>))}
             </View>
         )
     }
