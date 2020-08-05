@@ -15,16 +15,13 @@ class PedidosRealizados extends Component {
         try {
             await database().ref('users').child(`${this.props.user.uid}/pedidos`).once('value').then(snapshot => {
                 let pedidos = snapshot.val() ? snapshot.val() : []
-                pedidos.forEach(element => {
-                    database().ref('pedidos').child(`${element}`).once('value').then(snapshot => {
+                pedidos.forEach(async element => {
+                    await database().ref('pedidos').child(`${element}`).once('value').then(snapshot => {
                         pedidos2.push(snapshot.val())
                         this.setState({ pedidos: pedidos2 })
                     })
-                    console.log(pedidos2)
-                });
-                console.log(pedidos2)
+                })
             })
-            console.log(pedidos2)
         }
         catch (err) {
             console.log(err)
@@ -36,7 +33,6 @@ class PedidosRealizados extends Component {
         return (
             <View style={styles.container}>
                 <Header {...this.props} />
-                {console.log(this.state.pedidos)}
                 {this.state.pedidos.map((item) => item.pedido.map(item =>
                     <Text>
                         {item.marca}  {item.quantidade}  {item.price}
