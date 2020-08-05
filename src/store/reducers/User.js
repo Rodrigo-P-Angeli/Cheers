@@ -5,7 +5,7 @@ import { USER_LOGGING, USER_LOGOUT } from '../ActionsTypes'
 
 const initialState = {
     endereco: {
-        estado: '',
+        estado: 'ES',
         cidade: '',
         bairro: '',
         rua: '',
