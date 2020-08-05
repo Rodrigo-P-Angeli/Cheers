@@ -20,10 +20,16 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case USER_LOGGING:
+            let endereco = null
+            if (!action.payload.endereco) {
+                endereco = state.endereco
+            } else {
+                endereco = action.payload.endereco
+            }
             return {
                 ...state,
                 user: action.payload.user,
-                userToken: action.payload.idToken,
+                endereco: endereco
             }
         case USER_LOGOUT:
             return {
@@ -45,7 +51,7 @@ const reducer = (state = initialState, action) => {
                     cidade: action.payload.text
                 }
             }
-            case USER_SET_NUMERO:
+        case USER_SET_NUMERO:
             return {
                 ...state,
                 endereco: {
@@ -53,7 +59,7 @@ const reducer = (state = initialState, action) => {
                     numero: action.payload.text
                 }
             }
-            case USER_SET_COMPLEMENTO:
+        case USER_SET_COMPLEMENTO:
             return {
                 ...state,
                 endereco: {
@@ -61,7 +67,7 @@ const reducer = (state = initialState, action) => {
                     complemento: action.payload.text
                 }
             }
-            case USER_SET_BAIRRO:
+        case USER_SET_BAIRRO:
             return {
                 ...state,
                 endereco: {
@@ -69,7 +75,7 @@ const reducer = (state = initialState, action) => {
                     bairro: action.payload.text
                 }
             }
-            case USER_SET_RUA:
+        case USER_SET_RUA:
             return {
                 ...state,
                 endereco: {
