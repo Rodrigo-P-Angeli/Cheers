@@ -1,8 +1,9 @@
 import auth from '@react-native-firebase/auth'
+import database from '@react-native-firebase/database'
 import { GoogleSignin } from '@react-native-community/google-signin';
 //import { LoginManager, AccessToken, LoginButton } from 'react-native-fbsdk';
-
 import { USER_LOGGING, USER_LOGOUT, USER_SET_CEP, USER_SET_NUMERO, USER_SET_CIDADE, USER_SET_COMPLEMENTO, USER_SET_BAIRRO, USER_SET_RUA } from '../ActionsTypes'
+import { SnapshotViewIOS } from 'react-native';
 
 GoogleSignin.configure({
     webClientId: '892771746259-251tnb3pc7f01nol5dc2pgk85rl1cqai.apps.googleusercontent.com',
@@ -26,7 +27,7 @@ export const login = (email, senha) => {
         } catch (err) {
             console.log(err)
         }
-        dispatch(UserSignIn(user))
+        dispatch(loadUser())
     }
 }
 
@@ -46,14 +47,19 @@ export const onGoogleButtonPress = () => {
 export const loadUser = () => {
     return async dispatch => {
         let user = null
+        let endereco = null
+
         try {
             user = await auth().currentUser
+            endereco = await database().ref('users').child(`${user.uid}/endereco`).once('value').then(
+                snapshot => snapshot.val() ? endereco = snapshot.val() : null
+            )
             //const idToken = user.user.getIdToken()
         } catch (e) {
             console.log(e)
         }
 
-        dispatch(userSignIn(user))
+        dispatch(userSignIn(user, endereco))
     }
 }
 
@@ -112,11 +118,12 @@ export const onChangeComplemento = (text) => {
 }
 
 
-export const userSignIn = (user) => {
+export const userSignIn = (user, endereco) => {
     return {
         type: USER_LOGGING,
         payload: {
             user,
+            endereco,
         }
     }
 }
@@ -126,3 +133,13 @@ export const logOut = () => {
     }
 }
 
+export const saveUserAddress = (user, endereco) => {
+    return async dispatch => {
+        try {
+            await database().ref('users').child(`${user.uid}/endereco`).set({ ...endereco })
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+}
