@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
 import database from '@react-native-firebase/database';
 import { connect } from 'react-redux';
 
@@ -35,11 +35,13 @@ class PedidosRealizados extends Component {
         return (
             <View style={styles.container}>
                 <Header {...this.props} />
-                {this.state.pedidos.map((item) =>
-                    <TouchableOpacity key={Math.random()}>
-                        <Text>{item.endereco}</Text>
-                        {item.pedido.map(item => <ItemPedido {...item} key={Math.random()} />)}
-                    </TouchableOpacity>)}
+                <ScrollView>
+                    {this.state.pedidos.map((item) =>
+                        <TouchableOpacity key={Math.random()}>
+                            <Text>{JSON.stringify(item.endereco)}</Text>
+                            {item.pedido.map(item => <ItemPedido {...item} key={Math.random()} />)}
+                        </TouchableOpacity>)}
+                </ScrollView>
             </View>
         )
     }
