@@ -6,6 +6,8 @@ import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
 //import moment from 'moment'
 
+import { saveUserAddress } from './user'
+
 export const loadCardapio = () => {
     return async (dispatch, getState) => {
         if (!getState().cardapioo) {
@@ -133,5 +135,6 @@ export const postPedido = (user, pedido, endereco, total) => {
         }
         dispatch(pushPedido())
         dispatch(loadCardapio())
+        dispatch(saveUserAddress(user,endereco))
     }
 }
