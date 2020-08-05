@@ -106,7 +106,7 @@ export const pushPedido = () => {
     }
 }
 
-export const postPedido = (user, pedido, endereco) => {
+export const postPedido = (user, pedido, endereco, total) => {
     let refPedido = null
     return async dispatch => {
         try {
@@ -115,7 +115,8 @@ export const postPedido = (user, pedido, endereco) => {
                 //date: new moment().locale('pt-br').format('LLL'),
                 uid: user.uid,
                 pedido: pedido.filter((iten) => iten.quantidade > 0),
-                endereco: 'não sei onde mora ainda'
+                endereco: endereco,
+                total: total,
             })
             //let token = await auth().currentUser.getIdToken()
             await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
