@@ -6,6 +6,7 @@ export default class ListaItems extends Component {
         return(
             <View style={styles.container}>
                 <Text>{this.props.marca}</Text>
+                <Text>{this.props.tipo}</Text>
                 <Text>{this.props.quantidade}</Text>
                 <Text>{this.props.total}</Text>
                 <Text>{this.props.price}</Text>
