@@ -79,13 +79,14 @@ class AppDrawer extends Component {
 
 class App extends Component {
     componentDidMount = async () => {
-        let user = null
-        try {
-            user = await auth().currentUser
-            this.props.userSignIn(user)
-        } catch (e) {
-            console.log(e)
-        }
+        // let user = null
+        // try {
+        //     user = await auth().currentUser
+        //     this.props.userSignIn(user)
+        // } catch (e) {
+        //     console.log(e)
+        // }
+        await this.props.loadUser()
     }
     render() {
         return (
