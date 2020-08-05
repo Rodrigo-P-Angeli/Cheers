@@ -34,7 +34,7 @@ class PedidosRealizados extends Component {
             <View style={styles.container}>
                 <Header {...this.props} />
                 {this.state.pedidos.map((item) => item.pedido.map(item =>
-                    <Text>
+                    <Text key={Math.random()}>
                         {item.marca}  {item.quantidade}  {item.price}
                     </Text>))}
             </View>
