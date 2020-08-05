@@ -8,6 +8,16 @@ export const SET_MORE = 'SET_MORE'
 export const SET_LESS = 'SET_LESS'
 export const SET_QT = 'SET_QT'
 export const SET_MAJOR_TOTAL = 'SET_MAJOR_TOTAL'
+
+
 export const USER_LOGGING = 'USER_LOGGING'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const PUSH_PEDIDO = 'PUSH_PEDIDO'
+
+
+export const USER_SET_CEP = 'USER_SET_CEP'
+export const USER_SET_CIDADE = 'USER_SET_CIDADE'
+export const USER_SET_BAIRRO = 'USER_SET_BAIRRO'
+export const USER_SET_RUA = 'USER_SET_RUA'
+export const USER_SET_NUMERO = 'USER_SET_NUMERO'
+export const USER_SET_COMPLEMENTO = 'USER_SET_COMPLEMENTO'
