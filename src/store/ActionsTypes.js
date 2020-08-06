@@ -10,6 +10,8 @@ export const SET_QT = 'SET_QT'
 export const SET_MAJOR_TOTAL = 'SET_MAJOR_TOTAL'
 
 
+export const LOADING_USER = 'LOADING_USER'
+export const FINISHED_LOADING_USER = 'FINISHED_LOADING_USER'
 export const USER_LOGGING = 'USER_LOGGING'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const PUSH_PEDIDO = 'PUSH_PEDIDO'
