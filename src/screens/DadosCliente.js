@@ -38,6 +38,7 @@ class DadosCliente extends Component {
                                     placeholder={'CEP'}
                                     value={`${this.props.endereco.CEP}`}
                                     onChangeText={text => this.props.onChangeCEP(text)}
+                                    keyboardType={'numeric'}
                                 />
                             </View>
                         </View>
