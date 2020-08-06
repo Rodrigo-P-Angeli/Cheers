@@ -26,7 +26,7 @@ const initialState = {
     },
     user: null,
     userToken: null,
-    loadingUser: false,
+    loadingUser: true,
 }
 
 const reducer = (state = initialState, action) => {
