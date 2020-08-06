@@ -62,11 +62,11 @@ export const loadUser = () => {
         let fidelidade = null
         try {
             user = await auth().currentUser
-            endereco = await database().ref('users').child(`${user.uid}/endereco`).once('value').then(
-                snapshot => snapshot.val() ? endereco = snapshot.val() : null
+            await database().ref('users').child(`${user.uid}/endereco`).once('value').then(
+                snapshot => snapshot.val() ? endereco = snapshot.val() : endereco = null
             )
-            fidelidade = await database().ref('users').child(`${user.uid}/fidelidade`).once('value').then(
-                snapshot => snapshot.val() ? fidelidade = snapshot.val() : null
+            await database().ref('users').child(`${user.uid}/fidelidade`).once('value').then(
+                snapshot => snapshot.val() ? fidelidade = snapshot.val() : fidelidade = 0
             )
             //const idToken = user.user.getIdToken()
         } catch (e) {
