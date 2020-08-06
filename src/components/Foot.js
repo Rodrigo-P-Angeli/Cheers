@@ -1,29 +1,13 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
-import database from '@react-native-firebase/database';
-import AsyncStorage from '@react-native-community/async-storage';
-
-// async function User() {
-//     // const newReference = database()
-//     //     .ref(`/users/${userId}`)
-//     //     .push()
-//     // console.log('Auto generated key: ', newReference);
-//     try {
-//         const value = await AsyncStorage.getItem('userData');
-//         if (value !== null) {
-//           // We have data!!
-//           console.log(JSON.parse(value));
-//         }
-//       } catch (error) {
-//         // Error retrieving data
-//       }
-// }
-
 export default props => {
+    const checkPedido = () => {
+        console.log(props.cardapio.filter(item => item.quantidade > 0))
+        if (props.cardapio.filter(item => item.quantidade > 0)) {
+            props.postPedido(props.user, props.cardapio, props.endereco, props.total)
+        }
+    }
     return (
         <View style={styles.bottom} >
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
@@ -37,7 +21,7 @@ export default props => {
             </View>
             <View style={{ flex: 1 }}>
                 <Button
-                    onPress={() => props.postPedido(props.user, props.cardapio, props.endereco, props.total)}
+                    onPress={checkPedido}
                     title={'Finalizar pedido'}
                     color={'#841584'} />
             </View>
