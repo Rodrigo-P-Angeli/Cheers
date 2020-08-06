@@ -1,7 +1,18 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-import { USER_LOGGING, USER_LOGOUT, USER_SET_CEP, USER_SET_NUMERO, USER_SET_CIDADE, USER_SET_COMPLEMENTO, USER_SET_BAIRRO, USER_SET_RUA } from '../ActionsTypes'
+import {
+    USER_LOGGING,
+    USER_LOGOUT,
+    USER_SET_CEP,
+    USER_SET_NUMERO,
+    USER_SET_CIDADE,
+    USER_SET_COMPLEMENTO,
+    USER_SET_BAIRRO,
+    USER_SET_RUA,
+    LOADING_USER,
+    FINISHED_LOADING_USER
+} from '../ActionsTypes'
 
 const initialState = {
     endereco: {
@@ -15,6 +26,7 @@ const initialState = {
     },
     user: null,
     userToken: null,
+    loadingUser: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -82,6 +94,16 @@ const reducer = (state = initialState, action) => {
                     ...state.endereco,
                     rua: action.payload.text
                 }
+            }
+        case LOADING_USER:
+            return {
+                ...state,
+                loadingUser: true
+            }
+        case FINISHED_LOADING_USER:
+            return {
+                ...state,
+                loadingUser: false
             }
         default:
             return state
