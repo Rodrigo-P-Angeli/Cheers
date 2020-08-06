@@ -75,10 +75,17 @@ export const loadUser = () => {
 }
 
 export const onChangeCEP = (text) => {
+    let newText = '';
+    let numbers = '0123456789';
+    for (var i = 0; i < 7; i++) {
+        if (numbers.indexOf(text[i]) > -1) {
+            newText = newText + text[i];
+        }
+    }
     return {
         type: USER_SET_CEP,
         payload: {
-            text,
+            text: newText,
         }
     }
 }
@@ -111,10 +118,17 @@ export const onChangeRua = (text) => {
 }
 
 export const onChangeNumero = (text) => {
+    let newText = '';
+    let numbers = '0123456789';
+    for (var i = 0; i < text.length; i++) {
+        if (numbers.indexOf(text[i]) > -1) {
+            newText = newText + text[i];
+        }
+    }
     return {
         type: USER_SET_NUMERO,
         payload: {
-            text,
+            text: newText,
         }
     }
 }
