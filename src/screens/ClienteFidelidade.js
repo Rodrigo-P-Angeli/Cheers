@@ -5,44 +5,37 @@
 import React, { Component } from 'react'
 import { View, Text, ImageBackground, StyleSheet } from 'react-native'
 
-import AsyncStorage from '@react-native-community/async-storage'
-
 import Header from '../components/Header'
 import Pack from '../../assets/images/Pack.jpg'
 import { connect } from 'react-redux'
 
-const inicialState = {
-    fidelidade: [],
-}
-class ClienteFidelidade extends Component {
-    state = { ...inicialState }
 
-    getFidelidade = async () => {
-        try {
-            const userData = await AsyncStorage.getItem('userData')
-            const user = JSON.parse(userData)
-            this.setState({
-                name: user.name,
-                email: user.email,
-                phone: user.phone,
-                endereco: user.endereco,
-                fidelidade: user.fidelidade,
-            })
-        } catch (e) {
-            console.log(e)
-        }
-    }
-    mudarTab = () => {
-        if (this.state.name == null) {
-            this.getFidelidade()
-        }
-    }
+class ClienteFidelidade extends Component {
+    // getFidelidade = async () => {
+    //     try {
+    //         const userData = await AsyncStorage.getItem('userData')
+    //         const user = JSON.parse(userData)
+    //         this.setState({
+    //             name: user.name,
+    //             email: user.email,
+    //             phone: user.phone,
+    //             endereco: user.endereco,
+    //             fidelidade: user.fidelidade,
+    //         })
+    //     } catch (e) {
+    //         console.log(e)
+    //     }
+    // }
+    // mudarTab = () => {
+    //     if (this.state.name == null) {
+    //         this.getFidelidade()
+    //     }
+    // }
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <View>
                     <Header {...this.props} />
-                    {this.mudarTab()}
                     <Text style={styles.subtitle}>A cada R$ 100,00 em compras você ganha libera um espaço</Text>
                     <Text style={styles.subtitle}>Completando o Pack você recebe na próxima compra</Text>
                 </View>
@@ -50,36 +43,36 @@ class ClienteFidelidade extends Component {
                     <View style={styles.container}>
                         <ImageBackground style={styles.image} source={Pack}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 1 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 1 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>1</Text>
                                 </View>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 2 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 2 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>2</Text>
                                 </View>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 3 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 3 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>3</Text>
                                 </View>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 4 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 4 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>4</Text>
                                 </View>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 5 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 5 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>5</Text>
                                 </View>
                             </View>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 6 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 6 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>6</Text>
                                 </View>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 7 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 7 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>7</Text>
                                 </View>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 8 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 8 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>8</Text>
                                 </View>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 9 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 9 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>9</Text>
                                 </View>
-                                <View style={[styles.fdsa, this.state.fidelidade >= 10 ? styles.ganhado : null]}>
+                                <View style={[styles.fdsa, this.props.fidelidade >= 10 ? styles.ganhado : null]}>
                                     <Text style={styles.text}>10</Text>
                                 </View>
                             </View>
@@ -136,7 +129,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ user }) => {
     return ({
-        user2: user.user,
+        user: user.user,
+        fidelidade: user.fidelidade
     })
 }
 export default connect(mapStateToProps)(ClienteFidelidade)
