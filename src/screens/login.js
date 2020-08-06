@@ -83,7 +83,6 @@ export default class App extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <View style={styles.container}>
-                    {console.log(this.props.userr)}
                     <Text>Email</Text>
                     <TextInput
                         style={styles.input}
