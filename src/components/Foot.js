@@ -4,8 +4,7 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native'
 export default props => {
     const checkPedido = () => {
         if (props.cardapio.filter(item => item.quantidade > 0) != 0) {
-            props.postPedido(props.user, props.cardapio, props.endereco, props.total)
-            return
+            return props.postPedido(props.user, props.cardapio, props.endereco, props.total)
         } else {
             Alert.alert('Cardapio vazio', 'Por favor, selecione seu pedido')
         }
