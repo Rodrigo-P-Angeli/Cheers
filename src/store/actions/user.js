@@ -2,8 +2,18 @@ import auth from '@react-native-firebase/auth'
 import database from '@react-native-firebase/database'
 import { GoogleSignin } from '@react-native-community/google-signin';
 //import { LoginManager, AccessToken, LoginButton } from 'react-native-fbsdk';
-import { USER_LOGGING, USER_LOGOUT, USER_SET_CEP, USER_SET_NUMERO, USER_SET_CIDADE, USER_SET_COMPLEMENTO, USER_SET_BAIRRO, USER_SET_RUA } from '../ActionsTypes'
-import { SnapshotViewIOS } from 'react-native';
+import {
+    USER_LOGGING,
+    USER_LOGOUT,
+    USER_SET_CEP,
+    USER_SET_NUMERO,
+    USER_SET_CIDADE,
+    USER_SET_COMPLEMENTO,
+    USER_SET_BAIRRO,
+    USER_SET_RUA,
+    LOADING_USER,
+    FINISHED_LOADING_USER,
+} from '../ActionsTypes'
 
 GoogleSignin.configure({
     webClientId: '892771746259-251tnb3pc7f01nol5dc2pgk85rl1cqai.apps.googleusercontent.com',
@@ -141,5 +151,16 @@ export const saveUserAddress = (user, endereco) => {
         catch (e) {
             console.log(e)
         }
+    }
+}
+
+export const loadingUser = () => {
+    return {
+        type: LOADING_USER,
+    }
+}
+export const finishedLoadingUser = () => {
+    return {
+        type: FINISHED_LOADING_USER,
     }
 }
