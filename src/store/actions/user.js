@@ -154,7 +154,7 @@ export const saveUserAddress = (user, endereco) => {
     }
 }
 
-export const loadingUser = () => {
+export const loadingUserFunction = () => {
     return {
         type: LOADING_USER,
     }
