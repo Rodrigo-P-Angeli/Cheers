@@ -20,7 +20,7 @@ import Login from './screens/Login'
 import SplashScreen from './screens/SplashScreen';
 import { connect } from 'react-redux';
 
-import { onGoogleButtonPress, logout, loadUser, userSignIn } from './store/actions/user'
+import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction } from './store/actions/user'
 import PedidosRealizados from './screens/PedidosRealizados';
 
 const Tab = createBottomTabNavigator();
@@ -78,24 +78,14 @@ class AppDrawer extends Component {
 }
 
 class App extends Component {
-    componentDidMount = async () => {
-        // let user = null
-        // try {
-        //     user = await auth().currentUser
-        //     this.props.userSignIn(user)
-        // } catch (e) {
-        //     console.log(e)
-        // }
-        await this.props.loadUser()
-    }
     render() {
         return (
             <NavigationContainer>
                 <Stack.Navigator headerMode="none">
-                    {/* <Stack.Screen name="SplashScreen">
-                        {() => <SplashScreen loadUser={this.props.loadUser} {...this.props} />}
-                    </Stack.Screen> */}
-                    {this.props.user ?
+                    {this.props.loadingUser ?
+                        <Stack.Screen name="SplashScreen">
+                            {() => <SplashScreen loadUser={this.props.loadingUserFunction} finishedLoadUser={this.props.finishedLoadingUser} {...this.props} />}
+                        </Stack.Screen> : this.props.user ?
                         <Stack.Screen name="Cardápio">
                             {() => <AppDrawer onSignOut={() => this.props.logout()} />}
                         </Stack.Screen> :
@@ -126,7 +116,7 @@ class App extends Component {
 const mapStateToProps = ({ user }) => {
     return {
         user: user.user,
-        userToken: user.userToken
+        loadingUser: user.loadingUser,
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -135,6 +125,8 @@ const mapDispatchToProps = (dispatch) => {
         loadUser: () => dispatch(loadUser()),
         userSignIn: (user) => dispatch(userSignIn(user)),
         logout: () => dispatch(logout()),
+        loadingUserFunction: () => dispatch(loadingUserFunction()),
+        finishedLoadingUser: () => dispatch(finishedLoadingUser()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)
