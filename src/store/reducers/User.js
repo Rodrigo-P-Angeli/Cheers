@@ -25,7 +25,6 @@ const initialState = {
         complemento: '',
     },
     user: null,
-    userToken: null,
     loadingUser: true,
     fidelidade: 0,
 }
@@ -42,7 +41,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload.user,
-                endereco: endereco
+                endereco: endereco,
+                fidelidade: action.payload.fidelidade,
             }
         case USER_LOGOUT:
             return {
