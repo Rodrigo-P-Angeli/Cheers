@@ -56,6 +56,7 @@ export const onGoogleButtonPress = () => {
 
 export const loadUser = () => {
     return async dispatch => {
+        dispatch(loadingUserFunction())
         let user = null
         let endereco = null
 
