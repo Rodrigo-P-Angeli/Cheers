@@ -59,18 +59,21 @@ export const loadUser = () => {
         dispatch(loadingUserFunction())
         let user = null
         let endereco = null
-
+        let fidelidade = null
         try {
             user = await auth().currentUser
             endereco = await database().ref('users').child(`${user.uid}/endereco`).once('value').then(
                 snapshot => snapshot.val() ? endereco = snapshot.val() : null
+            )
+            fidelidade = await database().ref('users').child(`${user.uid}/fidelidade`).once('value').then(
+                snapshot => snapshot.val() ? fidelidade = snapshot.val() : null
             )
             //const idToken = user.user.getIdToken()
         } catch (e) {
             console.log(e)
         }
 
-        dispatch(userSignIn(user, endereco))
+        dispatch(userSignIn(user, endereco, fidelidade))
     }
 }
 
@@ -143,12 +146,13 @@ export const onChangeComplemento = (text) => {
 }
 
 
-export const userSignIn = (user, endereco) => {
+export const userSignIn = (user, endereco, fidelidade) => {
     return {
         type: USER_LOGGING,
         payload: {
             user,
             endereco,
+            fidelidade,
         }
     }
 }
