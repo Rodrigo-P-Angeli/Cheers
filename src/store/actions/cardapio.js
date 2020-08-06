@@ -26,14 +26,12 @@ export const loadCardapio = () => {
 
     }
 }
-
 export const setCardapio = posts => {
     return {
         type: LOAD_CARDAPIO,
         payload: posts,
     }
 }
-
 export const setmore = (id) => {
     return {
         type: SET_MORE,
@@ -77,14 +75,11 @@ export const setQuantidade = (id, text) => {
         dispatch(setMajorTotal())
     }
 }
-
 export const setTotalItem = () => {
     return {
         type: SET_TOTAL_ITEM,
     }
 }
-
-
 export const setqt = (id, qt) => {
     return {
         type: SET_QT,
@@ -95,19 +90,16 @@ export const setqt = (id, qt) => {
         },
     }
 }
-
 export const setMajorTotal = () => {
     return {
         type: SET_MAJOR_TOTAL,
     }
 }
-
 export const pushPedido = () => {
     return {
         type: PUSH_PEDIDO,
     }
 }
-
 export const postPedido = (user, pedido, endereco, total) => {
     let refPedido = null
     return async dispatch => {
