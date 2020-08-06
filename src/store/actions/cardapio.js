@@ -114,7 +114,7 @@ export const postPedido = (user, pedido, endereco, total) => {
             refPedido.set({
                 //date: new moment().locale('pt-br').format('LLL'),
                 uid: user.uid,
-                pedido: pedido.filter((iten) => iten.quantidade > 0),
+                pedido: pedido.filter((item) => item.quantidade > 0),
                 endereco: endereco,
                 total: total,
             })
