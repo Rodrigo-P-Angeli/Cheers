@@ -1,10 +1,16 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 
-import { LOAD_CARDAPIO, SET_MORE, SET_LESS, SET_QT, SET_TOTAL_ITEM, SET_MAJOR_TOTAL, PUSH_PEDIDO } from '../ActionsTypes'
+import {
+    LOAD_CARDAPIO,
+    SET_MORE, SET_LESS,
+    SET_QT,
+    SET_TOTAL_ITEM,
+    SET_MAJOR_TOTAL,
+    PUSH_PEDIDO
+} from '../ActionsTypes'
 import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
-//import moment from 'moment'
 
 import { saveUserAddress } from './user'
 
@@ -127,6 +133,6 @@ export const postPedido = (user, pedido, endereco, total) => {
         }
         dispatch(pushPedido())
         dispatch(loadCardapio())
-        dispatch(saveUserAddress(user,endereco))
+        dispatch(saveUserAddress(user, endereco))
     }
 }
