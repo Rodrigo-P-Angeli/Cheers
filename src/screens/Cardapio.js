@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Button, ImageBackground } from 'react-native';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 
@@ -20,7 +20,7 @@ class Cardapio extends Component {
     }
     render() {
         return (
-            <View style={styles.container}>
+            <ImageBackground source={require('../../assets/images/BackGroundBody.jpg')} style={styles.container}>
                 <Header {...this.props} />
                 <View style={styles.body}>
                     <FlatList
@@ -29,7 +29,7 @@ class Cardapio extends Component {
                         renderItem={({ item }) => <ItemCardapio {...item} setMore={this.props.onSetMore} setLess={this.props.onSetLess} setqt={this.props.onSetQt} />} />
                 </View>
                 <Foot {...this.props} postPedido={this.props.postPedido} />
-            </View>
+            </ImageBackground>
         )
     }
 }
@@ -37,6 +37,7 @@ class Cardapio extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        resizeMode: 'contain',
     },
     body: {
         flex: 1,
