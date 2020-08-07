@@ -3,13 +3,14 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import CommonStyles from '../CommonStyles'
 
 export default class App extends Component {
     render() {
         return (
             <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundHeader.jpg')}>
                 <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} style={styles.buttonBars}>
-                    <Icon name={'bars'} size={20} color={'black'} />
+                    <Icon name={'bars'} size={30} color={'black'} />
                 </TouchableOpacity>
                 <Text style={styles.title}>Cheers</Text>
             </ImageBackground>
@@ -24,12 +25,11 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     title: {
-        fontFamily: '',
-        fontSize: 30,
+        fontFamily: CommonStyles.fontFamilyTitle,
+        fontSize: 50,
         alignSelf: 'center',
         color: 'black',
-        fontWeight: 'bold',
-        paddingLeft: Dimensions.get('window').width / 3,
+        paddingLeft: Dimensions.get('window').width / 4,
     },
     buttonBars: {
         alignSelf: 'center',
