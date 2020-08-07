@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity, ImageBackground } from 'react-native'
 import AuthInput from '../components/AuthInput'
 import { GoogleSigninButton } from '@react-native-community/google-signin'
+import CommonStyles from '../CommonStyles'
 
 const initialState = {
     name: '',
@@ -74,17 +75,17 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignItems: 'center',
         justifyContent: 'center',
-        
+
     },
     title: {
-        //fontFamily: CommonStyles.fontFamily,
-        //color: CommonStyles.Colors.secundary,
+        fontFamily: CommonStyles.fontFamily,
+        color: CommonStyles.Colors.secundary,
         fontSize: 70,
         marginBottom: 10,
     },
     subTitle: {
         color: 'white',
-        //fontFamily: CommonStyles.fontFamily,
+        fontFamily: CommonStyles.fontFamily,
         fontSize: 20,
         textAlign: 'center',
         marginBottom: 10,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     buttonText: {
-        //fontFamily: CommonStyles.fontFamily,
+        fontFamily: CommonStyles.fontFamily,
         color: 'white',
         fontSize: 20,
     },
