@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native'
+import CommonStyles from '../CommonStyles'
 
 export default class ItemCardapio extends Component {
     render() {
@@ -11,7 +12,9 @@ export default class ItemCardapio extends Component {
                 <View style={styles.container} elevation={2}>
                     <View style={styles.desc}>
                         <Text style={styles.marca}>{this.props.marca} {this.props.tipo}</Text>
-                        <Text>R$ {this.props.price.toFixed(2).replace('.', ',')}</Text>
+                        <Text style={styles.priceText}>
+                            R$ {this.props.price.toFixed(2).replace('.', ',')}
+                        </Text>
                     </View>
                     <View style={styles.setQuant}>
                         <View style={{ flexDirection: 'row', paddingTop: 3, }}>
@@ -19,7 +22,7 @@ export default class ItemCardapio extends Component {
                                 <Button
                                     onPress={() => this.props.setLess(this.props.id)}
                                     title="-"
-                                    color="#841584"
+                                    color={CommonStyles.Colors.buttons}
                                 />
                             </View>
                             <View style={{ flex: 1 }}>
@@ -36,18 +39,18 @@ export default class ItemCardapio extends Component {
                                 <Button
                                     onPress={() => this.props.setMore(this.props.id)}
                                     title="+"
-                                    color="#841584"
+                                    color={CommonStyles.Colors.buttons}
                                 />
                             </View>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text textAlign={'center'}>
+                            <Text style={styles.priceText}>
                                 R$ {this.props.total.toFixed(2).replace('.', ',')}
                             </Text>
                         </View>
                     </View>
                 </View>
-            </View>
+            </View >
         )
     }
 }
@@ -76,5 +79,9 @@ const styles = StyleSheet.create({
     },
     marca: {
         fontSize: 20,
+        fontFamily: CommonStyles.fontFamily
     },
+    priceText: {
+        fontFamily: CommonStyles.fontFamily,
+    }
 })
