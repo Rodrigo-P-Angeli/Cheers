@@ -23,6 +23,7 @@ import { connect } from 'react-redux';
 import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction, createUser, login } from './store/actions/user'
 import PedidosRealizados from './screens/PedidosRealizados';
 import Auth from './screens/Auth';
+import CommonStyles from './CommonStyles';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -124,19 +125,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 const drawerOptions = {
     labelStyle: {
-        //fontFamily: 'Solway-Light',
+        fontFamily: CommonStyles.fontFamily,
         fontSize: 20,
     },
-    activeTintColor: '#841584',
+    activeTintColor: CommonStyles.Colors.buttons,
     //inactiveTintColor: '#679A7A',
 }
 
 
 const tabBar = {
-    activeTintColor: '#841584',
+    activeTintColor: CommonStyles.Colors.buttons,
     //inactiveTintColor: '#679A7A',
     labelStyle: {
-        //fontFamily: 'Solway-Light',
+        fontFamily: CommonStyles.fontFamily,
         fontSize: 15,
     },
 }
