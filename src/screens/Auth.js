@@ -3,8 +3,9 @@
 /* eslint-disable prettier/prettier */
 
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
-import AuthInput from '../Component/AuthInput'
+import { Text, StyleSheet, View, TouchableOpacity, Button } from 'react-native'
+import AuthInput from '../components/AuthInput'
+import { GoogleSigninButton } from '@react-native-community/google-signin'
 
 const initialState = {
     name: '',
@@ -18,43 +19,6 @@ export default class Auth extends Component {
 
     state = { ...initialState }
 
-    signOrSignup = () => {
-        if (this.state.stageNew) {
-            this.signUp()
-        } else {
-            this.signIn()
-        }
-    }
-    signUp = async () => {
-        try {
-            await axios.post(`${server}/signup`, {
-                name: this.state.name,
-                email: this.state.email,
-                password: this.state.password,
-                confirmPassword: this.state.confirmPassword,
-            })
-
-            showSuccess('Usuário cadastrado')
-            this.setState({ initialState })
-        } catch (e) {
-            showErro(e)
-        }
-    }
-
-    signIn = async () => {
-        try {
-            const res = await axios.post(`${server}/signin`, {
-                email: this.state.email,
-                password: this.state.password,
-            })
-            AsyncStorage.setItem('userData', JSON.stringify(res.data))
-            axios.defaults.headers.common['Authorization'] = `bearer ${res.data.token}`
-            this.props.navigation.navigate('Home', res.data)
-        } catch (e) {
-            showErro(e)
-        }
-    }
-
     render() {
         const validation = []
         validation.push(this.state.email && this.state.email.includes('@'))
@@ -67,21 +31,29 @@ export default class Auth extends Component {
 
         const validForm = validation.reduce((a, d) => a && d)
         return (
-            <View>
-                <Text style={styles.title}>Task</Text>
+            <View style={styles.backgroung}>
+                <Text style={styles.title}>Cheers</Text>
                 <View style={styles.formContainer}>
-                    <Text style={styles.subTitle}>{this.state.stageNew ? 'Crie a sua conta' : 'Informe seus dados'}</Text>
+                    <Text style={styles.subTitle}>{this.state.stageNew ? 'Crie a sua conta' : 'Entrar com E-mail'}</Text>
                     {this.state.stageNew &&
                         <AuthInput icon={'user'} placeholder={'Nome'} value={this.state.name} style={styles.input} onChangeText={name => this.setState({ name })} />}
                     <AuthInput icon={'at'} placeholder={'Email'} value={this.state.email} style={styles.input} onChangeText={email => this.setState({ email })} />
                     <AuthInput icon={'lock'} secureTextEntry={true} placeholder={'Senha'} value={this.state.password} style={styles.input} onChangeText={password => this.setState({ password })} />
                     {this.state.stageNew &&
                         <AuthInput icon={'asterisk'} secureTextEntry={true} placeholder={'Confirmar Senha'} value={this.state.confirmPassword} style={styles.input} onChangeText={confirmPassword => this.setState({ confirmPassword })} />}
-                    <TouchableOpacity onPress={this.signOrSignup} disabled={!validForm}>
+                    <TouchableOpacity disabled={!validForm}>
                         <View style={[styles.button, validForm ? [] : { backgroundColor: '#AAA' }]}>
                             <Text style={styles.buttonText}>{this.state.stageNew ? 'Registrar' : 'Entrar'}</Text>
                         </View>
                     </TouchableOpacity>
+                </View>
+                <View style={{ padding: 10, alignItems: 'center' }}>
+                    <GoogleSigninButton
+                        style={{ width: 192, height: 48 }}
+                        size={GoogleSigninButton.Size.Wide}
+                        color={GoogleSigninButton.Color.Dark}
+                        onPress={() => this.props.loadUser()}
+                        disabled={this.props.loadingUser} />
                 </View>
                 <TouchableOpacity style={{ padding: 10 }}
                     onPress={
