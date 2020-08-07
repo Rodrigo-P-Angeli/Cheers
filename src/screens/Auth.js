@@ -3,10 +3,11 @@
 /* eslint-disable prettier/prettier */
 
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, ImageBackground } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, ImageBackground, Button } from 'react-native'
 import AuthInput from '../components/AuthInput'
 import { GoogleSigninButton } from '@react-native-community/google-signin'
 import CommonStyles from '../CommonStyles'
+import { LoginButton } from 'react-native-fbsdk'
 
 const initialState = {
     name: '',
@@ -42,7 +43,7 @@ export default class Auth extends Component {
                     <AuthInput icon={'lock'} secureTextEntry={true} placeholder={'Senha'} value={this.state.password} style={styles.input} onChangeText={password => this.setState({ password })} />
                     {this.state.stageNew &&
                         <AuthInput icon={'asterisk'} secureTextEntry={true} placeholder={'Confirmar Senha'} value={this.state.confirmPassword} style={styles.input} onChangeText={confirmPassword => this.setState({ confirmPassword })} />}
-                    <TouchableOpacity disabled={!validForm} onPress={() => this.state.stageNew ? this.props.createUser(this.state.name, this.state.email, this.state.password): this.props.loginUser(this.state.email, this.state.password)}>
+                    <TouchableOpacity disabled={!validForm} onPress={() => this.state.stageNew ? this.props.createUser(this.state.name, this.state.email, this.state.password) : this.props.loginUser(this.state.email, this.state.password)}>
                         <View style={[styles.button, validForm ? [] : { backgroundColor: '#AAA' }]}>
                             <Text style={styles.buttonText}>{this.state.stageNew ? 'Registrar' : 'Entrar'}</Text>
                         </View>
@@ -53,8 +54,11 @@ export default class Auth extends Component {
                         style={{ width: 192, height: 48 }}
                         size={GoogleSigninButton.Size.Wide}
                         color={GoogleSigninButton.Color.Dark}
-                        onPress={() => this.props.loadUser()}
+                        onPress={() => this.props.GoogleButtonPress()}
                         disabled={this.props.loadingUser} />
+                    <TouchableOpacity style={styles.loginButton} onPress={() => this.props.FacebookButtonPress()} disabled={this.props.loadingUser}>
+                        <Text style={styles.loginButtonText}>Facebook</Text>
+                    </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={{ padding: 10 }}
                     onPress={
@@ -110,4 +114,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
     },
+    loginButton: {
+        backgroundColor: 'blue',
+        width: 180,
+    },
+    loginButtonText: {
+        fontFamily: CommonStyles.fontFamily,
+        color: 'white',
+    }
 })

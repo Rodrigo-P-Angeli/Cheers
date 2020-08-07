@@ -20,7 +20,7 @@ import Login from './screens/Login'
 import SplashScreen from './screens/SplashScreen';
 import { connect } from 'react-redux';
 
-import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction, createUser, login } from './store/actions/user'
+import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction, createUser, login, onFacebookButtonPress } from './store/actions/user'
 import PedidosRealizados from './screens/PedidosRealizados';
 import Auth from './screens/Auth';
 import CommonStyles from './CommonStyles';
@@ -92,7 +92,7 @@ class App extends Component {
                                 {() => <AppDrawer onSignOut={() => this.props.logout()} />}
                             </Stack.Screen> :
                             <Stack.Screen name="Login" >
-                                {() => <Auth {...this.props} loadUser={this.props.onGoogleButtonPress} createUser={this.props.createUser} loginUser={this.props.loginUser} />}
+                                {() => <Auth {...this.props} FacebookButtonPress={this.props.onFacebookButtonPress} GoogleButtonPress={this.props.onGoogleButtonPress} createUser={this.props.createUser} loginUser={this.props.loginUser} />}
                             </Stack.Screen>}
                 </Stack.Navigator>
             </NavigationContainer >
@@ -117,6 +117,7 @@ const mapDispatchToProps = (dispatch) => {
         finishedLoadingUser: () => dispatch(finishedLoadingUser()),
         createUser: (name, email, senha) => dispatch(createUser(name, email, senha)),
         loginUser: (email, senha) => dispatch(login(email, senha)),
+        onFacebookButtonPress: () => dispatch(onFacebookButtonPress()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

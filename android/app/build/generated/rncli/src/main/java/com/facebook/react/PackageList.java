@@ -23,6 +23,8 @@ import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
 // @react-native-firebase/database
 import io.invertase.firebase.database.ReactNativeFirebaseDatabasePackage;
+// react-native-fbsdk
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 // react-native-reanimated
@@ -84,6 +86,7 @@ public class PackageList {
       new ReactNativeFirebaseAppPackage(),
       new ReactNativeFirebaseAuthPackage(),
       new ReactNativeFirebaseDatabasePackage(),
+      new FBSDKPackage(),
       new RNGestureHandlerPackage(),
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),
