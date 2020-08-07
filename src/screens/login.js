@@ -142,17 +142,3 @@ const styles = StyleSheet.create({
     },
 })
 
-export const logout = async () => {
-    try {
-        await auth().signOut()
-        console.log('saiu')
-    } catch (err) {
-        console.log(err)
-    }
-    try {
-        await AsyncStorage.removeItem('userData')
-    } catch (e) {
-        console.log(e)
-    }
-    this.props.navigation.navigate('Login')
-}
