@@ -40,6 +40,29 @@ export const login = (email, senha) => {
         dispatch(loadUser())
     }
 }
+export const createUser = (nome, email, senha) => {
+    return async dispatch => {
+        auth()
+            .createUserWithEmailAndPassword(email, senha)
+            .then(() => {
+                console.log('User account created & signed in!');
+                auth().currentUser.updateProfile({
+                    displayName: nome,
+                }).then(dispatch(loadUser())).catch(error => console.log('Erro ao atualizar o nome do usuário', error))
+            })
+            .catch(error => {
+                if (error.code === 'auth/email-already-in-use') {
+                    console.log('That email address is already in use!');
+                }
+                if (error.code === 'auth/invalid-email') {
+                    console.log('That email address is invalid!');
+                }
+                console.error(error);
+            });
+    }
+}
+
+
 
 export const onGoogleButtonPress = () => {
     return async dispatch => {
@@ -145,7 +168,6 @@ export const onChangeComplemento = (text) => {
     }
 }
 
-
 export const userSignIn = (user, endereco, fidelidade) => {
     return {
         type: USER_LOGGING,
@@ -156,6 +178,7 @@ export const userSignIn = (user, endereco, fidelidade) => {
         }
     }
 }
+
 export const logOut = () => {
     return {
         type: USER_LOGOUT,
@@ -178,6 +201,7 @@ export const loadingUserFunction = () => {
         type: LOADING_USER,
     }
 }
+
 export const finishedLoadingUser = () => {
     return {
         type: FINISHED_LOADING_USER,
