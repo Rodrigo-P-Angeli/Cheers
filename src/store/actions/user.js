@@ -21,15 +21,13 @@ GoogleSignin.configure({
 
 export const logout = () => {
     return async dispatch => {
-        try {
-            await auth().signOut()
-            console.log('saiu')
-        } catch (err) {
-            console.log(err)
-        }
-        dispatch(logOut())
+        auth().signOut()
+            .then(() => console.log('saiu'))
+            .catch(e => console.log('saiu'))
+        dispatch(logOutt())
     }
 }
+
 export const login = (email, senha) => {
     return async dispatch => {
         try {
@@ -40,6 +38,7 @@ export const login = (email, senha) => {
         dispatch(loadUser())
     }
 }
+
 export const createUser = (nome, email, senha) => {
     return async dispatch => {
         auth()
@@ -62,8 +61,6 @@ export const createUser = (nome, email, senha) => {
     }
 }
 
-
-
 export const onGoogleButtonPress = () => {
     return async dispatch => {
         // Get the users ID token
@@ -85,18 +82,20 @@ export const loadUser = () => {
         let fidelidade = null
         try {
             user = await auth().currentUser
-            await database().ref('users').child(`${user.uid}/endereco`).once('value').then(
-                snapshot => snapshot.val() ? endereco = snapshot.val() : endereco = null
-            )
-            await database().ref('users').child(`${user.uid}/fidelidade`).once('value').then(
-                snapshot => snapshot.val() ? fidelidade = snapshot.val() : fidelidade = 0
-            )
+            if (user) {
+                await database().ref('users').child(`${user.uid}/endereco`).once('value').then(
+                    snapshot => snapshot.val() ? endereco = snapshot.val() : endereco = null
+                )
+                await database().ref('users').child(`${user.uid}/fidelidade`)
+                    .on('value', snapshot => snapshot.val() ? fidelidade = snapshot.val() : fidelidade = 0)
+                dispatch(userSignIn(user, endereco, fidelidade))
+            }
             //const idToken = user.user.getIdToken()
         } catch (e) {
             console.log(e)
         }
 
-        dispatch(userSignIn(user, endereco, fidelidade))
+
     }
 }
 
@@ -179,7 +178,7 @@ export const userSignIn = (user, endereco, fidelidade) => {
     }
 }
 
-export const logOut = () => {
+export const logOutt = () => {
     return {
         type: USER_LOGOUT,
     }
