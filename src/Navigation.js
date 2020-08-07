@@ -22,6 +22,7 @@ import { connect } from 'react-redux';
 
 import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction } from './store/actions/user'
 import PedidosRealizados from './screens/PedidosRealizados';
+import Auth from './screens/Auth';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -90,7 +91,7 @@ class App extends Component {
                             {() => <AppDrawer onSignOut={() => this.props.logout()} />}
                         </Stack.Screen> :
                         <Stack.Screen name="Login" >
-                            {() => <Login {...this.props} loadUser={this.props.onGoogleButtonPress} />}
+                            {() => <Auth {...this.props} loadUser={this.props.onGoogleButtonPress} />}
                         </Stack.Screen>}
                 </Stack.Navigator>
                 {/* {
