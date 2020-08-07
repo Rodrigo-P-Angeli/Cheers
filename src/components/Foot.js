@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         height: 60,
         padding: 10,
         alignSelf: 'flex-end',
+        backgroundColor: 'white'
     },
     containerTotal: {
         flex: 8,
