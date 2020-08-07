@@ -85,29 +85,15 @@ class App extends Component {
                 <Stack.Navigator headerMode="none">
                     {this.props.loadingUser ?
                         <Stack.Screen name="SplashScreen">
-                            {() => <SplashScreen loginUser={this.props.loginUser} createUser={this.props.createUser} loadUser={this.props.loadingUserFunction} finishedLoadUser={this.props.finishedLoadingUser} {...this.props} />}
+                            {() => <SplashScreen loadUser={this.props.loadingUserFunction} finishedLoadUser={this.props.finishedLoadingUser} {...this.props} />}
                         </Stack.Screen> : this.props.user ?
                             <Stack.Screen name="Cardápio">
                                 {() => <AppDrawer onSignOut={() => this.props.logout()} />}
                             </Stack.Screen> :
                             <Stack.Screen name="Login" >
-                                {() => <Auth {...this.props} loadUser={this.props.onGoogleButtonPress} />}
+                                {() => <Auth {...this.props} loadUser={this.props.onGoogleButtonPress} createUser={this.props.createUser} loginUser={this.props.loginUser} />}
                             </Stack.Screen>}
                 </Stack.Navigator>
-                {/* {
-                    this.props.user && this.props.userToken ?
-                        <Stack.Navigator headerMode="none">
-                            <Stack.Screen name="Cardápio">
-                                {() => <AppDrawer onSignOut={() => this.props.logout()} />}
-                            </Stack.Screen>
-                        </Stack.Navigator>
-                        :
-                        <Stack.Navigator headerMode="none">
-                            <Stack.Screen name="Login" >
-                                {() => <Login {...this.props} loadUser={this.props.onGoogleButtonPress} />}
-                            </Stack.Screen>
-                        </Stack.Navigator>
-                } */}
             </NavigationContainer >
         )
     }
