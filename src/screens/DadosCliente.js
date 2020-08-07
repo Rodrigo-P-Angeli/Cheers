@@ -2,17 +2,18 @@
 /* eslint-disable semi */
 
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TextInput, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TextInput, ScrollView, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
 import Header from '../components/Header';
 import Foot from '../components/Foot'
 
 import { onChangeCEP, onChangeCidade, onChangeBairro, onChangeComplemento, onChangeNumero, onChangeRua } from '../store/actions/user'
+import CommonStyles from '../CommonStyles';
 
 class DadosCliente extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundBody.jpg')}>
                 <Header {...this.props} />
                 <ScrollView>
                     <View>
@@ -21,7 +22,7 @@ class DadosCliente extends Component {
                         </Text>
                         <View flexDirection={'row'}>
                             <View flex={2} style={styles.sView}>
-                                <Text>Estado:</Text>
+                                <Text style={styles.desc}>Estado:</Text>
                                 <TextInput
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
@@ -31,7 +32,7 @@ class DadosCliente extends Component {
                                 />
                             </View>
                             <View style={styles.sView} flex={4}>
-                                <Text>CEP:</Text>
+                                <Text style={styles.desc}>CEP:</Text>
                                 <TextInput
                                     textAlign={'center'}
                                     style={styles.textInput}
@@ -44,7 +45,7 @@ class DadosCliente extends Component {
                         </View>
                         <View flexDirection={'row'}>
                             <View flex={2} style={styles.sView}>
-                                <Text>Cidade:</Text>
+                                <Text style={styles.desc}>Cidade:</Text>
                                 <TextInput
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
@@ -55,7 +56,7 @@ class DadosCliente extends Component {
                                 />
                             </View>
                             <View style={styles.sView} flex={4}>
-                                <Text>Bairro:</Text>
+                                <Text style={styles.desc}>Bairro:</Text>
                                 <TextInput
                                     textAlign={'center'}
                                     style={styles.textInput}
@@ -67,7 +68,7 @@ class DadosCliente extends Component {
                         </View>
                         <View flexDirection={'row'}>
                             <View flex={4} style={styles.sView}>
-                                <Text>Endereço:</Text>
+                                <Text style={styles.desc}>Endereço:</Text>
                                 <TextInput
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
@@ -77,7 +78,7 @@ class DadosCliente extends Component {
                                 />
                             </View>
                             <View style={styles.sView} flex={1}>
-                                <Text>Número:</Text>
+                                <Text style={styles.desc}>Número:</Text>
                                 <TextInput
                                     style={styles.textInput}
                                     placeholder={'N°'}
@@ -89,7 +90,7 @@ class DadosCliente extends Component {
                         </View>
                         <View flexDirection={'row'}>
                             <View flex={4} style={styles.sView}>
-                                <Text>Complemento:</Text>
+                                <Text style={styles.desc}>Complemento:</Text>
                                 <TextInput
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
@@ -102,7 +103,7 @@ class DadosCliente extends Component {
                     </View>
                 </ScrollView>
                 <Foot {...this.props} />
-            </View>
+            </ImageBackground>
         );
     }
 }
@@ -115,13 +116,14 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
         borderWidth: 1,
         textAlign: 'center',
+        backgroundColor: 'white',
+        fontFamily: CommonStyles.fontFamily,
     },
     RodaPeTitulo: {
         paddingTop: 20,
         fontSize: 20,
         textAlign: 'center',
-        fontWeight: 'bold',
-
+        fontFamily: CommonStyles.fontFamily,
     },
     sView: {
         margin: 10,
@@ -129,6 +131,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    desc: {
+        fontFamily: CommonStyles.fontFamily
+    }
 })
 
 const mapStateToProps = ({ cardapio, user }) => {
