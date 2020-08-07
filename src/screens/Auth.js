@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        fontFamily: CommonStyles.fontFamily,
+        fontFamily: CommonStyles.fontFamilyTitle,
         color: CommonStyles.Colors.secundary,
         fontSize: 70,
         marginBottom: 10,
