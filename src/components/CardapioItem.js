@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.1,
         padding: 5,
         borderRadius: 10,
+        backgroundColor: 'white'
     },
     desc: {
         flex: .7,
