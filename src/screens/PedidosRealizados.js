@@ -7,23 +7,28 @@ import Header from '../components/Header'
 import ItemPedido from '../components/ItemPedido'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+const initialState = {
+    pedidos: []
+}
+
 class PedidosRealizados extends Component {
     state = {
-        pedidos: []
+        ...initialState
     }
 
     componentDidMount = async () => {
-        let pedidos2 = []
         try {
-            await database().ref('users').child(`${this.props.user.uid}/pedidos`).once('value').then(snapshot => {
-                let pedidos = snapshot.val() ? snapshot.val() : []
-                pedidos.forEach(async element => {
-                    await database().ref('pedidos').child(`${element}`).once('value').then(snapshot => {
-                        pedidos2.push(snapshot.val())
-                        this.setState({ pedidos: pedidos2 })
+            await database().ref('users').child(`${this.props.user.uid}/pedidos`).on('value',
+                snapshot => {
+                    let pedidos = snapshot.val() ? snapshot.val() : []
+                    let pedidos2 = []
+                    pedidos.forEach(async element => {
+                        database().ref('pedidos').child(`${element}`).once('value').then(snapshot => {
+                            pedidos2.push(snapshot.val())
+                            this.setState({ pedidos: pedidos2 })
+                        })
                     })
                 })
-            })
         }
         catch (err) {
             console.log(err)
