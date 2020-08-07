@@ -20,7 +20,7 @@ import Login from './screens/Login'
 import SplashScreen from './screens/SplashScreen';
 import { connect } from 'react-redux';
 
-import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction } from './store/actions/user'
+import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction, createUser, login } from './store/actions/user'
 import PedidosRealizados from './screens/PedidosRealizados';
 import Auth from './screens/Auth';
 
@@ -85,14 +85,14 @@ class App extends Component {
                 <Stack.Navigator headerMode="none">
                     {this.props.loadingUser ?
                         <Stack.Screen name="SplashScreen">
-                            {() => <SplashScreen loadUser={this.props.loadingUserFunction} finishedLoadUser={this.props.finishedLoadingUser} {...this.props} />}
+                            {() => <SplashScreen loginUser={this.props.loginUser} createUser={this.props.createUser} loadUser={this.props.loadingUserFunction} finishedLoadUser={this.props.finishedLoadingUser} {...this.props} />}
                         </Stack.Screen> : this.props.user ?
-                        <Stack.Screen name="Cardápio">
-                            {() => <AppDrawer onSignOut={() => this.props.logout()} />}
-                        </Stack.Screen> :
-                        <Stack.Screen name="Login" >
-                            {() => <Auth {...this.props} loadUser={this.props.onGoogleButtonPress} />}
-                        </Stack.Screen>}
+                            <Stack.Screen name="Cardápio">
+                                {() => <AppDrawer onSignOut={() => this.props.logout()} />}
+                            </Stack.Screen> :
+                            <Stack.Screen name="Login" >
+                                {() => <Auth {...this.props} loadUser={this.props.onGoogleButtonPress} />}
+                            </Stack.Screen>}
                 </Stack.Navigator>
                 {/* {
                     this.props.user && this.props.userToken ?
@@ -128,6 +128,8 @@ const mapDispatchToProps = (dispatch) => {
         logout: () => dispatch(logout()),
         loadingUserFunction: () => dispatch(loadingUserFunction()),
         finishedLoadingUser: () => dispatch(finishedLoadingUser()),
+        createUser: (name, email, senha) => dispatch(createUser(name, email, senha)),
+        loginUser: (email, senha) => dispatch(login(email, senha)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)
