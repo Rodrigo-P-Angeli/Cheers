@@ -7,5 +7,4 @@ export default {
         subText:'#555',
         buttons: '#841584'
     }
-
 }
