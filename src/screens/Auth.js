@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, Button } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, ImageBackground } from 'react-native'
 import AuthInput from '../components/AuthInput'
 import { GoogleSigninButton } from '@react-native-community/google-signin'
 
@@ -31,7 +31,7 @@ export default class Auth extends Component {
 
         const validForm = validation.reduce((a, d) => a && d)
         return (
-            <View style={styles.backgroung}>
+            <ImageBackground style={styles.backgroung} source={require('../../assets/images/BackGround.jpg')}>
                 <Text style={styles.title}>Cheers</Text>
                 <View style={styles.formContainer}>
                     <Text style={styles.subTitle}>{this.state.stageNew ? 'Crie a sua conta' : 'Entrar com E-mail'}</Text>
@@ -63,7 +63,7 @@ export default class Auth extends Component {
                         {this.state.stageNew ? 'Fazer Login' : 'Criar conta'}
                     </Text>
                 </TouchableOpacity>
-            </View>
+            </ImageBackground>
         )
     }
 }
@@ -71,9 +71,10 @@ export default class Auth extends Component {
 const styles = StyleSheet.create({
     backgroung: {
         flex: 1,
-        width: '100%',
+        resizeMode: 'contain',
         alignItems: 'center',
         justifyContent: 'center',
+        
     },
     title: {
         //fontFamily: CommonStyles.fontFamily,
