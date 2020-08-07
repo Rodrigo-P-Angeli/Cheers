@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, Alert } from 'react-native'
+import CommonStyles from '../CommonStyles'
 
 export default props => {
     const checkPedido = () => {
@@ -14,7 +15,7 @@ export default props => {
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
                 <View style={{ flex: 2, justifyContent: 'space-between' }}>
                     <Text style={styles.texTotal}>Total:</Text>
-                    <Text style={{ fontWeight: 'bold' }}> R$:  </Text>
+                    <Text style={styles.texTotal}> R$:  </Text>
                 </View>
                 <View style={styles.containerTotal}>
                     <Text style={styles.total}>{props.total.toFixed(2).replace('.', ',')}</Text>
@@ -24,7 +25,7 @@ export default props => {
                 <Button
                     onPress={checkPedido}
                     title={'Finalizar pedido'}
-                    color={'#841584'} />
+                    color={CommonStyles.Colors.buttons} />
             </View>
         </View >
     )
@@ -46,7 +47,11 @@ const styles = StyleSheet.create({
         paddingRight: 20,
     },
     total: {
-        fontWeight: 'bold',
         fontSize: 30,
+        fontFamily: CommonStyles.fontFamilyTitle,
+    },
+    texTotal: {
+        fontFamily: CommonStyles.fontFamily,
+        fontSize: 14,
     },
 })
