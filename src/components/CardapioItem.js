@@ -2,7 +2,7 @@
 /* eslint-disable semi */
 
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, TextInput } from 'react-native'
+import { View, Text, StyleSheet, Button, TextInput, Image } from 'react-native'
 import CommonStyles from '../CommonStyles'
 
 export default class ItemCardapio extends Component {
@@ -10,6 +10,9 @@ export default class ItemCardapio extends Component {
         return (
             <View style={{ padding: 5, paddingBottom: 0 }}>
                 <View style={styles.container} elevation={2}>
+                    <View style={styles.imageContainer}>
+                        <Image style={styles.image} source={{ uri: this.props.image }} />
+                    </View>
                     <View style={styles.desc}>
                         <Text style={styles.marca}>{this.props.marca} {this.props.tipo}</Text>
                         <Text style={styles.priceText}>
@@ -83,5 +86,12 @@ const styles = StyleSheet.create({
     },
     priceText: {
         fontFamily: CommonStyles.fontFamily,
-    }
+    },
+    imageContainer: {
+        flex: .18,
+    },
+    image: {
+        padding: 25,
+        resizeMode: 'center',
+    },
 })
