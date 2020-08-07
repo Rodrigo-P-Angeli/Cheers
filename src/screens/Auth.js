@@ -9,7 +9,7 @@ import { GoogleSigninButton } from '@react-native-community/google-signin'
 
 const initialState = {
     name: '',
-    email: 'rodrigop.deangeli@gmail.com',
+    email: 'julia_norbim@hotmail.com',
     password: 'z1o2i3o4',
     confirmPassword: '',
     stageNew: false,
@@ -41,7 +41,7 @@ export default class Auth extends Component {
                     <AuthInput icon={'lock'} secureTextEntry={true} placeholder={'Senha'} value={this.state.password} style={styles.input} onChangeText={password => this.setState({ password })} />
                     {this.state.stageNew &&
                         <AuthInput icon={'asterisk'} secureTextEntry={true} placeholder={'Confirmar Senha'} value={this.state.confirmPassword} style={styles.input} onChangeText={confirmPassword => this.setState({ confirmPassword })} />}
-                    <TouchableOpacity disabled={!validForm}>
+                    <TouchableOpacity disabled={!validForm} onPress={() => this.state.stageNew ? this.props.createUser(this.state.name, this.state.email, this.state.password): this.props.loginUser(this.state.email, this.state.password)}>
                         <View style={[styles.button, validForm ? [] : { backgroundColor: '#AAA' }]}>
                             <Text style={styles.buttonText}>{this.state.stageNew ? 'Registrar' : 'Entrar'}</Text>
                         </View>
