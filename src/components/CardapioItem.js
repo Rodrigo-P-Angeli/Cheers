@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button, TextInput, Image } from 'react-native'
 import CommonStyles from '../CommonStyles'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class ItemCardapio extends Component {
     render() {
@@ -20,40 +21,28 @@ export default class ItemCardapio extends Component {
                         </Text>
                     </View>
                     <View style={styles.setQuant}>
-                        <View style={{ flexDirection: 'row', paddingTop: 3, }}>
-                            <View style={{ flex: 1 }}>
-                                <Button
-                                    onPress={() => this.props.setLess(this.props.id)}
-                                    title="-"
-                                    color={CommonStyles.Colors.buttons}
-                                />
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <TextInput
-                                    textAlign={'center'}
-                                    style={{ height: 40 }}
-                                    placeholder={'0'}
-                                    value={this.props.quantidade.toString()}
-                                    onChangeText={text => this.props.setqt(this.props.id, text)}
-                                    keyboardType={'numeric'}
-                                />
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <Button
-                                    onPress={() => this.props.setMore(this.props.id)}
-                                    title="+"
-                                    color={CommonStyles.Colors.buttons}
-                                />
-                            </View>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={styles.priceText}>
-                                R$ {this.props.total.toFixed(2).replace('.', ',')}
-                            </Text>
-                        </View>
+                        <TouchableOpacity onPress={() => this.props.setLess(this.props.id)} style={styles.buttons}>
+                            <Text style={styles.buttonsText}>-</Text>
+                        </TouchableOpacity>
+                        <TextInput
+                            textAlign={'center'}
+                            style={{ height: 40 }}
+                            placeholder={'0'}
+                            value={this.props.quantidade.toString()}
+                            onChangeText={text => this.props.setqt(this.props.id, text)}
+                            keyboardType={'numeric'}
+                        />
+                        <TouchableOpacity onPress={() => this.props.setMore(this.props.id)} style={styles.buttons}>
+                            <Text style={styles.buttonsText}>+</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: .2 }}>
+                        <Text style={styles.priceText}>
+                            R$ {this.props.total.toFixed(2).replace('.', ',')}
+                        </Text>
                     </View>
                 </View>
-            </View >
+            </View>
         )
     }
 }
@@ -67,7 +56,8 @@ const styles = StyleSheet.create({
         borderWidth: 0.1,
         padding: 5,
         borderRadius: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        flex: 1,
     },
     desc: {
         flex: .7,
@@ -75,10 +65,24 @@ const styles = StyleSheet.create({
     setQuant: {
         alignItems: 'center',
         flex: .3,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        flexDirection: 'row',
     },
     buttons: {
-        flex: .4,
+        borderRadius: 10,
+        borderWidth: 3,
+        width: 20,
+        height: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: CommonStyles.Colors.buttons,
+    },
+    buttonsText: {
+        color: CommonStyles.Colors.buttons,
+        textAlignVertical: 'center',
+        alignSelf: 'center',
+        fontFamily: CommonStyles.fontFamilyTitle,
+        fontSize: 20,
     },
     marca: {
         fontSize: 20,
