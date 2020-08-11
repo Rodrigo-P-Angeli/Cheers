@@ -6,11 +6,22 @@ import { StyleSheet, Text, View, TextInput, ScrollView, ImageBackground } from '
 import { connect } from 'react-redux'
 import Header from '../components/Header';
 import Foot from '../components/Foot'
+import Cep from 'cep-promise'
 
 import { onChangeCEP, onChangeCidade, onChangeBairro, onChangeComplemento, onChangeNumero, onChangeRua } from '../store/actions/user'
 import CommonStyles from '../CommonStyles';
 
 class DadosCliente extends Component {
+    state = {
+        endereco: {
+
+        }
+    }
+    buscaCep(cep) {
+        let endereco = {}
+        Cep(cep)
+            .then(endereco => this.setState({ endereco }))
+    }
     render() {
         return (
             <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundBody.jpg')}>
@@ -27,7 +38,7 @@ class DadosCliente extends Component {
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
                                     placeholder={'Estado'}
-                                    value={this.props.endereco.estado}
+                                    value={this.state.endereco.state}
                                     textAlign={'center'}
                                 />
                             </View>
@@ -37,8 +48,10 @@ class DadosCliente extends Component {
                                     textAlign={'center'}
                                     style={styles.textInput}
                                     placeholder={'CEP'}
-                                    value={`${this.props.endereco.CEP}`}
-                                    onChangeText={text => this.props.onChangeCEP(text)}
+                                    value={`${this.state.cep}`}
+                                    onSubmitEditing={() => this.buscaCep(this.state.cep)}
+                                    onChangeText={text => this.setState({ cep: text })}
+                                    // onChangeText={text => this.props.onChangeCEP(text)}
                                     keyboardType={'numeric'}
                                 />
                             </View>
@@ -50,7 +63,7 @@ class DadosCliente extends Component {
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
                                     placeholder={'Vitória'}
-                                    value={this.props.endereco.cidade}
+                                    value={this.state.endereco.city}
                                     onChangeText={text => this.props.onChangeCidade(text)}
                                     textAlign={'center'}
                                 />
