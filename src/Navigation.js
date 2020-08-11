@@ -68,7 +68,7 @@ class AppDrawer extends Component {
         return (
             <Drawer.Navigator
                 initialRouteName="Cardapio"
-                drawerContent={(props) => <MenuDrawer {...props} user={this.props.user} onSignOut={this.props.onSignOut} />}
+                drawerContent={props => <MenuDrawer {...props} user={this.props.user} onSignOut={this.props.onSignOut} />}
                 drawerContentOptions={drawerOptions}
                 backBehavior={'initialRoute'} >
                 <Drawer.Screen name="Cardapio" component={BottomTab} backBehavior={'none'} />
@@ -89,7 +89,7 @@ class App extends Component {
                             {() => <SplashScreen loadUser={this.props.loadingUserFunction} finishedLoadUser={this.props.finishedLoadingUser} {...this.props} />}
                         </Stack.Screen> : this.props.user ?
                             <Stack.Screen name="Cardápio">
-                                {() => <AppDrawer onSignOut={() => this.props.logout()} />}
+                                {() => <AppDrawer {...this.props} onSignOut={() => this.props.logout()} />}
                             </Stack.Screen> :
                             <Stack.Screen name="Login" >
                                 {() => <Auth {...this.props} FacebookButtonPress={this.props.onFacebookButtonPress} GoogleButtonPress={this.props.onGoogleButtonPress} createUser={this.props.createUser} loginUser={this.props.loginUser} />}
