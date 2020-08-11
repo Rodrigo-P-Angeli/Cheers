@@ -21,8 +21,10 @@ export default class ItemCardapio extends Component {
                         </Text>
                     </View>
                     <View style={styles.setQuant}>
-                        <TouchableOpacity onPress={() => this.props.setLess(this.props.id)} style={styles.buttons}>
-                            <Text style={styles.buttonsText}>-</Text>
+                        <TouchableOpacity onPress={() => this.props.setLess(this.props.id)}>
+                            <View style={styles.buttons}>
+                                <Text style={styles.buttonsText}>-</Text>
+                            </View>
                         </TouchableOpacity>
                         <TextInput
                             textAlign={'center'}
@@ -32,8 +34,10 @@ export default class ItemCardapio extends Component {
                             onChangeText={text => this.props.setqt(this.props.id, text)}
                             keyboardType={'numeric'}
                         />
-                        <TouchableOpacity onPress={() => this.props.setMore(this.props.id)} style={styles.buttons}>
-                            <Text style={styles.buttonsText}>+</Text>
+                        <TouchableOpacity onPress={() => this.props.setMore(this.props.id)}>
+                            <View style={styles.buttons}>
+                                <Text style={styles.buttonsText}>+</Text>
+                            </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ flex: .2 }}>
@@ -63,9 +67,9 @@ const styles = StyleSheet.create({
         flex: .7,
     },
     setQuant: {
-        alignItems: 'center',
+        //alignItems: 'center',
         flex: .3,
-        justifyContent: 'center',
+        //justifyContent: 'center',
         flexDirection: 'row',
     },
     buttons: {
@@ -73,16 +77,17 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         width: 20,
         height: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
         borderColor: CommonStyles.Colors.buttons,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     buttonsText: {
         color: CommonStyles.Colors.buttons,
-        textAlignVertical: 'center',
-        alignSelf: 'center',
         fontFamily: CommonStyles.fontFamilyTitle,
         fontSize: 20,
+        alignSelf: 'center',
+        justifyContent: 'center',
     },
     marca: {
         fontSize: 20,
