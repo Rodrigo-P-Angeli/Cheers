@@ -5,7 +5,7 @@ export default {
         secundary: '#FFF',
         mainText: '#222',
         subText:'#555',
-        buttons: '#841584',
+        buttons: '#ff8000',//'#841584',
         logginButton: '#3498db'
     }
 }
