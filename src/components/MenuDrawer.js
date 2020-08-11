@@ -13,9 +13,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import Email from 'react-native-vector-icons/MaterialCommunityIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import CommonStyles from '../CommonStyles';
 
 
 
@@ -48,18 +49,18 @@ export default class menuDrawer extends Component {
                 <View style={styles.container}>
                     <Text style={styles.title}>Cheers</Text>
                     <View style={styles.content}>
-                        {/* <Image style={styles.image} source={this.props.user.image} /> */}
-                        <View style={{ flex: 1, justifyContent: 'space-around' }}>
+                        <Image style={styles.image} source={{ uri: this.props.user.photoURL }} />
+                        <View style={{ justifyContent: 'space-around' }}>
                             <View style={styles.itens}>
                                 <AntDesign name={'user'} size={15} />
                                 <Text style={styles.contato}>{this.props.user.displayName}</Text>
                             </View>
                             <View style={styles.itens}>
-                                <Email name={'email'} size={15} />
+                                <MaterialCommunityIcons name={'email'} size={15} />
                                 <Text style={styles.contato}>{this.props.user.email}</Text>
                             </View>
                             <View style={styles.itens}>
-                                <Icon name={'phone'} size={15} />
+                                <FontAwesome name={'phone'} size={15} />
                                 <Text style={styles.contato}>{this.props.user.phoneNumber}</Text>
                             </View>
                         </View>
@@ -70,7 +71,7 @@ export default class menuDrawer extends Component {
                 </DrawerContentScrollView>
                 <View style={styles.logoutButton}>
                     <TouchableOpacity onPress={() => this.logout()}>
-                        <AntDesign name='logout' size={30} />
+                        <AntDesign name='logout' size={30} color={CommonStyles.Colors.buttons} />
                     </TouchableOpacity>
                 </View>
             </View >
@@ -85,16 +86,17 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         resizeMode: 'contain',
         alignSelf: 'center',
+        flex: 1,
     },
     title: {
         fontSize: 30,
         padding: 10,
-        fontFamily: 'Roboto-Bold',
+        fontFamily: CommonStyles.fontFamilyTitle,
     },
     contato: {
         fontSize: 13,
         paddingLeft: 5,
-        fontFamily: 'Roboto-Light',
+        fontFamily: CommonStyles.fontFamily,
     },
     container: {
         padding: 10,
