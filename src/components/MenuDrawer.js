@@ -51,16 +51,16 @@ export default class menuDrawer extends Component {
                         {/* <Image style={styles.image} source={this.props.user.image} /> */}
                         <View style={{ flex: 1, justifyContent: 'space-around' }}>
                             <View style={styles.itens}>
+                                <AntDesign name={'user'} size={15} />
+                                <Text style={styles.contato}>{this.props.user.displayName}</Text>
+                            </View>
+                            <View style={styles.itens}>
                                 <Email name={'email'} size={15} />
-                                <Text style={styles.contato}>{this.state.email}</Text>
+                                <Text style={styles.contato}>{this.props.user.email}</Text>
                             </View>
                             <View style={styles.itens}>
                                 <Icon name={'phone'} size={15} />
-                                <Text style={styles.contato}>{this.state.phone}</Text>
-                            </View>
-                            <View style={styles.itens}>
-                                <Icon name={'phone'} size={15} />
-                                <Text style={styles.contato}></Text>
+                                <Text style={styles.contato}>{this.props.user.phoneNumber}</Text>
                             </View>
                         </View>
                     </View>
