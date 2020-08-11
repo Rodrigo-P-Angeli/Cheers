@@ -20,8 +20,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default class menuDrawer extends Component {
-
-    state={
+    componentDidMount() {
+        console.log(this.props.user)
+    }
+    state = {
         email: '',
         name: ',',
     }
@@ -58,7 +60,7 @@ export default class menuDrawer extends Component {
                             </View>
                             <View style={styles.itens}>
                                 <Icon name={'phone'} size={15} />
-                                <Text style={styles.contato}>{this.props.user.displayName}</Text>
+                                <Text style={styles.contato}></Text>
                             </View>
                         </View>
                     </View>
