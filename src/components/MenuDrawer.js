@@ -12,13 +12,19 @@ import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Email from 'react-native-vector-icons/MaterialCommunityIcons'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
 export default class menuDrawer extends Component {
 
+    state={
+        email: '',
+        name: ',',
+    }
     logout = async () => {
         try {
             await auth().signOut()
@@ -40,23 +46,27 @@ export default class menuDrawer extends Component {
                 <View style={styles.container}>
                     <Text style={styles.title}>Cheers</Text>
                     <View style={styles.content}>
-                        {/* <Image style={styles.image} source={{uri: this.state.fotoPerfil}} /> */}
+                        {/* <Image style={styles.image} source={this.props.user.image} /> */}
                         <View style={{ flex: 1, justifyContent: 'space-around' }}>
                             <View style={styles.itens}>
                                 <Email name={'email'} size={15} />
-                                {/* <Text style={styles.contato}>{this.state.email}</Text> */}
+                                <Text style={styles.contato}>{this.state.email}</Text>
                             </View>
                             <View style={styles.itens}>
                                 <Icon name={'phone'} size={15} />
-                                {/* <Text style={styles.contato}>{this.state.phone}</Text> */}
+                                <Text style={styles.contato}>{this.state.phone}</Text>
                             </View>
-                            <Button title={'logout'} onPress={() => this.logout()} />
                         </View>
                     </View>
                 </View>
                 <DrawerContentScrollView {...this.props}>
                     <DrawerItemList {...this.props} />
                 </DrawerContentScrollView>
+                <View style={styles.logoutButton}>
+                    <TouchableOpacity onPress={() => this.logout()}>
+                        <AntDesign name='logout' size={30} />
+                    </TouchableOpacity>
+                </View>
             </View >
         )
     }
@@ -71,7 +81,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     title: {
-        fontSize: 20,
+        fontSize: 30,
         padding: 10,
         fontFamily: 'Roboto-Bold',
     },
@@ -94,4 +104,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingLeft: 10,
     },
+    logoutButton: {
+        paddingBottom: 30,
+        paddingRight: 30,
+        alignItems: 'flex-end',
+    }
 })
