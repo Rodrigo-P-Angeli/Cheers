@@ -108,6 +108,7 @@ export const loadUser = () => {
         let fidelidade = null
         try {
             user = await auth().currentUser
+            console.log(user)
             if (user) {
                 await database().ref('users').child(`${user.uid}/endereco`).once('value').then(
                     snapshot => snapshot.val() ? endereco = snapshot.val() : endereco = null
