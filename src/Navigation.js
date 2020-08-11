@@ -68,9 +68,9 @@ class AppDrawer extends Component {
         return (
             <Drawer.Navigator
                 initialRouteName="Cardapio"
-                drawerContent={props => <MenuDrawer {...props} onSignOut={this.props.onSignOut} />}
+                drawerContent={(props) => <MenuDrawer {...props} user={this.props.user} onSignOut={this.props.onSignOut} />}
                 drawerContentOptions={drawerOptions}
-                backBehavior={'initialRoute'}>
+                backBehavior={'initialRoute'} >
                 <Drawer.Screen name="Cardapio" component={BottomTab} backBehavior={'none'} />
                 <Drawer.Screen name="Plano Fidelidade" component={ClienteFidelidade} backBehavior={'initialRoute'} />
                 <Drawer.Screen name="Pedidos Realizados" component={PedidosRealizados} backBehavior={'initialRoute'} />
