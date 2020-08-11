@@ -13,7 +13,7 @@ export default props => {
     return (
         <View style={styles.bottom} >
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-                <View style={{ flex: 2, justifyContent: 'space-between' }}>
+                <View style={{ flex: 2.5, justifyContent: 'space-between' }}>
                     <Text style={styles.texTotal}>Total:</Text>
                     <Text style={styles.texTotal}> R$:  </Text>
                 </View>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     containerTotal: {
-        flex: 8,
+        flex: 7.5,
         alignItems: 'flex-end',
         justifyContent: 'center',
         paddingRight: 20,
