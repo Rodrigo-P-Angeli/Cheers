@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, ImageBackground, Button } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, ImageBackground, Button, Image } from 'react-native'
 import AuthInput from '../components/AuthInput'
 import { GoogleSigninButton } from '@react-native-community/google-signin'
 import CommonStyles from '../CommonStyles'
@@ -15,6 +15,8 @@ const initialState = {
     password: 'z1o2i3o4',
     confirmPassword: '',
     stageNew: false,
+    secureTextSenha: true,
+    secureTextConfirmSenha: true,
 }
 
 export default class Auth extends Component {
@@ -40,30 +42,31 @@ export default class Auth extends Component {
                     {this.state.stageNew &&
                         <AuthInput icon={'user'} placeholder={'Nome'} value={this.state.name} style={styles.input} onChangeText={name => this.setState({ name })} />}
                     <AuthInput icon={'at'} placeholder={'Email'} value={this.state.email} style={styles.input} onChangeText={email => this.setState({ email })} />
-                    <AuthInput icon={'lock'} secureTextEntry={true} placeholder={'Senha'} value={this.state.password} style={styles.input} onChangeText={password => this.setState({ password })} />
+                    <AuthInput icon={'lock'} secureTextEntry={this.state.secureTextSenha} placeholder={'Senha'} value={this.state.password} style={styles.input} onChangeText={password => this.setState({ password })} />
                     {this.state.stageNew &&
-                        <AuthInput icon={'asterisk'} secureTextEntry={true} placeholder={'Confirmar Senha'} value={this.state.confirmPassword} style={styles.input} onChangeText={confirmPassword => this.setState({ confirmPassword })} />}
+                        <AuthInput icon={'asterisk'} secureTextEntry={this.state.secureTextConfirmSenha} placeholder={'Confirmar Senha'} value={this.state.confirmPassword} style={styles.input} onChangeText={confirmPassword => this.setState({ confirmPassword })} />}
                     <TouchableOpacity disabled={!validForm} onPress={() => this.state.stageNew ? this.props.createUser(this.state.name, this.state.email, this.state.password) : this.props.loginUser(this.state.email, this.state.password)}>
-                        <View style={[styles.button, validForm ? [] : { backgroundColor: '#AAA' }]}>
+                        <View style={{ height: 10 }} />
+                        <View style={[styles.buttonContainer, styles.loginButton, validForm ? [] : { backgroundColor: '#AAA' }]}>
                             <Text style={styles.buttonText}>{this.state.stageNew ? 'Registrar' : 'Entrar'}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={{ padding: 10, alignItems: 'center' }}>
-                    <GoogleSigninButton
-                        style={{ width: 192, height: 48 }}
-                        size={GoogleSigninButton.Size.Wide}
-                        color={GoogleSigninButton.Color.Dark}
-                        onPress={() => this.props.GoogleButtonPress()}
-                        disabled={this.props.loadingUser} />
-                    <TouchableOpacity style={styles.loginButton} onPress={() => this.props.FacebookButtonPress()} disabled={this.props.loadingUser}>
-                        <Text style={styles.loginButtonText}>Facebook</Text>
+                    <TouchableOpacity style={[styles.buttonContainer, styles.fabookButton]} onPress={() => this.props.FacebookButtonPress()} disabled={this.props.loadingUser}>
+                        <View style={styles.socialButtonContent}>
+                            <Image style={styles.icon} source={require('../../assets/images/LoginIcons/facebook.png')} />
+                            <Text style={styles.loginText}>Continue with facebook</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.buttonContainer, styles.googleButton]} onPress={() => this.props.GoogleButtonPress()} disabled={this.props.loadingUser}>
+                        <View style={styles.socialButtonContent}>
+                            <Image style={styles.icon} source={require('../../assets/images/LoginIcons/google-flat.png')} />
+                            <Text style={styles.loginText}>Continue with Google</Text>
+                        </View>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={{ padding: 10 }}
-                    onPress={
-                        () => this.setState({ stageNew: !this.state.stageNew })
-                    }>
+                <TouchableOpacity style={{ padding: 10 }} onPress={() => this.setState({ stageNew: !this.state.stageNew })}>
                     <Text style={styles.buttonText}>
                         {this.state.stageNew ? 'Fazer Login' : 'Criar conta'}
                     </Text>
@@ -100,13 +103,11 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         backgroundColor: 'rgba(0,0,0,0.8)',
-        padding: 20,
+        paddingTop: 20,
+        paddingRight: 20,
+        paddingLeft: 20,
         width: '90%',
-    },
-    button: {
-        backgroundColor: '#080',
-        marginTop: 10,
-        padding: 10,
+        justifyContent: 'center',
         alignItems: 'center',
     },
     buttonText: {
@@ -115,11 +116,45 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     loginButton: {
-        backgroundColor: 'blue',
-        width: 180,
+        backgroundColor: CommonStyles.Colors.logginButton,
+        fontFamily: CommonStyles.fontFamily,
     },
     loginButtonText: {
         fontFamily: CommonStyles.fontFamily,
         color: 'white',
-    }
+    },
+    buttonContainer: {
+        height: 45,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginBottom: 10,
+        width: 250,
+        borderRadius: 5,
+        padding: 10,
+    },
+    fabookButton: {
+        backgroundColor: "#3b5998",
+    },
+    loginText: {
+        color: 'white',
+        fontFamily: CommonStyles.fontFamily,
+        flex: 9,
+        paddingLeft: 15,
+    },
+    icon: {
+        width: 30,
+        height: 30,
+        flex: 2,
+        resizeMode: 'contain'
+    },
+    socialButtonContent: {
+        flexDirection: 'row',
+        //justifyContent: 'flex-end',
+        //alignContent: 'flex-start',
+        alignItems: 'center',
+    },
+    googleButton: {
+        backgroundColor: "#ff0000",
+    },
 })
