@@ -130,7 +130,8 @@ const drawerOptions = {
         fontSize: 20,
     },
     activeTintColor: CommonStyles.Colors.buttons,
-    //inactiveTintColor: '#679A7A',
+    inactiveTintColor: '#333',
+    activeBackgroundColor: 'white'
 }
 
 
