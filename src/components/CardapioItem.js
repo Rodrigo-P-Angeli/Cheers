@@ -20,30 +20,35 @@ export default class ItemCardapio extends Component {
                             R$ {this.props.price.toFixed(2).replace('.', ',')}
                         </Text>
                     </View>
-                    <View style={styles.setQuant}>
-                        <TouchableOpacity onPress={() => this.props.setLess(this.props.id)}>
+                    <View style={{ flex: .25 }}>
+                        <View style={styles.setQuant}>
                             <View style={styles.buttons}>
-                                <Text style={styles.buttonsText}>-</Text>
+                                <TouchableOpacity onPress={() => this.props.setLess(this.props.id)}>
+                                    <Text style={[styles.buttonsText,]}>-</Text>
+                                </TouchableOpacity>
                             </View>
-                        </TouchableOpacity>
-                        <TextInput
-                            textAlign={'center'}
-                            style={{ height: 40 }}
-                            placeholder={'0'}
-                            value={this.props.quantidade.toString()}
-                            onChangeText={text => this.props.setqt(this.props.id, text)}
-                            keyboardType={'numeric'}
-                        />
-                        <TouchableOpacity onPress={() => this.props.setMore(this.props.id)}>
+                            <TextInput
+                                textAlign={'center'}
+                                style={{ height: 40, flex: 1, }}
+                                placeholder={'0'}
+                                value={this.props.quantidade.toString()}
+                                onChangeText={text => this.props.setqt(this.props.id, text)}
+                                keyboardType={'numeric'}
+                            />
                             <View style={styles.buttons}>
-                                <Text style={styles.buttonsText}>+</Text>
+                                <TouchableOpacity onPress={() => this.props.setMore(this.props.id)}>
+                                    <Text style={styles.buttonsText}>+</Text>
+                                </TouchableOpacity>
                             </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ flex: .2 }}>
-                        <Text style={styles.priceText}>
-                            R$ {this.props.total.toFixed(2).replace('.', ',')}
-                        </Text>
+                        </View>
+                        <View style={{ flex: .2, justifyContent: 'space-between', flexDirection: 'row' }}>
+                            <Text style={styles.priceText}>
+                                R$
+                            </Text>
+                            <Text style={[styles.priceText, { flex: 1, textAlign: 'right', }]}>
+                                {this.props.total.toFixed(2).replace('.', ',')}
+                            </Text>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -61,33 +66,33 @@ const styles = StyleSheet.create({
         padding: 5,
         borderRadius: 10,
         backgroundColor: 'white',
-        flex: 1,
     },
     desc: {
         flex: .7,
     },
     setQuant: {
-        //alignItems: 'center',
-        flex: .3,
-        //justifyContent: 'center',
+        alignItems: 'center',
+        flex: .2,
+        justifyContent: 'space-around',
         flexDirection: 'row',
     },
     buttons: {
         borderRadius: 10,
-        borderWidth: 3,
+        borderWidth: 2,
         width: 20,
         height: 20,
         borderColor: CommonStyles.Colors.buttons,
         alignSelf: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     buttonsText: {
         color: CommonStyles.Colors.buttons,
         fontFamily: CommonStyles.fontFamilyTitle,
-        fontSize: 20,
-        alignSelf: 'center',
-        justifyContent: 'center',
+        textAlign: 'center',
+        //borderWidth: 1,
+        height: 20,
+        width: 20,
     },
     marca: {
         fontSize: 20,
@@ -95,6 +100,7 @@ const styles = StyleSheet.create({
     },
     priceText: {
         fontFamily: CommonStyles.fontFamily,
+        textAlign: 'justify',
     },
     imageContainer: {
         flex: .18,
