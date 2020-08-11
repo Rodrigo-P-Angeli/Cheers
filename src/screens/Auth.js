@@ -3,11 +3,10 @@
 /* eslint-disable prettier/prettier */
 
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, ImageBackground, Button, Image } from 'react-native'
+import { Text, StyleSheet, View, ImageBackground, Button, Image } from 'react-native'
 import AuthInput from '../components/AuthInput'
-import { GoogleSigninButton } from '@react-native-community/google-signin'
 import CommonStyles from '../CommonStyles'
-import { LoginButton } from 'react-native-fbsdk'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const initialState = {
     name: '',
