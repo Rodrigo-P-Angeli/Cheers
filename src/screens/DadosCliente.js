@@ -19,6 +19,8 @@ class DadosCliente extends Component {
                 this.props.onChangeCidade(endereco.city)
                 this.props.onChangeBairro(endereco.neighborhood)
                 this.props.onChangeRua(endereco.street)
+                this.props.onChangeNumero('')
+                this.props.onChangeComplemento('')
             })
     }
     render() {
