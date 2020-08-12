@@ -128,7 +128,7 @@ export const loadUser = () => {
 export const onChangeCEP = (text) => {
     let newText = '';
     let numbers = '0123456789';
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 8; i++) {
         if (numbers.indexOf(text[i]) > -1) {
             newText = newText + text[i];
         }
