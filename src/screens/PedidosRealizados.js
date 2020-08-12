@@ -25,7 +25,12 @@ class PedidosRealizados extends Component {
                     let pedidos2 = []
                     pedidos.forEach(async element => {
                         database().ref('pedidos').child(`${element}`).once('value').then(snapshot => {
-                            pedidos2.push(snapshot.val())
+                            let elemento = {
+                                ...snapshot.val(),
+                                numeroPedido: `${element}`
+                            }
+                            pedidos2.push(elemento)
+                            console.log(elemento, snapshot.val())
                             this.setState({ pedidos: pedidos2 })
                         })
                     })
