@@ -117,7 +117,6 @@ export const postPedido = (user, pedido, endereco, total) => {
                 pedido: pedido.filter((item) => item.quantidade > 0),
                 endereco: endereco,
                 total: total,
-                numeroPedido: refPedido.key,
             })
             //let token = await auth().currentUser.getIdToken()
             await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
