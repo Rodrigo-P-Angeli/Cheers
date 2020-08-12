@@ -23,6 +23,8 @@ import { connect } from 'react-redux';
 import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction, createUser, login, onFacebookButtonPress } from './store/actions/user'
 import PedidosRealizados from './screens/PedidosRealizados';
 import Auth from './screens/Auth';
+import Endereco2 from './screens/Endereco'
+
 import CommonStyles from './CommonStyles';
 
 const Tab = createBottomTabNavigator();
@@ -53,6 +55,16 @@ class BottomTab extends Component {
                     component={DadosCliente}
                     options={{
                         tabBarLabel: 'Dados do Cliente',
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialIcons name="person" color={color} size={size} />
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="Dados do Cliente2"
+                    component={Endereco2}
+                    options={{
+                        tabBarLabel: 'Dados do Cliente2',
                         tabBarIcon: ({ color, size }) => (
                             <MaterialIcons name="person" color={color} size={size} />
                         ),
