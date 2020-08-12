@@ -12,15 +12,14 @@ import { onChangeCEP, onChangeCidade, onChangeBairro, onChangeComplemento, onCha
 import CommonStyles from '../CommonStyles';
 
 class DadosCliente extends Component {
-    state = {
-        endereco: {
-
-        }
-    }
     buscaCep(cep) {
-        let endereco = {}
         Cep(cep)
-            .then(endereco => this.setState({ endereco }))
+            .then(endereco => {
+                //this.props.onChangeCEP(endereco.cep)
+                this.props.onChangeCidade(endereco.city)
+                this.props.onChangeBairro(endereco.neighborhood)
+                this.props.onChangeRua(endereco.street)
+            })
     }
     render() {
         return (
@@ -32,27 +31,26 @@ class DadosCliente extends Component {
                             Preencher endereco de entrega:
                         </Text>
                         <View flexDirection={'row'}>
-                            <View flex={2} style={styles.sView}>
-                                <Text style={styles.desc}>Estado:</Text>
-                                <TextInput
-                                    title={'Digite seu endereço'}
-                                    style={styles.textInput}
-                                    placeholder={'Estado'}
-                                    value={this.state.endereco.state}
-                                    textAlign={'center'}
-                                />
-                            </View>
                             <View style={styles.sView} flex={4}>
                                 <Text style={styles.desc}>CEP:</Text>
                                 <TextInput
                                     textAlign={'center'}
                                     style={styles.textInput}
                                     placeholder={'CEP'}
-                                    value={`${this.state.cep}`}
-                                    onSubmitEditing={() => this.buscaCep(this.state.cep)}
-                                    onChangeText={text => this.setState({ cep: text })}
-                                    // onChangeText={text => this.props.onChangeCEP(text)}
+                                    value={this.props.endereco.CEP}
+                                    onSubmitEditing={() => this.buscaCep(this.props.endereco.CEP)}
+                                    onChangeText={text => this.props.onChangeCEP(text)}
                                     keyboardType={'numeric'}
+                                />
+                            </View>
+                            <View flex={2} style={styles.sView}>
+                                <Text style={styles.desc}>Estado:</Text>
+                                <TextInput
+                                    title={'Digite seu endereço'}
+                                    style={styles.textInput}
+                                    placeholder={'Estado'}
+                                    value={this.props.endereco.estado}
+                                    textAlign={'center'}
                                 />
                             </View>
                         </View>
@@ -63,7 +61,7 @@ class DadosCliente extends Component {
                                     title={'Digite seu endereço'}
                                     style={styles.textInput}
                                     placeholder={'Vitória'}
-                                    value={this.state.endereco.city}
+                                    value={this.props.endereco.cidade}
                                     onChangeText={text => this.props.onChangeCidade(text)}
                                     textAlign={'center'}
                                 />
