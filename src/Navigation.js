@@ -23,7 +23,6 @@ import { connect } from 'react-redux';
 import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction, createUser, login, onFacebookButtonPress } from './store/actions/user'
 import PedidosRealizados from './screens/PedidosRealizados';
 import Auth from './screens/Auth';
-import Endereco2 from './screens/Endereco'
 
 import CommonStyles from './CommonStyles';
 
