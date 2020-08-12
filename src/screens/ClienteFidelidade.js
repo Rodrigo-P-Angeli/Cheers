@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import { View, Text, ImageBackground, StyleSheet } from 'react-native'
 
 import Header from '../components/Header'
+import CommonStyles from '../CommonStyles';
 import Pack from '../../assets/images/Pack.jpg'
 import { connect } from 'react-redux'
 
@@ -98,12 +99,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         padding: 10,
+        fontFamily: CommonStyles.fontFamily,
     },
     text: {
         textAlign: 'center',
         justifyContent: 'center',
         alignContent: 'center',
         color: 'white',
+        fontFamily: CommonStyles.fontFamily,
     },
 })
 
