@@ -11,29 +11,9 @@ import { connect } from 'react-redux'
 
 
 class ClienteFidelidade extends Component {
-    // getFidelidade = async () => {
-    //     try {
-    //         const userData = await AsyncStorage.getItem('userData')
-    //         const user = JSON.parse(userData)
-    //         this.setState({
-    //             name: user.name,
-    //             email: user.email,
-    //             phone: user.phone,
-    //             endereco: user.endereco,
-    //             fidelidade: user.fidelidade,
-    //         })
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
-    // mudarTab = () => {
-    //     if (this.state.name == null) {
-    //         this.getFidelidade()
-    //     }
-    // }
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundBody.jpg')}>
                 <View>
                     <Header {...this.props} />
                     <Text style={styles.subtitle}>A cada R$ 100,00 em compras você ganha libera um espaço</Text>
@@ -79,7 +59,7 @@ class ClienteFidelidade extends Component {
                         </ImageBackground>
                     </View>
                 </View>
-            </View >
+            </ImageBackground>
         )
     }
 }

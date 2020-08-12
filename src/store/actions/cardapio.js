@@ -11,6 +11,7 @@ import {
 } from '../ActionsTypes'
 import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
+import moment from 'moment'
 
 import { saveUserAddress } from './user'
 
@@ -109,29 +110,25 @@ export const pushPedido = () => {
 export const postPedido = (user, pedido, endereco, total) => {
     let refPedido = null
     return async dispatch => {
-        try {
-            refPedido = await database().ref('pedidos').push()
-            refPedido.set({
-                //date: new moment().locale('pt-br').format('LLL'),
-                uid: user.uid,
-                pedido: pedido.filter((item) => item.quantidade > 0),
-                endereco: endereco,
-                total: total,
-                status: 'Envidado',
-            })
-            //let token = await auth().currentUser.getIdToken()
-            await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
-                let pedidos = snapshot.val() ? snapshot.val() : []
-                pedidos[snapshot.val() ? snapshot.val().length : 0] = refPedido.key
-                database().ref('users').child(`${user.uid}`).set(
-                    {
-                        pedidos
-                    })
-            })
-        }
-        catch (err) {
-            console.log(err)
-        }
+        refPedido = await database().ref('pedidos').push()
+        refPedido.set({
+            data: new Date(),
+            uid: user.uid,
+            pedido: pedido.filter((item) => item.quantidade > 0),
+            endereco: endereco,
+            total: total,
+            status: 'Envidado',
+        })
+        //let token = await auth().currentUser.getIdToken()
+        await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
+            let pedidos = snapshot.val() ? snapshot.val() : []
+            pedidos[snapshot.val() ? snapshot.val().length : 0] = refPedido.key
+            database().ref('users').child(`${user.uid}`).set(
+                {
+                    pedidos
+                })
+        })
+
         dispatch(pushPedido())
         dispatch(loadCardapio())
         dispatch(saveUserAddress(user, endereco))

@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import ItemPedido from '../components/ItemPedido'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CommonStyles from '../CommonStyles';
+import moment from 'moment'
 
 const initialState = {
     pedidos: []
@@ -24,12 +25,13 @@ class PedidosRealizados extends Component {
                     let pedidos = snapshot.val() ? snapshot.val() : []
                     let pedidos2 = []
                     pedidos.forEach(async element => {
-                        database().ref('pedidos').child(`${element}`).orderByKey('').once('value').then(snapshot => {
+                        database().ref('pedidos').child(`${element}`).once('value').then(snapshot => {
                             let elemento = {
                                 ...snapshot.val(),
-                                numeroPedido: `${element}`
+                                numeroPedido: `${element}`,
                             }
                             pedidos2.push(elemento)
+                            console.log(pedidos2)
                             this.setState({ pedidos: pedidos2 })
                         })
                     })
@@ -47,13 +49,13 @@ class PedidosRealizados extends Component {
                 <Header {...this.props} />
                 <ScrollView>
                     {this.state.pedidos.map((item) =>
-                        <View style={styles.item} key={Math.random()}>
-                            <View style={{ height: 100, flex: 2, justifyContent: 'space-between'}}>
-                                <Text style={styles.text}>Data: {item.data}</Text>
+                        <View style={styles.item} key={item.numeroPedido}>
+                            <View style={{ height: 100, flex: 2, justifyContent: 'space-between' }}>
+                                <Text style={styles.text}>Data: {moment(item.data).format('L, h:mm:ss a')}</Text>
                                 <Text style={styles.text}>Entrega em: {item.endereco.rua}, n° {item.endereco.numero}, {item.endereco.bairro}, {item.endereco.cidade}, {item.endereco.estado}{item.endereco.complemento ? `, ${item.endereco.complemento}` : null}</Text>
                                 <Text style={styles.text}>Status: {item.status}</Text>
                             </View>
-                            <View style={{ height: 100, flex: 1, justifyContent: 'space-between'}}>
+                            <View style={{ height: 100, flex: 1, justifyContent: 'space-between' }}>
                                 <Text style={styles.text}># {item.numeroPedido}</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                     <Text style={[styles.text, { fontSize: 15 }]}>{'Total:\nR$'}</Text>

@@ -113,10 +113,9 @@ export const loadUser = () => {
                     snapshot => snapshot.val() ? endereco = snapshot.val() : endereco = null
                 )
                 await database().ref('users').child(`${user.uid}/fidelidade`)
-                    .on('value', snapshot => snapshot.val() ? fidelidade = snapshot.val() : fidelidade = 0)
+                    .once('value').then(snapshot => snapshot.val() ? fidelidade = snapshot.val() : fidelidade = 0)
                 dispatch(userSignIn(user, endereco, fidelidade))
             }
-            //const idToken = user.user.getIdToken()
         } catch (e) {
             console.log(e)
         }
