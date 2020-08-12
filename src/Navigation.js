@@ -60,16 +60,6 @@ class BottomTab extends Component {
                         ),
                     }}
                 />
-                <Tab.Screen
-                    name="Dados do Cliente2"
-                    component={Endereco2}
-                    options={{
-                        tabBarLabel: 'Dados do Cliente2',
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialIcons name="person" color={color} size={size} />
-                        ),
-                    }}
-                />
             </Tab.Navigator>
         )
     }
