@@ -131,19 +131,32 @@ export const postPedido = (user, pedido, endereco, total) => {
             endereco: endereco,
             total: total,
             status: 'Envidado',
-        })
+        }).then(
+            await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
+                let pedidos = snapshot.val() ? snapshot.val() : []
+                pedidos[snapshot.val() ? snapshot.val().length : 0] = refPedido.key
+                database().ref('users').child(`${user.uid}`).set(
+                    {
+                        pedidos
+                    })
+            })).catch(e => console.log(e)).then(() => {
+                dispatch(pushPedido())
+                dispatch(loadCardapio())
+                dispatch(saveUserAddress(user, endereco))
+            }
+            )
         //let token = await auth().currentUser.getIdToken()
-        await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
+        /*await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
             let pedidos = snapshot.val() ? snapshot.val() : []
             pedidos[snapshot.val() ? snapshot.val().length : 0] = refPedido.key
             database().ref('users').child(`${user.uid}`).set(
                 {
                     pedidos
                 })
-        })
+        })*/
 
-        dispatch(pushPedido())
+        /*dispatch(pushPedido())
         dispatch(loadCardapio())
-        dispatch(saveUserAddress(user, endereco))
+        dispatch(saveUserAddress(user, endereco))*/
     }
 }
