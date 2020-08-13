@@ -31,7 +31,6 @@ class PedidosRealizados extends Component {
                                 numeroPedido: `${element}`,
                             }
                             pedidos2.push(elemento)
-                            console.log(pedidos2)
                             this.setState({ pedidos: pedidos2 })
                         })
                     })
