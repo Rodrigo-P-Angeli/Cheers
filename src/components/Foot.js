@@ -5,8 +5,9 @@ import CommonStyles from '../CommonStyles'
 export default props => {
     const checkPedido = () => {
         if (props.cardapio.filter(item => item.quantidade > 0) != 0) {
-            if (props.endereco.rua) {
-                return props.postPedido(props.user, props.cardapio, props.endereco, props.total)
+            if (props.endereco.rua && props.endereco.estado && props.endereco.cidade && props.endereco.numero && props.endereco.bairro) {
+                props.navigation.navigate('FinalizarPedido')
+                //return props.postPedido(props.user, props.cardapio, props.endereco, props.total)
             } else {
                 props.navigation.navigate('Dados do Cliente')
                 Alert.alert('Preencher endereço', 'Por favor, preencha seu endereço corretamente')
