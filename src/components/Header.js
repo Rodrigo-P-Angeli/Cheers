@@ -10,9 +10,11 @@ export default class App extends Component {
         return (
             <View elevation={10} style={{ backgroundColor: 'white' }}>
                 <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundHeader.jpg')}>
-                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} style={styles.buttonBars}>
-                        <Icon name={'bars'} size={30} color={CommonStyles.Colors.Title} />
-                    </TouchableOpacity>
+                    {this.props.hidden ? <TouchableOpacity onPress={() => this.props.navigation.navigate('AppDrawer')} style={styles.buttonBars}>
+                        <Icon name={'long-arrow-left'} size={30} color={CommonStyles.Colors.Title} />
+                    </TouchableOpacity> : <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} style={styles.buttonBars}>
+                            <Icon name={'bars'} size={30} color={CommonStyles.Colors.Title} />
+                        </TouchableOpacity>}
                     <Text style={styles.title}>Cheers</Text>
                 </ImageBackground>
             </View>

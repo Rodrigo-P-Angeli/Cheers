@@ -88,7 +88,7 @@ class AppStack extends Component {
                     {() => <AppDrawer {...this.props} onSignOut={() => this.props.logout()} />}
                 </Stack.Screen>
                 <Stack.Screen name="FinalizarPedido">
-                    {() => <ConfirmaPedido {...this.props} />}
+                    {(props) => <ConfirmaPedido {...props} {...this.props} />}
                 </Stack.Screen>
             </Stack.Navigator>
         )

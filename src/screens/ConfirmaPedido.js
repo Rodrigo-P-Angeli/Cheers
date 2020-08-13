@@ -20,13 +20,18 @@ export default class PedidosRealizados extends Component {
 
     render() {
         return (
-            <View>
-                <Header {...this.props}/>
-            </View>
+            <ImageBackground source={require('../../assets/images/BackGroundBody.jpg')} style={styles.imageback}>
+                <View>
+                    <Header hidden={true} {...this.props} />
+                </View>
+            </ImageBackground>
         )
     }
 }
 
 const styles = StyleSheet.create({
-
+    imageback: {
+        flex: 1,
+        resizeMode: 'contain'
+    }
 })
