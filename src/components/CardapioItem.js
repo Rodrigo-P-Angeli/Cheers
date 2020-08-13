@@ -40,6 +40,16 @@ export default class ItemCardapio extends Component {
                                     <Text style={styles.buttonsText}>+</Text>
                                 </TouchableOpacity>
                             </View>
+                            <View style={styles.buttons}>
+                                <TouchableOpacity onPress={() => this.props.setMore(this.props.id, 6)}>
+                                    <Text style={styles.buttonsText}>+6</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.buttons}>
+                                <TouchableOpacity onPress={() => this.props.setMore(this.props.id, 12)}>
+                                    <Text style={styles.buttonsText}>+12</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <View style={{ flex: .2, justifyContent: 'space-between', flexDirection: 'row' }}>
                             <Text style={styles.priceText}>

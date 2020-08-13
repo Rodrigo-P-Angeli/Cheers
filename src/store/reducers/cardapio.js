@@ -28,7 +28,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 cardapioo: state.cardapioo.map(item => {
                     if (item.id === action.payload.id) {
-                        item.quantidade = item.quantidade + 1
+                        if (action.payload.qt) {
+                            item.quantidade = item.quantidade + action.payload.qt
+                        } else {
+                            item.quantidade = item.quantidade + 1
+                        }
                     }
                     return item
                 }),

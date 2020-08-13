@@ -56,7 +56,7 @@ const mapStateToProps = ({ cardapio, user }) => {
 const mapDispatchToProps = dispatch => {
     return {
         onLoadScreen: () => dispatch(loadCardapio()),
-        onSetMore: (id) => dispatch(setMore(id)),
+        onSetMore: (id, qt) => dispatch(setMore(id, qt)),
         onSetLess: (id) => dispatch(setLess(id)),
         onSetQt: (id, text) => dispatch(setQuantidade(id, text)),
         postPedido: (user, pedido, endereco, total) => dispatch(postPedido(user, pedido, endereco, total)),

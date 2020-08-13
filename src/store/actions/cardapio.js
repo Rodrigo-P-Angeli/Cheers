@@ -39,15 +39,27 @@ export const setCardapio = posts => {
         payload: posts,
     }
 }
-export const setmore = (id) => {
-    return {
-        type: SET_MORE,
-        payload: { id: id },
+export const setmore = (id, qt) => {
+    if (qt) {
+        return {
+            type: SET_MORE,
+            payload: {
+                id: id,
+                qt: qt
+            },
+        }
+    } else {
+        return {
+            type: SET_MORE,
+            payload: {
+                id: id,
+            },
+        }
     }
 }
-export const setMore = (id) => {
+export const setMore = (id, qt) => {
     return dispatch => {
-        dispatch(setmore(id))
+        dispatch(setmore(id, qt))
         dispatch(setTotalItem(id))
         dispatch(setMajorTotal())
     }
