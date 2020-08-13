@@ -26,6 +26,7 @@ import Auth from './screens/Auth';
 
 import CommonStyles from './CommonStyles';
 import DadosCliente2 from './screens/DadosCliente2';
+import ConfirmaPedido from './screens/ConfirmaPedido';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -90,6 +91,20 @@ class AppDrawer extends Component {
         )
     }
 }
+class AppStack extends Component {
+    render() {
+        return (
+            <Stack.Navigator headerMode="none">
+                <Stack.Screen name="AppDrawer">
+                    {() => <AppDrawer {...this.props} onSignOut={() => this.props.logout()} />}
+                </Stack.Screen>
+                <Stack.Screen name="FinalizarPedido">
+                    {() => <ConfirmaPedido {...this.props} />}
+                </Stack.Screen>
+            </Stack.Navigator>
+        )
+    }
+}
 
 class App extends Component {
     render() {
@@ -101,7 +116,7 @@ class App extends Component {
                             {() => <SplashScreen loadUser={this.props.loadingUserFunction} finishedLoadUser={this.props.finishedLoadingUser} {...this.props} />}
                         </Stack.Screen> : this.props.user ?
                             <Stack.Screen name="Cardápio">
-                                {() => <AppDrawer {...this.props} onSignOut={() => this.props.logout()} />}
+                                {() => <AppStack {...this.props} />}
                             </Stack.Screen> :
                             <Stack.Screen name="Login" >
                                 {() => <Auth {...this.props} FacebookButtonPress={this.props.onFacebookButtonPress} GoogleButtonPress={this.props.onGoogleButtonPress} createUser={this.props.createUser} loginUser={this.props.loginUser} />}
