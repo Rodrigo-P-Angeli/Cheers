@@ -6,6 +6,7 @@ import { LOAD_CARDAPIO, SET_MORE, SET_LESS, SET_QT, SET_TOTAL_ITEM, SET_MAJOR_TO
 const initialState = {
     cardapioo: [],
     total: 0,
+    statusPedido: false,
 }
 
 const reducer = (state = initialState, action) => {

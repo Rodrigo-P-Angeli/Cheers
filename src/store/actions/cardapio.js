@@ -9,6 +9,7 @@ import {
     SET_MAJOR_TOTAL,
     PUSH_PEDIDO,
 } from '../ActionsTypes'
+import { Alert } from 'react-native'
 import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
 import moment from 'moment'
@@ -141,10 +142,10 @@ export const postPedido = (user, pedido, endereco, total) => {
                         pedidos
                     })
             })).catch(e => console.log(e)).then(() => {
-                dispatch(pushPedido())
                 dispatch(loadCardapio())
                 dispatch(saveUserAddress(user, endereco))
-                dispatch(alertPedidoEnviado())
+                Alert.alert('Pedido Enviado com sucesso', 'Guenta que já já chegar')
+                dispatch(pushPedido())
             }
             )
     }
