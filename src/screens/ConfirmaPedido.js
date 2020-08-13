@@ -15,6 +15,9 @@ class ConfirmaPedido extends Component {
             <ImageBackground source={require('../../assets/images/BackGroundBody.jpg')} style={styles.imageback}>
                 <View>
                     <Header hidden={true} {...this.props} />
+                    <View style={styles.container}>
+
+                    </View>
                     <TouchableOpacity onPress={() => {
                         this.props.postPedido(this.props.user, this.props.cardapio, this.props.endereco, this.props.total)
                         this.props.navigation.navigate('AppDrawer')
@@ -32,7 +35,15 @@ const styles = StyleSheet.create({
     imageback: {
         flex: 1,
         resizeMode: 'contain'
-    }
+    },
+    container: {
+        justifyContent: 'center',
+        margin: 30,
+        backgroundColor: 'white',
+        width: '80%',
+        height: '60%',
+        alignSelf: 'center'
+    },
 })
 
 
