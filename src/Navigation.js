@@ -16,7 +16,6 @@ import MenuDrawer from './components/MenuDrawer'
 import Cardapio from './screens/Cardapio'
 import DadosCliente from './screens/DadosCliente'
 import ClienteFidelidade from './screens/ClienteFidelidade';
-import Login from './screens/Login'
 import SplashScreen from './screens/SplashScreen';
 import { connect } from 'react-redux';
 
