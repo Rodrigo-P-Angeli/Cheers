@@ -7,6 +7,8 @@ import Header from '../components/Header'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CommonStyles from '../CommonStyles';
 import { postPedido } from '../store/actions/cardapio';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Feather from 'react-native-vector-icons/Feather'
 
 class ConfirmaPedido extends Component {
 
@@ -18,13 +20,25 @@ class ConfirmaPedido extends Component {
                     <View style={styles.container}>
 
                     </View>
-                    <TouchableOpacity onPress={() => {
-                        this.props.postPedido(this.props.user, this.props.cardapio, this.props.endereco, this.props.total)
-                        this.props.navigation.navigate('AppDrawer')
-                    }
-                    }>
-                        <Text>Finalizar</Text>
-                    </TouchableOpacity>
+                    <View style={styles.buttons}>
+                        <TouchableOpacity
+                            activeOpacity={.6}
+                            style={[styles.finalizar, { backgroundColor: 'red',  }]}
+                            onPress={() => {
+                                this.props.navigation.navigate('AppDrawer')
+                            }}>
+                            <Feather name={'x'} size={50} color={'white'} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={.6}
+                            style={styles.finalizar}
+                            onPress={() => {
+                                this.props.postPedido(this.props.user, this.props.cardapio, this.props.endereco, this.props.total)
+                                this.props.navigation.navigate('AppDrawer')
+                            }}>
+                            <FontAwesome name={'check'} size={50} color={'white'} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ImageBackground >
         )
@@ -44,6 +58,18 @@ const styles = StyleSheet.create({
         height: '60%',
         alignSelf: 'center'
     },
+    finalizar: {
+        height: 80,
+        width: 80,
+        borderRadius: 40,
+        backgroundColor: 'green',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    }
 })
 
 

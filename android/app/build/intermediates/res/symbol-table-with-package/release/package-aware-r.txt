@@ -1387,6 +1387,8 @@ drawable abc_vector_test
 drawable assets_images_background
 drawable assets_images_backgroundbody
 drawable assets_images_backgroundheader
+drawable assets_images_loginicons_facebook
+drawable assets_images_loginicons_googleflat
 drawable assets_images_pack
 drawable avd_hide_password
 drawable avd_show_password
@@ -1990,6 +1992,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw app
+raw node_modules_reactnativevectoricons_glyphmaps_antdesign
 raw node_modules_reactnativevectoricons_glyphmaps_fontawesome
 raw node_modules_reactnativevectoricons_glyphmaps_ionicons
 raw node_modules_reactnativevectoricons_glyphmaps_materialcommunityicons
