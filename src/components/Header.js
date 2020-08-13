@@ -8,12 +8,12 @@ import CommonStyles from '../CommonStyles'
 export default class App extends Component {
     render() {
         return (
-            <View elevation={10} style={{backgroundColor: 'white'}}>
+            <View elevation={10} style={{ backgroundColor: 'white' }}>
                 <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundHeader.jpg')}>
-                <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} style={styles.buttonBars}>
-                    <Icon name={'bars'} size={30} color={CommonStyles.Colors.Title} />
-                </TouchableOpacity>
-                <Text style={styles.title}>Cheers</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} style={styles.buttonBars}>
+                        <Icon name={'bars'} size={30} color={CommonStyles.Colors.Title} />
+                    </TouchableOpacity>
+                    <Text style={styles.title}>Cheers</Text>
                 </ImageBackground>
             </View>
         )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TextInput, ScrollView, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, TextInput, ScrollView, ImageBackground, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import Header from '../components/Header';
 import Foot from '../components/Foot'
@@ -19,13 +19,13 @@ class DadosCliente extends Component {
                 this.props.onChangeRua(endereco.street)
                 this.props.onChangeNumero('')
                 this.props.onChangeComplemento('')
-            }).catch(e => console.log(e))
+            }).catch(e => Alert.alert('Ops!', 'CEP Não encontrado, por favor digite um CEP válido'))
     }
     render() {
         return (
             <ImageBackground
                 source={require('../../assets/images/BackGroundBody.jpg')}
-                style={styles.image} imageStyle={{ opacity: 0.3 }}>
+                style={styles.image} imageStyle={{ opacity: 0.5 }}>
                 <View style={styles.container} >
                     <Header {...this.props} />
                     <ScrollView style={styles.scrollView}>
