@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TextInput, ScrollView, ImageBackground, Alert } from 'react-native'
+import { StyleSheet, Text, View, TextInput, ScrollView, ImageBackground, Alert, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import Header from '../components/Header';
 import Foot from '../components/Foot'
@@ -43,7 +43,7 @@ class DadosCliente extends Component {
                                 onChangeText={text => this.props.onChangeCEP(text)}
                                 keyboardType={'numeric'}
                             />
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => Linking.openURL('http://www.buscacep.correios.com.br/sistemas/buscacep/buscaCepEndereco.cfm')}>
                                 <Text style={[styles.desc, { marginTop: 0, color: '#0000FF' }]}>Buscar CEP nos Correios</Text>
                             </TouchableOpacity>
                             <Text style={styles.desc}>Estado:</Text>
