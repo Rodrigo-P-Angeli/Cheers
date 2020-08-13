@@ -23,9 +23,10 @@ GoogleSignin.configure({
 export const logout = () => {
     return async dispatch => {
         auth().signOut()
-            .then(() => console.log('saiu'))
-            .catch(e => console.log('saiu'))
-        dispatch(logOutt())
+            .then(() => {
+                dispatch(logOutt())
+            })
+            .catch(e => (console.log('erro ao sair', e)))//console.log('saiu'))
     }
 }
 
@@ -103,21 +104,22 @@ export const onFacebookButtonPress = () => {
 export const loadUser = () => {
     return async dispatch => {
         dispatch(loadingUserFunction())
-        let user = null
         let endereco = null
         let fidelidade = null
         try {
-            user = await auth().currentUser
+            let user = await auth().currentUser
             if (user) {
                 await database().ref('users').child(`${user.uid}/endereco`).once('value').then(
                     snapshot => snapshot.val() ? endereco = snapshot.val() : endereco = null
-                )
+                ).catch(e => console.log('erro ao carregar endereço', e))
                 await database().ref('users').child(`${user.uid}/fidelidade`)
-                    .once('value').then(snapshot => snapshot.val() ? fidelidade = snapshot.val() : fidelidade = 0)
-                dispatch(userSignIn(user, endereco, fidelidade))
+                    .once('value').then(snapshot => {
+                        snapshot.val() ? fidelidade = snapshot.val() : fidelidade = 0
+                        dispatch(userSignIn(user, endereco, fidelidade))
+                    }).catch(e => console.log('erro ao carregar plano fidelidade', e))
             }
         } catch (e) {
-            console.log(e)
+            console.log(e, 'deu erro')
         }
 
 
