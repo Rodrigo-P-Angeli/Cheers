@@ -121,10 +121,11 @@ export const pushPedido = () => {
 }
 export const postPedido = (user, pedido, endereco, total) => {
     let refPedido = null
+    const now = new Date().toString()
     return async dispatch => {
         refPedido = await database().ref('pedidos').push()
         refPedido.set({
-            data: new Date(),
+            data: now,
             uid: user.uid,
             pedido: pedido.filter((item) => item.quantidade > 0),
             endereco: endereco,
