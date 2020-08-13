@@ -50,7 +50,7 @@ class BottomTab extends Component {
                         ),
                     }}
                 />
-                <Tab.Screen
+                {/* <Tab.Screen
                     name="Dados do Cliente"
                     component={DadosCliente}
                     options={{
@@ -59,12 +59,12 @@ class BottomTab extends Component {
                             <MaterialIcons name="person" color={color} size={size} />
                         ),
                     }}
-                />
+                /> */}
                 <Tab.Screen
-                    name="Dados do Cliente2"
+                    name="Dados do Cliente"
                     component={DadosCliente2}
                     options={{
-                        tabBarLabel: 'Dados do Cliente2',
+                        tabBarLabel: 'Dados do Cliente',
                         tabBarIcon: ({ color, size }) => (
                             <MaterialIcons name="person" color={color} size={size} />
                         ),

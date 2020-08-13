@@ -10,49 +10,51 @@ export default class ItemCardapio extends Component {
     render() {
         return (
             <View style={{ padding: 5, paddingBottom: 0 }}>
-                <View style={styles.container} elevation={2}>
-                    <View style={styles.imageContainer}>
-                        <Image style={styles.image} source={{ uri: this.props.image }} />
-                    </View>
-                    <View style={styles.desc}>
-                        <Text style={styles.marca}>{this.props.marca} {this.props.tipo}</Text>
-                        <Text style={styles.priceText}>
-                            R$ {this.props.price.toFixed(2).replace('.', ',')}
-                        </Text>
-                    </View>
-                    <View style={{ flex: .25 }}>
-                        <View style={styles.setQuant}>
-                            <View style={styles.buttons}>
-                                <TouchableOpacity onPress={() => this.props.setLess(this.props.id)}>
-                                    <Text style={[styles.buttonsText,]}>-</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <TextInput
-                                textAlign={'center'}
-                                style={{ height: 40, flex: 1, }}
-                                placeholder={'0'}
-                                value={this.props.quantidade.toString()}
-                                onChangeText={text => this.props.setqt(this.props.id, text)}
-                                keyboardType={'numeric'}
-                            />
-                            <View style={styles.buttons}>
-                                <TouchableOpacity onPress={() => this.props.setMore(this.props.id)}>
-                                    <Text style={styles.buttonsText}>+</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.buttonsMaisSeis}>
-                                <TouchableOpacity onPress={() => this.props.setMore(this.props.id, 6)}>
-                                    <Text style={[styles.buttonsText, { color: '#555' }]}> +6 </Text>
-                                </TouchableOpacity>
-                            </View>
+                <View elevation={2} style={styles.containerOutside}>
+                    <View style={styles.container}>
+                        <View style={styles.imageContainer}>
+                            <Image style={styles.image} source={{ uri: this.props.image }} />
                         </View>
-                        <View style={{ flex: .2, justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <View style={styles.desc}>
+                            <Text style={styles.marca}>{this.props.marca} {this.props.tipo}</Text>
                             <Text style={styles.priceText}>
-                                R$
+                                R$ {this.props.price.toFixed(2).replace('.', ',')}
                             </Text>
-                            <Text style={[styles.priceText, { flex: 1, textAlign: 'right', }]}>
-                                {this.props.total.toFixed(2).replace('.', ',')}
+                        </View>
+                        <View style={{ flex: .25 }}>
+                            <View style={styles.setQuant}>
+                                <View style={styles.buttons}>
+                                    <TouchableOpacity onPress={() => this.props.setLess(this.props.id)}>
+                                        <Text style={[styles.buttonsText,]}>-</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <TextInput
+                                    textAlign={'center'}
+                                    style={{ height: 40, flex: 1, }}
+                                    placeholder={'0'}
+                                    value={this.props.quantidade.toString()}
+                                    onChangeText={text => this.props.setqt(this.props.id, text)}
+                                    keyboardType={'numeric'}
+                                />
+                                <View style={styles.buttons}>
+                                    <TouchableOpacity onPress={() => this.props.setMore(this.props.id)}>
+                                        <Text style={styles.buttonsText}>+</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.buttonsMaisSeis}>
+                                    <TouchableOpacity onPress={() => this.props.setMore(this.props.id, 6)}>
+                                        <Text style={[styles.buttonsText, { color: '#555' }]}> +6 </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            <View style={{ flex: .2, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                <Text style={styles.priceText}>
+                                    R$
                             </Text>
+                                <Text style={[styles.priceText, { flex: 1, textAlign: 'right', }]}>
+                                    {this.props.total.toFixed(2).replace('.', ',')}
+                                </Text>
+                            </View>
                         </View>
                     </View>
                 </View>
@@ -66,11 +68,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        borderColor: '#e3e3e3',
-        borderWidth: 0.1,
+        borderColor: CommonStyles.Colors.buttons,
         padding: 5,
         borderRadius: 10,
         backgroundColor: 'white',
+        borderWidth: 2,
+        margin: 2,
+    },
+    containerOutside: {
+        backgroundColor: 'white',
+        borderRadius: 10,
     },
     desc: {
         flex: .7,

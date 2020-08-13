@@ -20,22 +20,31 @@ class Cardapio extends Component {
     }
     render() {
         return (
-            <ImageBackground source={require('../../assets/images/BackGroundBody.jpg')} style={styles.container}>
-                <Header {...this.props} />
-                <View style={styles.body}>
-                    <FlatList
-                        data={this.props.cardapio}
-                        keyExtractor={item => `${item.id}`}
-                        renderItem={({ item }) => <ItemCardapio {...item} setMore={this.props.onSetMore} setLess={this.props.onSetLess} setqt={this.props.onSetQt} />} />
-                </View>
-                <Foot {...this.props} postPedido={this.props.postPedido} />
-            </ImageBackground>
+            <View style={styles.container}>
+                <ImageBackground
+                    source={require('../../assets/images/BackGroundBody.jpg')}
+                    style={styles.image}>
+                    <Header {...this.props} />
+                    <View style={styles.body}>
+                        <FlatList
+                            data={this.props.cardapio}
+                            keyExtractor={item => `${item.id}`}
+                            renderItem={({ item }) => <ItemCardapio {...item} setMore={this.props.onSetMore} setLess={this.props.onSetLess} setqt={this.props.onSetQt} />} />
+                    </View>
+                    <Foot {...this.props} postPedido={this.props.postPedido} />
+                </ImageBackground>
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        resizeMode: 'contain',
+        backgroundColor: '#FFFFBF'
+    },
+    image: {
         flex: 1,
         resizeMode: 'contain',
     },
