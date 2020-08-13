@@ -21,7 +21,7 @@ export default class ItemCardapio extends Component {
                                 R$ {this.props.price.toFixed(2).replace('.', ',')}
                             </Text>
                         </View>
-                        <View style={{ flex: .25 }}>
+                        <View style={{ flex: .35 }}>
                             <View style={styles.setQuant}>
                                 <View style={styles.buttons}>
                                     <TouchableOpacity onPress={() => this.props.setLess(this.props.id)}>
@@ -30,7 +30,7 @@ export default class ItemCardapio extends Component {
                                 </View>
                                 <TextInput
                                     textAlign={'center'}
-                                    style={{ height: 40, flex: 1, }}
+                                    style={{ height: 40,width: 30,}}
                                     placeholder={'0'}
                                     value={this.props.quantidade.toString()}
                                     onChangeText={text => this.props.setqt(this.props.id, text)}
@@ -70,10 +70,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderColor: CommonStyles.Colors.buttons,
         padding: 5,
-        borderRadius: 10,
+        borderRadius: 5,
         backgroundColor: 'white',
         borderWidth: 2,
-        margin: 2,
+        margin: 5,
     },
     containerOutside: {
         backgroundColor: 'white',
