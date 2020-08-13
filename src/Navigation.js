@@ -25,6 +25,7 @@ import PedidosRealizados from './screens/PedidosRealizados';
 import Auth from './screens/Auth';
 
 import CommonStyles from './CommonStyles';
+import DadosCliente2 from './screens/DadosCliente2';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -54,6 +55,16 @@ class BottomTab extends Component {
                     component={DadosCliente}
                     options={{
                         tabBarLabel: 'Dados do Cliente',
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialIcons name="person" color={color} size={size} />
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="Dados do Cliente2"
+                    component={DadosCliente2}
+                    options={{
+                        tabBarLabel: 'Dados do Cliente2',
                         tabBarIcon: ({ color, size }) => (
                             <MaterialIcons name="person" color={color} size={size} />
                         ),
