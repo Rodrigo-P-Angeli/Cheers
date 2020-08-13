@@ -50,16 +50,6 @@ class BottomTab extends Component {
                         ),
                     }}
                 />
-                {/* <Tab.Screen
-                    name="Dados do Cliente"
-                    component={DadosCliente}
-                    options={{
-                        tabBarLabel: 'Dados do Cliente',
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialIcons name="person" color={color} size={size} />
-                        ),
-                    }}
-                /> */}
                 <Tab.Screen
                     name="Dados do Cliente"
                     component={DadosCliente2}
