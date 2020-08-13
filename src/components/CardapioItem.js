@@ -40,14 +40,9 @@ export default class ItemCardapio extends Component {
                                     <Text style={styles.buttonsText}>+</Text>
                                 </TouchableOpacity>
                             </View>
-                            <View style={styles.buttons}>
+                            <View style={styles.buttonsMaisSeis}>
                                 <TouchableOpacity onPress={() => this.props.setMore(this.props.id, 6)}>
-                                    <Text style={styles.buttonsText}>+6</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.buttons}>
-                                <TouchableOpacity onPress={() => this.props.setMore(this.props.id, 12)}>
-                                    <Text style={styles.buttonsText}>+12</Text>
+                                    <Text style={[styles.buttonsText, { color: '#555' }]}> +6 </Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -118,5 +113,17 @@ const styles = StyleSheet.create({
     image: {
         padding: 25,
         resizeMode: 'center',
+    },
+    buttonsMaisSeis: {
+        borderRadius: 5,
+        borderWidth: 2,
+        width: 30,
+        height: 20,
+        borderColor: '#919191',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 5,
+        backgroundColor: '#DEDEDE'
     },
 })
