@@ -21,26 +21,9 @@ import CommonStyles from '../CommonStyles';
 
 
 export default class menuDrawer extends Component {
-    componentDidMount() {
-        console.log(this.props.user)
-    }
     state = {
         email: '',
         name: ',',
-    }
-    logout = async () => {
-        try {
-            await auth().signOut()
-            console.log('saiu')
-            this.props.onSignOut()
-        } catch (err) {
-            console.log(err)
-        }
-        try {
-            await AsyncStorage.removeItem('userData')
-        } catch (e) {
-            console.log(e)
-        }
     }
 
     render() {
@@ -70,7 +53,7 @@ export default class menuDrawer extends Component {
                     <DrawerItemList {...this.props} />
                 </DrawerContentScrollView>
                 <View style={styles.logoutButton}>
-                    <TouchableOpacity onPress={() => this.logout()}>
+                    <TouchableOpacity onPress={() => this.props.onSignOut()}>
                         <AntDesign name='logout' size={30} color={CommonStyles.Colors.buttons} />
                     </TouchableOpacity>
                 </View>
