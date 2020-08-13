@@ -100,7 +100,7 @@ export default class App extends Component {
                     </View>
                     <Button
                         title="Google Sign-In"
-                        onPress={() => this.props.loadUser().then(() => console.log('Signed in with Google!')).catch(err => console.log(err))}
+                        onPress={() => this.props.loadUser()}
                     />
                     {/* <Button
                             title="Facebook Sign-In"
