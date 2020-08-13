@@ -7,7 +7,7 @@ import {
     SET_QT,
     SET_TOTAL_ITEM,
     SET_MAJOR_TOTAL,
-    PUSH_PEDIDO
+    PUSH_PEDIDO,
 } from '../ActionsTypes'
 import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
@@ -119,6 +119,7 @@ export const pushPedido = () => {
         type: PUSH_PEDIDO,
     }
 }
+
 export const postPedido = (user, pedido, endereco, total) => {
     let refPedido = null
     const now = new Date().toISOString()
@@ -143,20 +144,8 @@ export const postPedido = (user, pedido, endereco, total) => {
                 dispatch(pushPedido())
                 dispatch(loadCardapio())
                 dispatch(saveUserAddress(user, endereco))
+                dispatch(alertPedidoEnviado())
             }
             )
-        //let token = await auth().currentUser.getIdToken()
-        /*await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
-            let pedidos = snapshot.val() ? snapshot.val() : []
-            pedidos[snapshot.val() ? snapshot.val().length : 0] = refPedido.key
-            database().ref('users').child(`${user.uid}`).set(
-                {
-                    pedidos
-                })
-        })*/
-
-        /*dispatch(pushPedido())
-        dispatch(loadCardapio())
-        dispatch(saveUserAddress(user, endereco))*/
     }
 }

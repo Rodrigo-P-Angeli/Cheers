@@ -4,27 +4,26 @@ import database from '@react-native-firebase/database';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header'
-import ItemPedido from '../components/ItemPedido'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CommonStyles from '../CommonStyles';
-import Moment from 'moment'
+import { postPedido } from '../store/actions/cardapio';
 
-const initialState = {
-    pedidos: []
-}
-
-export default class PedidosRealizados extends Component {
-    state = {
-        ...initialState
-    }
+class ConfirmaPedido extends Component {
 
     render() {
         return (
             <ImageBackground source={require('../../assets/images/BackGroundBody.jpg')} style={styles.imageback}>
                 <View>
                     <Header hidden={true} {...this.props} />
+                    <TouchableOpacity onPress={() => {
+                        this.props.postPedido(this.props.user, this.props.cardapio, this.props.endereco, this.props.total)
+                        this.props.navigation.navigate('AppDrawer')
+                    }
+                    }>
+                        <Text>Finalizar</Text>
+                    </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </ImageBackground >
         )
     }
 }
@@ -35,3 +34,21 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     }
 })
+
+
+const mapStateToProps = ({ cardapio, user }) => {
+    return {
+        cardapio: cardapio.cardapioo,
+        total: cardapio.total,
+        user: user.user,
+        endereco: user.endereco,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        postPedido: (user, pedido, endereco, total) => dispatch(postPedido(user, pedido, endereco, total)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmaPedido)
