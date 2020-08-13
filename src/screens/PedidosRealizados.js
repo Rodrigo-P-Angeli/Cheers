@@ -7,7 +7,7 @@ import Header from '../components/Header'
 import ItemPedido from '../components/ItemPedido'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CommonStyles from '../CommonStyles';
-import moment from 'moment'
+import Moment from 'moment'
 
 const initialState = {
     pedidos: []
@@ -34,7 +34,8 @@ class PedidosRealizados extends Component {
                             this.setState({ pedidos: pedidos2 })
                         })
                     })
-                })
+                }
+            )
         }
         catch (err) {
             console.log(err)
@@ -46,11 +47,11 @@ class PedidosRealizados extends Component {
         return (
             <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundBody.jpg')}>
                 <Header {...this.props} />
-                <ScrollView>
+                {this.state.pedidos.length ? <ScrollView>
                     {this.state.pedidos.map((item) =>
                         <View style={styles.item} key={item.numeroPedido}>
                             <View style={{ height: 100, flex: 2, justifyContent: 'space-between' }}>
-                                <Text style={styles.text}>Data: {moment(item.data).format('L, h:mm:ss a')}</Text>
+                                <Text style={styles.text}>Data: {Moment(item.data).format('DD/MM/YYYY h:mm:ss a')}</Text>
                                 <Text style={styles.text}>Entrega em: {item.endereco.rua}, n° {item.endereco.numero}, {item.endereco.bairro}, {item.endereco.cidade}, {item.endereco.estado}{item.endereco.complemento ? `, ${item.endereco.complemento}` : null}</Text>
                                 <Text style={styles.text}>Status: {item.status}</Text>
                             </View>
@@ -62,8 +63,18 @@ class PedidosRealizados extends Component {
                                 </View>
                             </View>
                             {/* {item.pedido.map(item => <ItemPedido {...item} key={Math.random()} />)} */}
-                        </View>)}
-                </ScrollView>
+                        </View>)
+                    }
+                </ScrollView> :
+                    <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+                        <Text style={{
+                            fontFamily: CommonStyles.fontFamilyTitle,
+                            fontSize: 20,
+                        }}>
+                            Você ainda não possui nenhum pedido
+                        </Text>
+                    </View>}
+
             </ImageBackground>
         )
     }
@@ -89,7 +100,6 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: CommonStyles.fontFamily,
         fontSize: 15,
-        //padding: 2,
     }
 })
 

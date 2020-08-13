@@ -121,7 +121,7 @@ export const pushPedido = () => {
 }
 export const postPedido = (user, pedido, endereco, total) => {
     let refPedido = null
-    const now = new Date().toString()
+    const now = new Date().toISOString()
     return async dispatch => {
         refPedido = await database().ref('pedidos').push()
         refPedido.set({
