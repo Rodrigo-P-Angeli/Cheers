@@ -24,10 +24,9 @@ class DadosCliente extends Component {
     render() {
         return (
             <ImageBackground
-                source={require('../../assets/images/BackGroundBody.jpg')}
-                style={styles.image} imageStyle={{ opacity: 0.5 }}>
+                source={require('../../assets/images/BackGroundBody.jpg')} style={styles.image} imageStyle={{ opacity: 0.5 }}>
+                <Header {...this.props} />
                 <View style={styles.container} >
-                    <Header {...this.props} />
                     <ScrollView style={styles.scrollView}>
                         <View>
                             <Text style={styles.RodaPeTitulo}>
@@ -90,8 +89,8 @@ class DadosCliente extends Component {
                             />
                         </View>
                     </ScrollView>
-                    <Foot {...this.props} />
                 </View>
+                <Foot {...this.props} />
             </ImageBackground>
         );
     }
@@ -100,21 +99,25 @@ class DadosCliente extends Component {
 const styles = StyleSheet.create({
     textInput: {
         fontSize: 20,
-        borderColor: 'grey',
+        borderColor: '#666',
         borderBottomWidth: 1,
         textAlign: 'left',
         paddingBottom: 1,
         paddingTop: 1,
         fontFamily: CommonStyles.fontFamily,
+        //color: 'white'
     },
     RodaPeTitulo: {
         fontSize: 20,
         textAlign: 'center',
         fontFamily: CommonStyles.fontFamilyTitle,
+        //color: 'white',
     },
     container: {
         flex: 1,
-        // backgroundColor: '#FFFFBF'
+        //backgroundColor: 'rgba(0,0,0,0.8)',
+        //padding: 5,
+        margin: 20,
     },
     desc: {
         fontFamily: 'Roboto-Medium',//CommonStyles.fontFamilyTitle,
