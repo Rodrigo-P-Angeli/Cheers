@@ -105,22 +105,18 @@ const styles = StyleSheet.create({
         paddingBottom: 1,
         paddingTop: 1,
         fontFamily: CommonStyles.fontFamily,
-        //color: 'white'
     },
     RodaPeTitulo: {
         fontSize: 20,
         textAlign: 'center',
         fontFamily: CommonStyles.fontFamilyTitle,
-        //color: 'white',
     },
     container: {
         flex: 1,
-        //backgroundColor: 'rgba(0,0,0,0.8)',
-        //padding: 5,
         margin: 20,
     },
     desc: {
-        fontFamily: 'Roboto-Medium',//CommonStyles.fontFamilyTitle,
+        fontFamily: 'Roboto-Medium',
         color: '#666',
         marginTop: 10,
     },
