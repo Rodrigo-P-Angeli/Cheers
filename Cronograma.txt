@@ -1,0 +1,8 @@
+Falta fazer
+- Ajeitar tela de login
+- ajeitar tela de finalizar pedido
+- ajeitar tela de fidelidade
+- ajeitar tela de endereço
+- Colocar os pedidos na tela de pedidosRealizados
+
+- iniciar o APP para o dono
