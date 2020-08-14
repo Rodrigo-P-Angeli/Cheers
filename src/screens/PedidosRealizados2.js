@@ -65,7 +65,7 @@ ${item.pedido.map(item => `\n${item.marca} ${item.tipo} R$${item.price.toFixed(2
                         <Accordion
                             contentStyle={styles.content}
                             headerStyle={styles.title}
-                            style={{ backgroundColor: CommonStyles.Colors.buttons }}
+                            //style={{ backgroundColor: CommonStyles.Colors.buttons }}
                             listStyle={styles.text}
                             //expandedIcon={{color: 'white'}}
                             dataArray={data} />
@@ -109,9 +109,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     title: {
-        backgroundColor: CommonStyles.Colors.buttons,
-        borderBottomColor: 'white',
-        borderBottomWidth: 1,
+        //backgroundColor: CommonStyles.Colors.buttons,
+        // borderBottomColor: 'white',
+        borderBottomWidth: 0.5,
+        borderTopWidth: 2,
     }
 })
 
