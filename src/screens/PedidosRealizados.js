@@ -49,7 +49,7 @@ class PedidosRealizados extends Component {
                 <Header {...this.props} />
                 {this.state.pedidos.length ? <ScrollView>
                     {this.state.pedidos.map((item) =>
-                        <View key={item.numeroPedido} style={{ backgroundColor: 'white', margin: 5, padding: 5, borderRadius: 10 }} elevation={5}>
+                        <TouchableOpacity onPress={() => {}} activeOpacity={0.6} key={item.numeroPedido} style={{ backgroundColor: 'white', margin: 5, padding: 5, borderRadius: 10 }} elevation={5}>
                             <View style={styles.item}>
                                 <View style={{ height: 100, flex: 2, justifyContent: 'space-between' }}>
                                     <Text style={styles.text}>Data: {Moment(item.data).format('DD/MM/YYYY h:mm:ss a')}</Text>
@@ -65,7 +65,7 @@ class PedidosRealizados extends Component {
                                 </View>
                                 {/* {item.pedido.map(item => <ItemPedido {...item} key={Math.random()} />)} */}
                             </View>
-                        </View>)
+                        </TouchableOpacity>)
                     }
                 </ScrollView> :
                     <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
