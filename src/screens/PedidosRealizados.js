@@ -8,10 +8,12 @@ import ItemPedido from '../components/ItemPedido'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CommonStyles from '../CommonStyles';
 import Moment from 'moment'
+import { Accordion, Block } from 'galio-framework';
 
 const initialState = {
     pedidos: []
 }
+
 
 class PedidosRealizados extends Component {
     state = {
@@ -44,12 +46,24 @@ class PedidosRealizados extends Component {
     }
 
     render() {
+        const data = [
+            {
+                title: 'title', content: "Lorem ipsum dolor sit amet",
+                icon: {
+                    name: 'keyboard-arrow-up',
+                    family: 'material',
+                    size: 16,
+                }
+            },
+            { title: "2nd Chapter", content: "Lorem ipsum dolor sit amet" },
+            { title: "3rd Chapter", content: "Lorem ipsum dolor sit amet" }
+        ];
         return (
             <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundBody.jpg')}>
                 <Header {...this.props} />
                 {this.state.pedidos.length ? <ScrollView>
                     {this.state.pedidos.map((item) =>
-                        <TouchableOpacity onPress={() => {}} activeOpacity={0.6} key={item.numeroPedido} style={{ backgroundColor: 'white', margin: 5, padding: 5, borderRadius: 10 }} elevation={5}>
+                        <TouchableOpacity onPress={() => { }} activeOpacity={0.6} key={item.numeroPedido} style={{ backgroundColor: 'white', margin: 5, padding: 5, borderRadius: 10 }} elevation={5}>
                             <View style={styles.item}>
                                 <View style={{ height: 100, flex: 2, justifyContent: 'space-between' }}>
                                     <Text style={styles.text}>Data: {Moment(item.data).format('DD/MM/YYYY h:mm:ss a')}</Text>
@@ -76,7 +90,6 @@ class PedidosRealizados extends Component {
                             Você ainda não possui nenhum pedido
                         </Text>
                     </View>}
-
             </ImageBackground>
         )
     }

@@ -20,7 +20,7 @@ import SplashScreen from './screens/SplashScreen';
 import { connect } from 'react-redux';
 
 import { onGoogleButtonPress, logout, loadUser, userSignIn, finishedLoadingUser, loadingUserFunction, createUser, login, onFacebookButtonPress } from './store/actions/user'
-import PedidosRealizados from './screens/PedidosRealizados';
+import PedidosRealizados from './screens/PedidosRealizados2';
 import Auth from './screens/Auth';
 
 import CommonStyles from './CommonStyles';
