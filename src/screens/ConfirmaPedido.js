@@ -20,13 +20,9 @@ class ConfirmaPedido extends Component {
                 <View>
                     <Header hidden={true} {...this.props} />
                     <View style={styles.container}>
-                        <View>
-                            <Text style={styles.title}>Finalizar pedido</Text>
-                            <Text style={styles.subtitle}>Favor conferir todos os dados se estão corretos</Text>
-                        </View>
-                        <View style={styles.enderecos}>
-                            <Text style={styles.text}>Entrega em: {this.props.endereco.rua}, n° {this.props.endereco.numero}, {this.props.endereco.bairro}, {this.props.endereco.cidade}, {this.props.endereco.estado}{this.props.endereco.complemento ? `, ${this.props.endereco.complemento}` : null}</Text>
-                        </View>
+                        <Text style={styles.title}>Finalizar pedido</Text>
+                        <Text style={styles.subtitle}>Favor conferir todos os dados se estão corretos</Text>
+                        <Text style={styles.endereco}>{this.props.endereco.rua}, n° {this.props.endereco.numero}, {this.props.endereco.bairro}, {this.props.endereco.cidade}, {this.props.endereco.estado}{this.props.endereco.complemento ? `, ${this.props.endereco.complemento}` : null}</Text>
                         <FlatList
                             style={styles.flatlist}
                             data={this.props.cardapio}
@@ -38,14 +34,6 @@ class ConfirmaPedido extends Component {
                         <View style={styles.totalcontainer}><Text style={styles.Total}>R$ {this.props.total.toFixed(2).replace('.', ',')}</Text></View>
                     </View>
                     <View style={styles.buttons}>
-                        {/* <TouchableOpacity
-                            activeOpacity={.6}
-                            style={[styles.finalizar, { backgroundColor: 'red',  }]}
-                            onPress={() => {
-                                this.props.navigation.navigate('AppDrawer')
-                            }}>
-                            <Feather name={'x'} size={50} color={'white'} />
-                        </TouchableOpacity> */}
                         <TouchableOpacity
                             activeOpacity={.6}
                             style={styles.finalizar}
@@ -97,10 +85,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 10,
         color: 'white',
-        fontFamily: CommonStyles.fontFamily
+        fontFamily: CommonStyles.fontFamily,
+        marginTop: 10,
     },
-    text: {
-        fontSize: 15,
+    endereco: {
+        fontSize: 20,
         color: 'white',
         fontFamily: CommonStyles.fontFamily
     },
@@ -114,9 +103,8 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         fontSize: 20,
         textAlign: 'right',
-        flex: .4,
         color: 'white',
-        fontFamily: CommonStyles.fontFamily
+        fontFamily: CommonStyles.fontFamilyTitle
     },
     flatlist: {
         marginTop: 30,
