@@ -51,7 +51,7 @@ export default class Auth extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ padding: 10, alignItems: 'center' }}>
+                <View style={{marginTop: 10, padding: 10, alignItems: 'center' }}>
                     <TouchableOpacity style={[styles.buttonContainer, styles.fabookButton]} onPress={() => this.props.FacebookButtonPress()} disabled={this.props.loadingUser}>
                         <View style={styles.socialButtonContent}>
                             <Image style={styles.icon} source={require('../../assets/images/LoginIcons/facebook.png')} />
