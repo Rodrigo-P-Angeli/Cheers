@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 
 import React, { Component } from 'react'
-import { View, Text, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, ImageBackground, StyleSheet, Dimensions } from 'react-native'
 
 import Header from '../components/Header'
 import CommonStyles from '../CommonStyles';
@@ -14,14 +14,14 @@ import { connect } from 'react-redux'
 class ClienteFidelidade extends Component {
     render() {
         return (
-            <ImageBackground style={styles.container} source={require('../../assets/images/BackGroundBody.jpg')}>
-                <View>
-                    <Header {...this.props} />
-                    <Text style={styles.subtitle}>A cada R$ 100,00 em compras você ganha libera um espaço</Text>
-                    <Text style={styles.subtitle}>Completando o Pack você recebe na próxima compra</Text>
-                </View>
-                <View style={styles.aline}>
-                    <View style={styles.container}>
+            <ImageBackground style={{ flex: 1 }} source={require('../../assets/images/BackGroundBody.jpg')}>
+                <Header {...this.props} />
+                <View style={styles.container}>
+                    <View>
+                        <Text style={styles.subtitle}>A cada R$ 100,00 em compras você ganha libera um espaço</Text>
+                        <Text style={styles.subtitle}>Completando o Pack você recebe na próxima compra</Text>
+                    </View>
+                    <View style={styles.aline}>
                         <ImageBackground style={styles.image} source={Pack}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <View style={[styles.fdsa, this.props.fidelidade >= 1 ? styles.ganhado : null]}>
@@ -66,16 +66,17 @@ class ClienteFidelidade extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        margin: 20,
+        padding: 10,
+    },
     image: {
-        width: 400,
+        width: '100%',
         height: 200,
         alignContent: 'center',
         justifyContent: 'center',
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignContent: 'center',
     },
     fdsa: {
         flex: 1,
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     aline: {
-        justifyContent: 'center',
+        //justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
         flex: 1,
@@ -100,6 +101,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 10,
         fontFamily: CommonStyles.fontFamily,
+        color: 'white'
     },
     text: {
         textAlign: 'center',
