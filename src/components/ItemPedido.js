@@ -11,8 +11,8 @@ export default class ListaItems extends Component {
                     <Text style={styles.desc}>{this.props.marca} {this.props.tipo}</Text>
                     <Text style={styles.price}>{this.props.price.toFixed(2).replace('.', ',')}</Text>
                 </View>
-                <Text style={styles.desc}> x{this.props.quantidade}</Text>
-                <Ionicons name={'arrow-forward-sharp'} color={'white'} size={10} style={styles.desc} />
+                <Text style={[styles.desc, { alignSelf: 'center' }]}> x{this.props.quantidade}</Text>
+                <Ionicons name={'arrow-forward-sharp'} color={'white'} size={10} style={styles.icon} />
                 <Text style={styles.total}>{this.props.total.toFixed(2).replace('.', ',')}</Text>
             </View>
         )
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     desc: {
         flex: 1,
         color: 'white',
-        fontFamily: CommonStyles.fontFamily
+        fontFamily: CommonStyles.fontFamily,
     },
     price: {
         color: 'white',
@@ -37,6 +37,11 @@ const styles = StyleSheet.create({
         flex: 1,
         color: 'white',
         fontFamily: CommonStyles.fontFamily,
-        textAlign: 'right'
+        textAlign: 'right',
+        alignSelf: 'center'
+    },
+    icon: {
+        flex: 1,
+        alignSelf: 'center'
     }
 })

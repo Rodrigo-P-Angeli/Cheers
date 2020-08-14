@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         fontFamily: CommonStyles.fontFamilyTitle
     },
     flatlist: {
-        marginTop: 30,
+        marginTop: 20,
     }
 })
 
