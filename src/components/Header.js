@@ -22,7 +22,7 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 80,
+        height: 100,
         flexDirection: 'row',
         resizeMode: 'contain',
     },

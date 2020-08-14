@@ -17,7 +17,7 @@ class ClienteFidelidade extends Component {
             <ImageBackground style={{ flex: 1 }} source={require('../../assets/images/BackGroundBody.jpg')}>
                 <Header {...this.props} />
                 <View style={styles.container}>
-                    <View>
+                    <View style={{ backgroundColor: 'rgba(0,0,0,.8)' }}>
                         <Text style={styles.subtitle}>A cada R$ 100,00 em compras você ganha libera um espaço</Text>
                         <Text style={styles.subtitle}>Completando o Pack você recebe na próxima compra</Text>
                     </View>
@@ -68,7 +68,6 @@ class ClienteFidelidade extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.8)',
         margin: 20,
         padding: 10,
     },
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     aline: {
-        //justifyContent: 'center',
+        justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
         flex: 1,
