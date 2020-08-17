@@ -10,8 +10,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const initialState = {
     name: '',
-    email: 'julia_norbim@hotmail.com',
-    password: 'z1o2i3o4',
+    email: '',
+    password: '',
     confirmPassword: '',
     stageNew: false,
     secureTextSenha: true,
