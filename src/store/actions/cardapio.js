@@ -132,7 +132,7 @@ export const postPedido = (user, pedido, endereco, total) => {
             pedido: pedido.filter((item) => item.quantidade > 0),
             endereco: endereco,
             total: total,
-            status: 'Envidado',
+            status: 'Enviado',
         }).then(
             await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
                 let pedidos = snapshot.val() ? snapshot.val() : []
