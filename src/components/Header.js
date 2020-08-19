@@ -15,6 +15,11 @@ export default class App extends Component {
                         <Icon name={'bars'} size={30} color={CommonStyles.Colors.Title} />
                     </TouchableOpacity>}
                 <Text style={styles.title}>Cheers</Text>
+                {this.props.hidden ? <TouchableOpacity disabled={true} style={styles.buttonBars}>
+                    <Icon name={'long-arrow-left'} size={30} color={'rgba(0,0,0,0)'} />
+                </TouchableOpacity> : <TouchableOpacity disabled={true} style={styles.buttonBars}>
+                        <Icon name={'bars'} size={30} color={'rgba(0,0,0,0)'} />
+                    </TouchableOpacity>}
             </ImageBackground>
         )
     }
@@ -25,13 +30,13 @@ const styles = StyleSheet.create({
         height: 100,
         flexDirection: 'row',
         resizeMode: 'contain',
+        justifyContent: 'space-between'
     },
     title: {
         fontFamily: CommonStyles.fontFamilyTitle,
         fontSize: 50,
         alignSelf: 'center',
         color: CommonStyles.Colors.Title,
-        paddingLeft: Dimensions.get('window').width / 4,
     },
     buttonBars: {
         alignSelf: 'center',
