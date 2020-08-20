@@ -137,14 +137,14 @@ export const postPedido = (user, pedido, endereco, total) => {
             await database().ref('users').child(`${user.uid}/pedidos`).once('value').then(snapshot => {
                 let pedidos = snapshot.val() ? snapshot.val() : []
                 pedidos[snapshot.val() ? snapshot.val().length : 0] = refPedido.key
-                database().ref('users').child(`${user.uid}`).set(
+                database().ref('users').child(`${user.uid}`).update(
                     {
                         pedidos
                     })
             })).catch(e => console.log(e)).then(() => {
                 dispatch(loadCardapio())
                 dispatch(saveUserAddress(user, endereco))
-                Alert.alert('Pedido Enviado com sucesso', 'Guenta que já já chegar')
+                Alert.alert('Pedido Enviado com sucesso', 'Guenta que já já chega')
                 dispatch(pushPedido())
             }
             )

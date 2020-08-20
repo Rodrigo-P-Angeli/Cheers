@@ -214,7 +214,7 @@ export const logOutt = () => {
 export const saveUserAddress = (user, endereco) => {
     return async dispatch => {
         try {
-            await database().ref('users').child(`${user.uid}/endereco`).set({ ...endereco })
+            await database().ref('users').child(`${user.uid}/endereco`).update({ ...endereco })
         }
         catch (e) {
             console.log(e)
