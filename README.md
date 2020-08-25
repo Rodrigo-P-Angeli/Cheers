@@ -16,9 +16,9 @@ First of all, a brief message about my trajectory in programming in React Native
 
 ### How the App works:
 
-The App loads a SplashScreen where it seeks for a current User, if no user it navigates to log in screen, otherwise it loads the menu, every item is saved on Firebase back-end which is loaded as well. The user can place an order but he will need to set his address to be able to send his order, so the app navigates to set the user's address. After that, he is able to check his order and send to the seller so on. 
+The App loads a SplashScreen where it seeks for a current User, if no user it navigates to log in screen, otherwise it loads the menu, every item is saved on Firebase back-end which are loaded as well. The user can place an order but he will need to set his address to be able to send his order, so the app navigates to set the user's address. After that, he is able to check his order and send to the seller. 
 
-The User has screen where he can check for old orders and his points in the loyalty plan. 
+The User has a screen where he can check for old orders and his points in the loyalty plan. 
 
-I already have the seller App, where you can check for every users orders but the UI and the security aren't ready yet so the code is private still. But it will be open as soon as possible.
+I already have the seller App, where you can check for every users' orders but the UI and the security aren't ready yet so the code is private still. But it will be open as soon as possible.
 
