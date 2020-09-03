@@ -4,7 +4,8 @@
 import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+//import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import auth from '@react-native-firebase/auth'
@@ -27,7 +28,7 @@ import CommonStyles from './CommonStyles';
 import DadosCliente2 from './screens/DadosCliente2';
 import ConfirmaPedido from './screens/ConfirmaPedido';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -45,8 +46,8 @@ class BottomTab extends Component {
                     component={Cardapio}
                     options={{
                         tabBarLabel: 'Cardápio',
-                        tabBarIcon: ({ color, size }) => (
-                            <Ionicons name="beer" color={color} size={size} />
+                        tabBarIcon: ({ color }) => (
+                            <Ionicons name="beer" color={color} size={26} />
                         ),
                     }}
                 />
@@ -55,8 +56,8 @@ class BottomTab extends Component {
                     component={DadosCliente2}
                     options={{
                         tabBarLabel: 'Dados do Cliente',
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialIcons name="person" color={color} size={size} />
+                        tabBarIcon: ({ color }) => (
+                            <MaterialIcons name="person" color={color} size={26} />
                         ),
                     }}
                 />
