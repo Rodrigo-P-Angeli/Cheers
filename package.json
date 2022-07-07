@@ -23,7 +23,7 @@
     "@reduxjs/toolkit": "^1.4.0",
     "cep-promise": "^3.0.9",
     "galio-framework": "^0.7.1",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-fbsdk": "^2.0.0",
